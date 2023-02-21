@@ -1,0 +1,44 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Window
+    x:Class="DLUTToolBoxV3.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DLUTToolBoxV3"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid Name="Root">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid x:Name="AppTitleBar"  Grid.Row="0" VerticalAlignment="Top" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="LeftPaddingColumn" Width="0"/>
+                <ColumnDefinition x:Name="IconColumn" Width="Auto"/>
+                <ColumnDefinition x:Name="TitleColumn" Width="Auto"/>
+                <ColumnDefinition x:Name="LeftDragColumn" Width="*"/>
+                <ColumnDefinition x:Name="SearchColumn" Width="Auto"/>
+                <ColumnDefinition x:Name="RightDragColumn" Width="*"/>
+                <ColumnDefinition x:Name="RightPaddingColumn" Width="0"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="TitleBarIcon" Source="ms-appx:///Assets/logo.png"
+                Grid.Column="1"
+                Width="20" Height="20"
+                VerticalAlignment="Center"
+                Margin="8,8,0,0"/>
+            <TextBlock x:Name="TitleTextBlock" 
+               Text="DLUTToolBoxV3" 
+               Style="{StaticResource CaptionTextBlockStyle}"
+               FontSize="16"
+               Grid.Column="2"
+               VerticalAlignment="Center"
+               Margin="4,6,0,0"/>
+        </Grid>
+
+        <local:ShellPage Grid.Row="2"/>
+
+    </Grid>
+</Window>

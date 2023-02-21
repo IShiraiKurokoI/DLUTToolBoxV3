@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DLUTToolBoxV3 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "DLUTToolBoxV3 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
