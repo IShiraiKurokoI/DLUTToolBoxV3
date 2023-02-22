@@ -18,6 +18,10 @@ using Windows.Foundation.Collections;
 using Windows.Networking.Connectivity;
 using WinUICommunity.Common.ViewModel;
 using DLUTToolBoxV3.Pages;
+using DLUTToolBoxV3.Configurations;
+using Castle.Core.Internal;
+using Microsoft.Windows.AppNotifications.Builder;
+using Microsoft.Windows.AppNotifications;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -37,6 +41,13 @@ namespace DLUTToolBoxV3
             .WithAutoSuggestBox(autoSuggestBox)
             .WithKeyboardAccelerator(KeyboardAccelerators)
             .WithDefaultPage(typeof(GeneralPage));
+            if(ApplicationConfig.GetSettings("Uid").IsNullOrEmpty()|| ApplicationConfig.GetSettings("Password").IsNullOrEmpty())
+            {
+                var builder = new AppNotificationBuilder()
+                    .AddText("请先在参数配置界面设置学工号和统一认证密码!\n设置完成后方可正常使用所有功能！");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+            }
         }
         private void UserControl_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
