@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using DLUTToolBoxV3.Configurations;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -47,6 +48,14 @@ namespace DLUTToolBoxV3
         {
             Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--proxy-server=\"direct://\"");
             m_window = new MainWindow();
+            if (ApplicationConfig.GetSettings("Theme") != null)
+            {
+                ThemeHelper.ChangeTheme(GeneralHelper.GetEnum<ElementTheme>(ApplicationConfig.GetSettings("Theme")));
+            }
+            else
+            {
+                ApplicationConfig.SaveSettings("Theme", "Default");
+            }
             ThemeHelper.Initialize(m_window, BackdropType.DesktopAcrylic);
             m_window.Activate();
         }

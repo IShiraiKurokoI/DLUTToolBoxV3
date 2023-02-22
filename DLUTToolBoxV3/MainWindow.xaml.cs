@@ -35,11 +35,10 @@ namespace DLUTToolBoxV3
             this.InitializeComponent();
             m_AppWindow = WindowHelper.GetAppWindowForCurrentWindow(this);
             m_AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+            m_AppWindow.Resize(new SizeInt32(1700, 800));
             m_AppWindow.SetIcon("ms-appx:///Assets/logo.ico");
             this.Title = "DLUTToolBoxV3";
             SetTitleBar(AppTitleBar);
         }
-
-
     }
 }
