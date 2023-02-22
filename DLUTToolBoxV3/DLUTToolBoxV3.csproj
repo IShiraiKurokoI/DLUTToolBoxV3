@@ -17,9 +17,18 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\About.ico" />
+    <None Remove="Assets\Author.png" />
+    <None Remove="Assets\Charge.png" />
+    <None Remove="Assets\Ehall.ico" />
+    <None Remove="Assets\Exam.png" />
     <None Remove="Assets\General.ico" />
+    <None Remove="Assets\Library.png" />
     <None Remove="Assets\logo.ico" />
+    <None Remove="Assets\Network.png" />
+    <None Remove="Assets\OSSettings.ico" />
+    <None Remove="Assets\Other.png" />
     <None Remove="Assets\Settings.ico" />
+    <None Remove="Assets\Study.png" />
     <None Remove="Pages\AboutPage.xaml" />
     <None Remove="Pages\ChargePage.xaml" />
     <None Remove="Pages\EhallPage.xaml" />

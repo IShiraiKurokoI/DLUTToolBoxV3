@@ -1,4 +1,4 @@
-<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
 <Page
@@ -8,10 +8,84 @@
     xmlns:local="using:DLUTToolBoxV3.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:WinUICommunity.SettingsUI.Controls"
+    xmlns:labs="using:WinUICommunity.SettingsUI.SettingsControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <ScrollViewer>
 
-    </Grid>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="24,16,24,0" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.IsVerticalRailEnabled="True" ScrollViewer.IsVerticalScrollChainingEnabled="True">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <Image Source="ms-appx:///Assets/logo.png" Width="40" Height="40" VerticalAlignment="Center"/>
+                    <TextBlock Text="DLUTToolBoxV3" FontSize="26" VerticalAlignment="top" Margin="10,0,0,0"/>
+                    <TextBlock Text="{x:Bind Version}" FontSize="18" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+
+            <labs:SettingsCard
+                    Margin="0,20,0,0">
+                <labs:SettingsCard.Header>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,5" HorizontalAlignment="Left">
+                        <PersonPicture ProfilePicture="ms-appx:///Assets/Author.png" DisplayName="IShirai_KurokoI" HorizontalAlignment="Left"/>
+                        <StackPanel Margin="10,0,0,0">
+                            <TextBlock Text="IShirai_KurokoI" FontSize="18" FontWeight="Bold" Margin="5,0,0,0"/>
+                            <HyperlinkButton Content="Github主页" NavigateUri="https://github.com/IShiraiKurokoI"/>
+                            <HyperlinkButton Content="BiliBili主页" NavigateUri="https://space.bilibili.com/310144483"/>
+                        </StackPanel>
+                    </StackPanel>
+                </labs:SettingsCard.Header>
+            </labs:SettingsCard>
+
+            <labs:SettingsCard
+                    Header="点此复制项目链接分享给好友"
+                    Margin="0,4,0,0">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xe72d;" />
+                </labs:SettingsCard.HeaderIcon>
+                <Button 
+                        x:Name="CopyLink"
+                        HorizontalAlignment="Right"
+                        Content="复制链接" 
+                        Click="HyperlinkButton_Click"/>
+            </labs:SettingsCard>
+
+            <labs:SettingsCard ActionIconToolTip="打开项目页面"
+                               Description="你可以点此打开本浏览器项目页面"
+                               Header="项目页面"
+                               IsClickEnabled="True"
+                               Click="SettingsCard_Click"
+                               Margin="0,4,0,0">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE12B;" />
+                </labs:SettingsCard.HeaderIcon>
+                <labs:SettingsCard.ActionIcon>
+                    <FontIcon FontSize="12"
+                              Glyph="&#xE8A7;" />
+                </labs:SettingsCard.ActionIcon>
+            </labs:SettingsCard>
+
+            <labs:SettingsExpander Header="感谢以下本应用中使用的开源项目"
+                               Margin="0,4,0,30">
+                <labs:SettingsExpander.HeaderIcon>
+                    <FontIcon Glyph="&#xe734;" />
+                </labs:SettingsExpander.HeaderIcon>
+                <labs:SettingsExpander.Items>
+                    <labs:SettingsCard>
+                        <labs:SettingsCard.Description>
+                            <ScrollViewer>
+                                <StackPanel>
+                                    <HyperlinkButton Content="Microsoft.Windows.SDK.BuildTools" NavigateUri="https://aka.ms/WinSDKProjectURL" Margin="5" FontSize="18"/>
+                                    <HyperlinkButton Content="Microsoft/WindowsAppSDK" NavigateUri="https://github.com/microsoft/windowsappsdk"  Margin="5" FontSize="18"/>
+                                    <HyperlinkButton Content="WinUICommunity/Common" NavigateUri="https://github.com/WinUICommunity/Common"  Margin="5" FontSize="18"/>
+                                    <HyperlinkButton Content="WinUICommunity/SettingsUI" NavigateUri="https://github.com/WinUICommunity/SettingsUI"  Margin="5" FontSize="18"/>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </labs:SettingsCard.Description>
+                    </labs:SettingsCard>
+                </labs:SettingsExpander.Items>
+            </labs:SettingsExpander>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
