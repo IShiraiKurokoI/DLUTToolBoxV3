@@ -10,11 +10,13 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -40,13 +42,23 @@ namespace DLUTToolBoxV3
             this.InitializeComponent();
         }
 
+        public NLog.Logger logger;
         /// <summary>
         /// Invoked when the application is launched.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Info("--------程序启动--------");
+            logger.Info("日志记录初始化成功");
             Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--proxy-server=\"direct://\"");
+            logger.Info("WebView参数初始化成功");
+            //Task线程内未捕获异常处理事件
+            System.Threading.Tasks.TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+            //非UI线程未捕获异常处理事件(例如自己创建的一个子线程)
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
             m_window = new MainWindow();
             if (ApplicationConfig.GetSettings("Theme") != null)
             {
@@ -56,10 +68,53 @@ namespace DLUTToolBoxV3
             {
                 ApplicationConfig.SaveSettings("Theme", "Default");
             }
+            logger.Info("程序主题" + ApplicationConfig.GetSettings("Theme"));
             ThemeHelper.Initialize(m_window, BackdropType.DesktopAcrylic);
             m_window.Activate();
         }
 
         private Window m_window;
+
+        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            try
+            {
+                if (e.Exception is Exception exception)
+                {
+                    HandleException(exception);
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+            finally
+            {
+                e.SetObserved();
+            }
+        }
+
+        //非UI线程未捕获异常处理事件(例如自己创建的一个子线程)
+        private void CurrentDomain_UnhandledException(object sender, System.UnhandledExceptionEventArgs e)
+        {
+            try
+            {
+                if (e.ExceptionObject is Exception exception)
+                {
+                    HandleException(exception);
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        //日志记录
+        private void HandleException(Exception ex)
+        {
+            //记录日志
+            logger.Error(ex.ToString());
+        }
     }
 }

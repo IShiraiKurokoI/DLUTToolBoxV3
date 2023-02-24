@@ -22,6 +22,7 @@ using WinUICommunity.Common.Helpers;
 using Windows.ApplicationModel;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Runtime.ConstrainedExecution;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -33,6 +34,7 @@ namespace DLUTToolBoxV3.Pages
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+        public NLog.Logger logger;
         public string Version = string.Format("V{0}.{1}.{2}.{3}",
                         Package.Current.Id.Version.Major,
                         Package.Current.Id.Version.Minor,
@@ -41,6 +43,8 @@ namespace DLUTToolBoxV3.Pages
 
         public SettingsPage()
         {
+            logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Info("打开参数配置页面");
             this.InitializeComponent();
         }
 
@@ -87,6 +91,7 @@ namespace DLUTToolBoxV3.Pages
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
+                logger.Info("清除cookie");
                 WebView2 webView2 = new WebView2();
                 webView2.CoreWebView2Initialized += (sender, args) =>
                 {
@@ -102,68 +107,84 @@ namespace DLUTToolBoxV3.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            logger.Info("检查更新");
             CheckUpdate();
         }
 
-        private async Task CheckUpdate()
+        private void CheckUpdate()
         {
-            try
+            var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
+            Task.Run(async () =>
             {
-                Checking.Visibility = Visibility.Visible;
-                var ver = await Helpers.UpdateHelper.CheckUpdateAsync("IShiraiKurokoI", "DLUTToolBoxV3",new Version(string.Format("{0}.{1}.{2}.{3}",
-                        Package.Current.Id.Version.Major,
-                        Package.Current.Id.Version.Minor,
-                        Package.Current.Id.Version.Build,
-                        Package.Current.Id.Version.Revision)));
-
-                string SizeString = "";
-                var dic = ByteConversionGBMBKB(ver.Assets[0].Size);
-                foreach (KeyValuePair<string, double> key in dic)
+                try
                 {
-                    var filetype = key.Key;
-                    var filesize = key.Value;
-                    SizeString = filesize + filetype;
-                }
-
-                if (ver.IsExistNewVersion)
-                {
-                    ContentDialog dialog = new ContentDialog();
-
-                    // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
-                    dialog.XamlRoot = this.XamlRoot;
-                    dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-                    dialog.Title = "发现新版本！";
-                    dialog.PrimaryButtonText = "前往更新";
-                    dialog.CloseButtonText = "暂不更新";
-                    dialog.DefaultButton = ContentDialogButton.Primary;
-                    dialog.Content = $"检测到新版本：V{ver.TagName}\n发布时间：{ver.PublishedAt}\n大小：{SizeString}";
-
-                    var result = await dialog.ShowAsync();
-                    if (result == ContentDialogResult.Primary)
+                    dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
                     {
-                        await Windows.System.Launcher.LaunchUriAsync(new Uri(ver.HtmlUrl.ToString()));
+                        Checking.Visibility = Visibility.Visible;
+                    });
+                    var ver = await Helpers.UpdateHelper.CheckUpdateAsync("IShiraiKurokoI", "DLUTToolBoxV3", new Version(string.Format("{0}.{1}.{2}.{3}",
+                            Package.Current.Id.Version.Major,
+                            Package.Current.Id.Version.Minor,
+                            Package.Current.Id.Version.Build,
+                            Package.Current.Id.Version.Revision)));
+
+                    string SizeString = "";
+                    var dic = ByteConversionGBMBKB(ver.Assets[0].Size);
+                    foreach (KeyValuePair<string, double> key in dic)
+                    {
+                        var filetype = key.Key;
+                        var filesize = key.Value;
+                        SizeString = filesize + filetype;
                     }
+
+                    if (ver.IsExistNewVersion)
+                    {
+                        dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, async () =>
+                        {
+                            logger.Info($"发现新版本{ver.TagName}");
+                            ContentDialog dialog = new ContentDialog();
+                            dialog.XamlRoot = this.XamlRoot;
+                            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+                            dialog.Title = "发现新版本！";
+                            dialog.PrimaryButtonText = "前往更新";
+                            dialog.CloseButtonText = "暂不更新";
+                            dialog.DefaultButton = ContentDialogButton.Primary;
+                            dialog.Content = $"检测到新版本：V{ver.TagName}\n发布时间：{ver.PublishedAt}\n大小：{SizeString}";
+                            var result = await dialog.ShowAsync();
+                            if (result == ContentDialogResult.Primary)
+                            {
+                                await Windows.System.Launcher.LaunchUriAsync(new Uri(ver.HtmlUrl.ToString()));
+                            }
+                        });
+                    }
+                    else
+                    {
+                        var builder = new AppNotificationBuilder()
+                            .AddText($"您当前使用的是最新版本！");
+                        var notificationManager = AppNotificationManager.Default;
+                        notificationManager.Show(builder.BuildNotification());
+                    }
+
+                    dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+                    {
+                        Checking.Visibility = Visibility.Collapsed;
+                        LastUpdateCheckDate.Text = DateTime.Now.ToString();
+                        ApplicationConfig.SaveSettings("LastUpdateCheckDate", LastUpdateCheckDate.Text);
+                    });
                 }
-                else
+                catch (Exception e)
                 {
+                    logger.Error(e);
                     var builder = new AppNotificationBuilder()
-                        .AddText($"您当前使用的是最新版本！");
+                        .AddText($"检查更新失败：{e.Message}");
                     var notificationManager = AppNotificationManager.Default;
                     notificationManager.Show(builder.BuildNotification());
+                    dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+                    {
+                        Checking.Visibility = Visibility.Collapsed;
+                    });
                 }
-
-                Checking.Visibility = Visibility.Collapsed;
-                LastUpdateCheckDate.Text = DateTime.Now.ToString();
-                ApplicationConfig.SaveSettings("LastUpdateCheckDate", LastUpdateCheckDate.Text);
-            }
-            catch (Exception e)
-            {
-                var builder = new AppNotificationBuilder()
-                    .AddText($"检查更新失败：{e.Message}");
-                var notificationManager = AppNotificationManager.Default;
-                notificationManager.Show(builder.BuildNotification());
-                Checking.Visibility = Visibility.Collapsed;
-            }
+            });
         }
 
         public Dictionary<string, double> ByteConversionGBMBKB(int KSize)
@@ -194,6 +215,12 @@ namespace DLUTToolBoxV3.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LastUpdateCheckDate.Text = ApplicationConfig.GetSettings("LastUpdateCheckDate");
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            logger.Info("打开日志文件夹");
+            Windows.System.Launcher.LaunchUriAsync(new Uri(ApplicationHelper.GetFullPathToExe()+ "\\Log"));
         }
     }
 }

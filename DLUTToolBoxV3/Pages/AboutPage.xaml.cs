@@ -19,6 +19,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using NLog;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,6 +31,7 @@ namespace DLUTToolBoxV3.Pages
     /// </summary>
     public sealed partial class AboutPage : Page
     {
+        public NLog.Logger logger;
 
         public string Version = string.Format("版本：{0}.{1}.{2}.{3}",
                         Package.Current.Id.Version.Major,
@@ -38,6 +40,8 @@ namespace DLUTToolBoxV3.Pages
                         Package.Current.Id.Version.Revision);
         public AboutPage()
         {
+            logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Info("打开关于软件页面");
             this.InitializeComponent();
         }
 

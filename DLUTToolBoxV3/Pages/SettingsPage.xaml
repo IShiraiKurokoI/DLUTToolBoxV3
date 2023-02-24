@@ -70,7 +70,8 @@
                     </labs:SettingsCard.HeaderIcon>
                     <Button 
                         HorizontalAlignment="Right"
-                        Content="打开文件夹"/>
+                        Content="打开文件夹"
+                        Click="Button_Click_2"/>
                 </labs:SettingsCard>
                 <controls:Setting 
                         Header="{x:Bind Version}"

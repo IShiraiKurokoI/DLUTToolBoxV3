@@ -38,7 +38,7 @@
                Margin="4,6,0,0"/>
         </Grid>
 
-        <local:ShellPage Grid.Row="2"/>
+        <local:ShellPage Grid.Row="2" Background="Transparent"/>
 
     </Grid>
 </Window>

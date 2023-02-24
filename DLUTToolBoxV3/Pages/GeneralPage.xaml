@@ -1,4 +1,4 @@
-<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
 <Page
@@ -9,9 +9,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    Loaded="Page_Loaded"
+    Background="Transparent">
     <Grid>
-
+        <StackPanel HorizontalAlignment="Left" Margin="8">
+            <InfoBar
+                IsOpen="True"
+                MinWidth="380"
+                Title="寝室电费信息&#10;"
+                IsClosable="False"
+                Message="正在加载信息。。。"
+                x:Name="ElectrcityInfo"/>
+            <InfoBar
+                Margin="0,16,0,0"
+                IsOpen="True"
+                MinWidth="380"
+                Title="校园网信息&#10;"
+                IsClosable="False"
+                Message="正在加载信息。。。"
+                x:Name="NetworkInfo"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Grid VerticalAlignment="Stretch" Width="420">
+                <ProgressRing VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="ClassTableProgress"/>
+                <WebView2 Source="https://api.m.dlut.edu.cn/login?client_id=9qXqHnRQuhhViycC&amp;redirect_uri=https%3a%2f%2flightapp.m.dlut.edu.cn%2fcheck%2fcourseschedule&amp;response_type=code" VerticalAlignment="Stretch" Width="420" Margin="4" x:Name="ClassTable" NavigationCompleted="ClassTable_NavigationCompleted" CoreWebView2Initialized="ClassTable_CoreWebView2Initialized" ScrollViewer.IsVerticalRailEnabled="False" ScrollViewer.IsVerticalScrollChainingEnabled="False" Visibility="Collapsed"/>
+            </Grid>
+            <Grid VerticalAlignment="Stretch" Width="300">
+                <ProgressRing VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="WeatherProgress"/>
+                <WebView2 Source="http://www.weather.com.cn" VerticalAlignment="Stretch" Width="300" Margin="0,4,4,4" x:Name="Weather" NavigationCompleted="Weather_NavigationCompleted" CoreWebView2Initialized="Weather_CoreWebView2Initialized" Visibility="Collapsed"/>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>

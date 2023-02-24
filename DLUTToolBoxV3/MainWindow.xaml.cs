@@ -18,6 +18,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics;
 using WinUICommunity.Common.Helpers;
+using NLog;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,16 +30,19 @@ namespace DLUTToolBoxV3
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        public NLog.Logger logger;
         private AppWindow m_AppWindow;
         public MainWindow()
         {
+            logger = NLog.LogManager.GetCurrentClassLogger();
             this.InitializeComponent();
             m_AppWindow = WindowHelper.GetAppWindowForCurrentWindow(this);
             m_AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
             m_AppWindow.Resize(new SizeInt32(1700, 800));
-            m_AppWindow.SetIcon("ms-appx:///Assets/logo.ico");
+            m_AppWindow.SetIcon("/Assets/logo.ico");
             this.Title = "DLUTToolBoxV3";
             SetTitleBar(AppTitleBar);
+            logger.Info("主窗口激活成功");
         }
     }
 }

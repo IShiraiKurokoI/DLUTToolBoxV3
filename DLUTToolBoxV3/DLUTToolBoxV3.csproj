@@ -39,6 +39,7 @@
     <None Remove="Assets\Other.png" />
     <None Remove="Assets\Settings.ico" />
     <None Remove="Assets\Study.png" />
+    <None Remove="NLog.config" />
     <None Remove="Pages\AboutPage.xaml" />
     <None Remove="Pages\ChargePage.xaml" />
     <None Remove="Pages\EhallPage.xaml" />
@@ -60,13 +61,19 @@
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230217.4" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
-    <PackageReference Include="WinUICommunity.Common" Version="3.0.4" />
-    <PackageReference Include="WinUICommunity.SettingsUI" Version="3.0.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="NLog" Version="5.1.2" />
+    <PackageReference Include="NLog.Schema" Version="5.1.2" />
+    <PackageReference Include="WinUICommunity.Common" Version="3.1.0" />
+    <PackageReference Include="WinUICommunity.SettingsUI" Version="3.1.0" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
@@ -77,6 +84,19 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Update="Assets\logo.png">
