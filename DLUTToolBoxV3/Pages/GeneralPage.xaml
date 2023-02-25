@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Loaded="Page_Loaded"
+    NavigationCacheMode="Enabled"
     Background="Transparent">
     <Grid>
         <StackPanel HorizontalAlignment="Left" Margin="8">

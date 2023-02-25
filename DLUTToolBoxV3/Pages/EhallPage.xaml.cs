@@ -22,6 +22,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Castle.Core.Internal;
 using Windows.ApplicationModel.DataTransfer;
+using DLUTToolBoxV3.Helpers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -38,6 +39,7 @@ namespace DLUTToolBoxV3.Pages
         {
             this.InitializeComponent();
         }
+
         private void WebView_CoreWebView2Initialized(WebView2 sender, CoreWebView2InitializedEventArgs args)
         {
             WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = true;
