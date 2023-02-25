@@ -1,4 +1,4 @@
-<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
 <Page
@@ -9,9 +9,76 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-
+    Background="Transparent">
+    <Grid ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  x:Name="SourceElement">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Height="48" Grid.Row="0" Margin="4,-8,4,-8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="32"/>
+                <ColumnDefinition Width="32"/>
+                <ColumnDefinition Width="32"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="32"/>
+            </Grid.ColumnDefinitions>
+            <AppBarButton Height="48" Width="32" Grid.Column="0" Margin="4,0,0,0" x:Name="GoBack" Click="GoBack_Click" IsEnabled="{x:Bind WebView.CanGoBack,Mode=TwoWay}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xe72b;" VerticalAlignment="Top"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Height="48" Width="32" Grid.Column="1" Margin="4,0,0,0" x:Name="GoForward" Click="GoForward_Click" IsEnabled="{x:Bind WebView.CanGoForward,Mode=TwoWay}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xe72a;" VerticalAlignment="Top"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton  Height="48" Width="32" Grid.Column="2" Margin="4,0,0,0" x:Name="RefreshOrStop" Click="RefreshOrStop_Click">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xe72c;" x:Name="RefreshOrStopIcon"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <TextBox HorizontalAlignment="Stretch" Height="26" Grid.Column="3" Margin="8,0,0,0" x:Name="AddressBox" Text="{x:Bind WebView.Source.AbsoluteUri,Mode=OneWay}" InputScope="Url"/>
+            <AppBarButton  Height="48" Width="32" Grid.Column="4" Margin="4,0,0,0" x:Name="More">
+                <AppBarButton.Icon>
+                    <FontIcon  Glyph="&#xe712;"/>
+                </AppBarButton.Icon>
+                <AppBarButton.Resources>
+                    <x:Double x:Key="AppBarButtonSubItemChevronFontSize">0.00001</x:Double>
+                </AppBarButton.Resources>
+                <AppBarButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutSeparator/>
+                        <MenuFlyoutItem Text="下载" x:Name="Download" Click="Download_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xe896;"/>
+                            </MenuFlyoutItem.Icon>
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="J" Modifiers="Control"/>
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="历史记录" x:Name="History" Click="History_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xe81c;"/>
+                            </MenuFlyoutItem.Icon>
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="H" Modifiers="Control"/>
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutSeparator/>
+                        <MenuFlyoutItem Text="分享页面链接" x:Name="Share" Click="Share_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xe72d;"/>
+                            </MenuFlyoutItem.Icon>
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="S" Modifiers="Control"/>
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutSeparator/>
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+        </Grid>
+        <WebView2 Source="https://webvpn.dlut.edu.cn/https/77726476706e69737468656265737421f5ff40902b7e6c5c6b1cc7a99c406d3607/fp/view?m=fp" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" x:Name="WebView" CoreWebView2Initialized="WebView_CoreWebView2Initialized" />
     </Grid>
 </Page>
