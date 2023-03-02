@@ -1,0 +1,79 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<ResourceDictionary
+    x:Class="DLUTToolBoxV3.ItemTemplates"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:data="using:DLUTToolBoxV3.Entities"
+    xmlns:local="using:DLUTToolBoxV3">
+    <DataTemplate x:Key="ControlItemTemplate" x:DataType="data:AppDataItem">
+        <UserControl>
+            <Grid
+                x:Name="controlRoot"
+                Width="360"
+                Height="90"
+                Padding="8"
+                HorizontalAlignment="Stretch"
+                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="{StaticResource ControlCornerRadius}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="LayoutVisualStates">
+                        <VisualState x:Name="WideLayout">
+                            <VisualState.StateTriggers>
+                                <AdaptiveTrigger MinWindowWidth="{StaticResource Breakpoint640Plus}" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters />
+                        </VisualState>
+                        <VisualState x:Name="NarrowLayout">
+                            <VisualState.StateTriggers>
+                                <AdaptiveTrigger MinWindowWidth="0" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Target="controlRoot.Width" Value="Auto" />
+                                <Setter Target="controlRoot.Height" Value="120" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+                <Grid Width="72" CornerRadius="{ThemeResource ControlCornerRadius}">
+                    <Image
+                        x:Name="gridImage"
+                        Width="48"
+                        VerticalAlignment="Center"
+                        AutomationProperties.Name="{x:Bind Title}"
+                        Source="{x:Bind ImagePath}"
+                        Stretch="Uniform" />
+                </Grid>
+                <StackPanel
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Margin="16,0,0,0"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical"
+                    Spacing="2">
+                    <TextBlock
+                        x:Name="titleText"
+                        Style="{StaticResource BodyStrongTextBlockStyle}"
+                        Text="{x:Bind Title}"
+                        TextLineBounds="TrimToCapHeight"
+                        TextWrapping="NoWrap" />
+                    <TextBlock
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                        RelativePanel.Below="titleText"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        Text="{x:Bind Description}"
+                        TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+            </Grid>
+        </UserControl>
+    </DataTemplate>
+</ResourceDictionary>

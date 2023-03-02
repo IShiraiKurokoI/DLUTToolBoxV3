@@ -26,6 +26,9 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="ItemTemplates.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Assets\About.ico" />
     <None Remove="Assets\Author.png" />
     <None Remove="Assets\Charge.png" />
@@ -39,6 +42,7 @@
     <None Remove="Assets\Other.png" />
     <None Remove="Assets\Settings.ico" />
     <None Remove="Assets\Study.png" />
+    <None Remove="ItemTemplates.xaml" />
     <None Remove="NLog.config" />
     <None Remove="Pages\AboutPage.xaml" />
     <None Remove="Pages\ChargePage.xaml" />
@@ -52,6 +56,13 @@
     <None Remove="Pages\StudyPage.xaml" />
     <None Remove="Pages\SystemPage.xaml" />
     <None Remove="ShellPage.xaml" />
+    <None Remove="Templates.xaml" />
+    <None Remove="UserControls\AppButton.xaml" />
+    <None Remove="UserControls\AppGridView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Remove="ItemTemplates.xaml" />
+    <Page Remove="Templates.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,7 +83,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="NLog" Version="5.1.2" />
     <PackageReference Include="NLog.Schema" Version="5.1.2" />
-    <PackageReference Include="WinUICommunity.Common" Version="3.1.0" />
+    <PackageReference Include="WinUICommunity.Common" Version="3.2.1" />
     <PackageReference Include="WinUICommunity.SettingsUI" Version="3.1.0" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -103,6 +114,12 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="UserControls\AppGridView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="UserControls\AppButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Pages\SystemPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

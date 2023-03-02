@@ -16,7 +16,8 @@
         <StackPanel HorizontalAlignment="Left" Margin="8">
             <InfoBar
                 IsOpen="True"
-                MinWidth="380"
+                Width="330"
+                HorizontalAlignment="Left"
                 Title="寝室电费信息&#10;"
                 IsClosable="False"
                 Message="正在加载信息。。。"
@@ -24,14 +25,15 @@
             <InfoBar
                 Margin="0,16,0,0"
                 IsOpen="True"
-                MinWidth="380"
+                Width="330"
+                HorizontalAlignment="Left"
                 Title="校园网信息&#10;"
                 IsClosable="False"
                 Message="正在加载信息。。。"
                 x:Name="NetworkInfo"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Grid VerticalAlignment="Stretch" Width="420">
+            <Grid VerticalAlignment="Stretch" Width="425">
                 <ProgressRing VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="ClassTableProgress"/>
                 <WebView2 Source="https://api.m.dlut.edu.cn/login?client_id=9qXqHnRQuhhViycC&amp;redirect_uri=https%3a%2f%2flightapp.m.dlut.edu.cn%2fcheck%2fcourseschedule&amp;response_type=code" VerticalAlignment="Stretch" Width="420" Margin="4" x:Name="ClassTable" NavigationCompleted="ClassTable_NavigationCompleted" CoreWebView2Initialized="ClassTable_CoreWebView2Initialized" ScrollViewer.IsVerticalRailEnabled="False" ScrollViewer.IsVerticalScrollChainingEnabled="False" Visibility="Collapsed"/>
             </Grid>

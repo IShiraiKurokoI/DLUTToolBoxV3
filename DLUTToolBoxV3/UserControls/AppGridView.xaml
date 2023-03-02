@@ -1,0 +1,30 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<UserControl
+    x:Class="DLUTToolBoxV3.UserControls.AppGridView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DLUTToolBoxV3.UserControls"
+    xmlns:localControls="using:DLUTToolBoxV3.UserControls"
+    xmlns:localEntities="using:DLUTToolBoxV3.Entities"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <DataTemplate x:Name="AppTemplate" x:DataType="localEntities:AppDataItem">
+            <localControls:AppButton
+            Title="{x:Bind Title}"
+            Subtitle="{x:Bind Description}"
+            ImagePath="{x:Bind ImagePath}"
+            ButtonWidth="240"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <GridView ItemTemplate="{StaticResource AppTemplate}" x:Name="AppGrid" ItemsSource="{x:Bind Items,Mode=TwoWay}">
+        <GridView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <ItemsWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+        </GridView.ItemsPanel>
+    </GridView>
+</UserControl>

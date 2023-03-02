@@ -14,6 +14,7 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            <x:Double x:Key="Breakpoint640Plus">641</x:Double>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

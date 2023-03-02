@@ -1,4 +1,4 @@
-<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
 <Page
@@ -9,5 +9,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="Transparent"
+    NavigationCacheMode="Enabled"
+    Loaded="Page_Loaded">
+    <InfoBar
+        Margin="16,8,16,0"
+        IsOpen="True"
+        Width="380"
+        HorizontalAlignment="Left"
+        Title="寝室电费信息&#10;"
+        IsClosable="False"
+        Message="正在加载信息。。。"
+        x:Name="ElectrcityInfo"/>
 </Page>
