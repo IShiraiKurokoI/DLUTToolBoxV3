@@ -6,14 +6,48 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DLUTToolBoxV3.Pages"
+    xmlns:localControls="using:DLUTToolBoxV3.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="Transparent"
     NavigationCacheMode="Enabled"
     Loaded="Page_Loaded">
+    <StackPanel VerticalAlignment="Stretch">
+    <StackPanel Orientation="Horizontal">
+        <localControls:AppButton
+                Title="电费充值"
+                Subtitle="统一缴费平台电费充值界面"
+                ImagePath="ms-appx:///Assets/AppIcons/Charge/Pay.png"
+                HorizontalAlignment="Left"
+                Margin="16,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+            x:Name="ElectricityCharge"
+            Click="ElectricityCharge_Click"/>
+        <localControls:AppButton
+                Title="玉兰卡"
+                Subtitle="校园一卡通玉兰卡服务页面，也可以缴费"
+                ImagePath="ms-appx:///Assets/AppIcons/Charge/Ecard.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+            x:Name="Ecard"
+            Click="Ecard_Click"/>
+            <localControls:AppButton
+                Title="刷新电费数据"
+                Subtitle="刷新页面内电费数据"
+                ImagePath="ms-appx:///Assets/AppIcons/Charge/Refresh.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="ElectricityStatusRefresh"
+                Click="ElectricityStatusRefresh_Click"/>
+        </StackPanel>
     <InfoBar
-        Margin="16,8,16,0"
+        Margin="16,40,16,0"
         IsOpen="True"
         Width="380"
         HorizontalAlignment="Left"
@@ -21,4 +55,5 @@
         IsClosable="False"
         Message="正在加载信息。。。"
         x:Name="ElectrcityInfo"/>
+    </StackPanel>
 </Page>

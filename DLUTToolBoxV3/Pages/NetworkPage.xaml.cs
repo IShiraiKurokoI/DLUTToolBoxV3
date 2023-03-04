@@ -44,6 +44,11 @@ namespace DLUTToolBoxV3.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            LoadNetInfo();
+        }
+
+        public void LoadNetInfo()
+        {
             logger.Info("加载网络信息");
             var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
             Task.Run(() =>
@@ -65,6 +70,7 @@ namespace DLUTToolBoxV3.Pages
                 }
             });
         }
+
         string FormatFlow(long num)
         {
             double temp = num;
@@ -90,6 +96,47 @@ namespace DLUTToolBoxV3.Pages
         {
             var item = (AppDataItem)e.ClickedItem;
             Debug.WriteLine(item.Title);
+        }
+
+        private void NetworkMonitor_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SelfService_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CleanDNS_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LSPFix_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ManualConnect_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ManualDisconnect_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NetworkEnhance_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RefreshNetworkStatus_Click(object sender, RoutedEventArgs e)
+        {
+            NetworkInfo.Message = "正在加载信息。。。";
+            LoadNetInfo();
         }
     }
 }

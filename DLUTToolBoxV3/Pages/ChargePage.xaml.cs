@@ -42,12 +42,33 @@ namespace DLUTToolBoxV3.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            LoadElectricityInfo();
+        }
+
+        public void LoadElectricityInfo()
+        {
             logger.Info("加载电费信息");
             var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
             Task.Run(() =>
             {
                 InfoUltilities.GetElectricityInfo(ElectrcityInfo, dispatcherQueue);
             });
+        }
+
+        private void ElectricityCharge_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Ecard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ElectricityStatusRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            ElectrcityInfo.Message = "正在加载信息。。。";
+            LoadElectricityInfo();
         }
     }
 }

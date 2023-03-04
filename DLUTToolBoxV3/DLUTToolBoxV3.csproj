@@ -30,6 +30,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\About.ico" />
+    <None Remove="Assets\AppIcons\Charge\Ecard.png" />
+    <None Remove="Assets\AppIcons\Charge\Pay.png" />
+    <None Remove="Assets\AppIcons\Charge\Refresh.png" />
+    <None Remove="Assets\AppIcons\NetworkMonitor.png" />
+    <None Remove="Assets\AppIcons\Network\Connect.png" />
+    <None Remove="Assets\AppIcons\Network\Delete.png" />
+    <None Remove="Assets\AppIcons\Network\Disconnect.png" />
+    <None Remove="Assets\AppIcons\Network\Fix.png" />
+    <None Remove="Assets\AppIcons\Network\Refresh.png" />
+    <None Remove="Assets\AppIcons\Network\SelfService.png" />
+    <None Remove="Assets\AppIcons\Network\Upgrade.png" />
     <None Remove="Assets\Author.png" />
     <None Remove="Assets\Charge.png" />
     <None Remove="Assets\Ehall.ico" />
@@ -83,8 +94,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="NLog" Version="5.1.2" />
     <PackageReference Include="NLog.Schema" Version="5.1.2" />
-    <PackageReference Include="WinUICommunity.Common" Version="3.2.1" />
-    <PackageReference Include="WinUICommunity.SettingsUI" Version="3.1.0" />
+    <PackageReference Include="WinUICommunity.Common" Version="3.2.4" />
+    <PackageReference Include="WinUICommunity.SettingsUI" Version="3.1.1" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 

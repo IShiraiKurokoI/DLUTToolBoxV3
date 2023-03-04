@@ -19,82 +19,88 @@
             <localControls:AppButton
                 Title="校园网状态"
                 Subtitle="CERNET各出入口线路负载状态监视图"
-                ImagePath="ms-appx:///Assets/Library.png"
+                ImagePath="ms-appx:///Assets/AppIcons/Network/NetworkMonitor.png"
                 HorizontalAlignment="Left"
                 Margin="16,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="NetworkMonitor"
+                Click="NetworkMonitor_Click"/>
             <localControls:AppButton
-                Title="测试"
-                Subtitle="测试"
-                ImagePath="ms-appx:///Assets/Library.png"
+                Title="校园网自服务"
+                Subtitle="校园网的自服务界面，可以管理账户和套餐等等"
+                ImagePath="ms-appx:///Assets/AppIcons/Network/SelfService.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="SelfService"
+                Click="SelfService_Click"/>
             <localControls:AppButton
-                Title="测试"
-                Subtitle="测试"
-                ImagePath="ms-appx:///Assets/Library.png"
+                Title="清空DNS缓存"
+                Subtitle="清空系统DNS解析缓存，可能解决部分网络问题"
+                ImagePath="ms-appx:///Assets/AppIcons/Network/Delete.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="CleanDNS"
+                Click="CleanDNS_Click"/>
             <localControls:AppButton
-                Title="测试"
-                Subtitle="测试"
-                ImagePath="ms-appx:///Assets/Library.png"
+                Title="LSP修复"
+                Subtitle="解决重定向等网络故障问题"
+                ImagePath="ms-appx:///Assets/AppIcons/Network/Fix.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="LSPFix"
+                Click="LSPFix_Click"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <localControls:AppButton
-            Title="测试"
-            Subtitle="测试"
-            ImagePath="ms-appx:///Assets/Library.png"
+            Title="手动连接"
+            Subtitle="点击执行开发区校区校园网认证程序"
+            ImagePath="ms-appx:///Assets/AppIcons/Network/Connect.png"
             HorizontalAlignment="Left"
             Margin="16,16,8,0"
             Width="240"
-            ButtonWidth="240"/>
+            ButtonWidth="240"
+                x:Name="ManualConnect"
+                Click="ManualConnect_Click"/>
             <localControls:AppButton
-            Title="测试"
-            Subtitle="测试"
-            ImagePath="ms-appx:///Assets/Library.png"
+            Title="手动注销"
+            Subtitle="点击执行开发区校区校园网注销程序"
+            ImagePath="ms-appx:///Assets/AppIcons/Network/Disconnect.png"
             HorizontalAlignment="Left"
             Margin="8,16,8,0"
             Width="240"
-            ButtonWidth="240"/>
+            ButtonWidth="240"
+                x:Name="ManualDisconnect"
+                Click="ManualDisconnect_Click"/>
             <localControls:AppButton
-            Title="测试"
-            Subtitle="测试"
-            ImagePath="ms-appx:///Assets/Library.png"
+            Title="网络疏通优化"
+            Subtitle="修改部分系统网络和代理设置，优化V6体验"
+            ImagePath="ms-appx:///Assets/AppIcons/Network/Upgrade.png"
             HorizontalAlignment="Left"
             Margin="8,16,8,0"
             Width="240"
-            ButtonWidth="240"/>
+            ButtonWidth="240"
+                x:Name="NetworkEnhance"
+                Click="NetworkEnhance_Click"/>
             <localControls:AppButton
-            Title="测试"
-            Subtitle="测试"
-            ImagePath="ms-appx:///Assets/Library.png"
+            Title="网络状态刷新"
+            Subtitle="刷新校园网状态"
+            ImagePath="ms-appx:///Assets/AppIcons/Network/Refresh.png"
             HorizontalAlignment="Left"
             Margin="8,16,8,0"
             Width="240"
-            ButtonWidth="240"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <localControls:AppButton
-            Title="测试"
-            Subtitle="测试"
-            ImagePath="ms-appx:///Assets/Library.png"
-            HorizontalAlignment="Left"
-            Margin="16,16,8,0"
-            Width="240"
-            ButtonWidth="240"/>
+            ButtonWidth="240"
+                x:Name="RefreshNetworkStatus"
+                Click="RefreshNetworkStatus_Click"/>
         </StackPanel>
         <InfoBar
-        Margin="16,30,16,0"
+        Margin="16,40,16,0"
         IsOpen="True"
         Width="330"
         HorizontalAlignment="Left"
