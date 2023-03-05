@@ -15,71 +15,77 @@
     <StackPanel VerticalAlignment="Stretch">
         <StackPanel Orientation="Horizontal">
             <localControls:AppButton
-                Title="教务主页"
-                Subtitle="新版综合教学管理系统（学生端）学生主页"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/JXGL.png"
+                Title="图书馆座位预约"
+                Subtitle="预约图书馆座位，预约了不要迟到哦"
+                ImagePath="ms-appx:///Assets/AppIcons/Library/SeatReserve.png"
                 HorizontalAlignment="Left"
                 Margin="16,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="SeatReserve"
+                Click="SeatReserve_Click"/>
             <localControls:AppButton
-                Title="学校校历"
-                Subtitle="本学期学校教学安排和放假安排"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/SchoolCalender.png"
+                Title="万方查重"
+                Subtitle="学校提供的万方查重系统，可以生成查重报告，进行大作业/报告查重"
+                ImagePath="ms-appx:///Assets/AppIcons/Library/WFCC.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="WFCC"
+                Click="WFCC_Click"/>
             <localControls:AppButton
-                Title="选课系统"
-                Subtitle="进行一个课的选"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/CourseSelect.png"
+                Title="万方搜索"
+                Subtitle="学校提供的万方搜索功能"
+                ImagePath="ms-appx:///Assets/AppIcons/Library/WFSS.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="WFSS"
+                Click="WFSS_Click"/>
             <localControls:AppButton
-                Title="评教系统"
-                Subtitle="评价老师的教学态度和教学水平，评教后可以在成绩信息里查看成绩"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/CourseEvaluate.png"
+                Title="知网搜索"
+                Subtitle="学校提供的中国知网搜索功能"
+                ImagePath="ms-appx:///Assets/AppIcons/Library/ZWSS.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="ZWSS"
+                Click="ZWSS_Click"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <localControls:AppButton
-                Title="考试安排"
-                Subtitle="查看即将到来的考试时间安排"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/ExamArrangement.png"
+                Title="图书馆资源列表"
+                Subtitle="查看所有图书馆提供的功能和资源"
+                ImagePath="ms-appx:///Assets/AppIcons/Library/Resources.png"
                 HorizontalAlignment="Left"
                 Margin="16,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="Resources"
+                Click="Resources_Click"/>
             <localControls:AppButton
-                Title="缓考系统"
-                Subtitle="考不了了？那就缓考吧"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/ExamDelay.png"
+                Title="读者入馆培训"
+                Subtitle="进入图书馆前需要先通过图书馆入馆培训"
+                ImagePath="ms-appx:///Assets/AppIcons/Library/LibraryPreEducation.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="LibraryPreEducation"
+                Click="LibraryPreEducation_Click"/>
             <localControls:AppButton
-                Title="成绩信息"
-                Subtitle="查看考试成绩，别挂科了哦"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/Score.png"
+                Title="图书借阅"
+                Subtitle="i大工的图书借阅功能（可用性存疑）"
+                ImagePath="ms-appx:///Assets/AppIcons/Library/BookLent.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
-            <localControls:AppButton
-                Title="冲突选课申请"
-                Subtitle="重修复修？来这里搞！"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/CourseSelectSwitch.png"
-                HorizontalAlignment="Left"
-                Margin="8,16,8,0"
-                Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="BookLent"
+                Click="BookLent_Click"/>
         </StackPanel>
     </StackPanel>
 </Page>

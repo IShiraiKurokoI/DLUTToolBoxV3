@@ -26,9 +26,47 @@ namespace DLUTToolBoxV3.Pages
     /// </summary>
     public sealed partial class LibraryPage : Page
     {
+        public NLog.Logger logger;
         public LibraryPage()
         {
+            logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Info("打开图书馆页面");
             this.InitializeComponent();
+        }
+
+        private void SeatReserve_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WFCC_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WFSS_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ZWSS_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Resources_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LibraryPreEducation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BookLent_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

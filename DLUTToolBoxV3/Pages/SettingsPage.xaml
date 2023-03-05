@@ -13,7 +13,7 @@
     xmlns:converters="using:DLUTToolBoxV3.Converters"
     mc:Ignorable="d"
     Loaded="Page_Loaded"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="Transparent">
     <Page.Resources>
         <converters:VisibilityBoolenConverter x:Key="VisibilityBoolenConverter"/>
     </Page.Resources>

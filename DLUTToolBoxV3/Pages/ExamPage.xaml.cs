@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,8 +27,11 @@ namespace DLUTToolBoxV3.Pages
     /// </summary>
     public sealed partial class ExamPage : Page
     {
+        public NLog.Logger logger;
         public ExamPage()
         {
+            logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Info("打开考试教务页面");
             this.InitializeComponent();
         }
 

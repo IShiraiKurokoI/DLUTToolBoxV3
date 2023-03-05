@@ -11,7 +11,8 @@
     xmlns:helpers="using:WinUICommunity.Common.Helpers"
     xmlns:views="using:DLUTToolBoxV3.Pages"
     mc:Ignorable="d"
-    Loaded="UserControl_Loaded">
+    Loaded="UserControl_Loaded"
+    Background="Transparent">
     <Grid>
         <NavigationView
             x:Name="navigationView"
@@ -38,7 +39,7 @@
                     IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:GeneralPage">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/General.ico"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/General.ico"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem
@@ -47,7 +48,7 @@
                     IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:NetworkPage">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/Network.png"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Network.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem
@@ -56,7 +57,7 @@
                     IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:ChargePage">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/Charge.png"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Charge.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem
@@ -65,7 +66,7 @@
                     IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:ExamPage">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/Exam.png"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Exam.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem
@@ -74,7 +75,7 @@
                     IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:StudyPage">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/Study.png"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Study.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem
@@ -83,7 +84,7 @@
                     IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:EhallPage">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/Ehall.ico"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Ehall.ico"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem
@@ -92,7 +93,7 @@
                     IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:LibraryPage">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/Library.png"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Library.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem
@@ -101,7 +102,7 @@
                     IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:OtherPage">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/Other.png"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Other.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem
@@ -110,7 +111,7 @@
                     IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:SystemPage">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/OSSettings.ico"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/OSSettings.ico"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
@@ -121,14 +122,14 @@
                     Content="参数配置"
                     helpers:NavHelper.NavigateTo="views:SettingsPage">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/Settings.ico"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Settings.ico"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem 
                     Content="关于软件"
                     helpers:NavHelper.NavigateTo="views:AboutPage">
                     <NavigationViewItem.Icon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/About.ico"/>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/About.ico"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.FooterMenuItems>

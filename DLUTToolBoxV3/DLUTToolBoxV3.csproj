@@ -41,6 +41,13 @@
     <None Remove="Assets\AppIcons\Exam\JXGL.png" />
     <None Remove="Assets\AppIcons\Exam\SchoolCalender.png" />
     <None Remove="Assets\AppIcons\Exam\Score.png" />
+    <None Remove="Assets\AppIcons\Library\BookLent.png" />
+    <None Remove="Assets\AppIcons\Library\LibraryPreEducation.png" />
+    <None Remove="Assets\AppIcons\Library\Resources.png" />
+    <None Remove="Assets\AppIcons\Library\SeatReserve.png" />
+    <None Remove="Assets\AppIcons\Library\WFCC.png" />
+    <None Remove="Assets\AppIcons\Library\WFSS.png" />
+    <None Remove="Assets\AppIcons\Library\ZWSS.png" />
     <None Remove="Assets\AppIcons\NetworkMonitor.png" />
     <None Remove="Assets\AppIcons\Network\Connect.png" />
     <None Remove="Assets\AppIcons\Network\Delete.png" />
@@ -49,6 +56,18 @@
     <None Remove="Assets\AppIcons\Network\Refresh.png" />
     <None Remove="Assets\AppIcons\Network\SelfService.png" />
     <None Remove="Assets\AppIcons\Network\Upgrade.png" />
+    <None Remove="Assets\AppIcons\Other\Advice.png" />
+    <None Remove="Assets\AppIcons\Other\CloudDisk.png" />
+    <None Remove="Assets\AppIcons\Other\Duter.png" />
+    <None Remove="Assets\AppIcons\Other\Mail.png" />
+    <None Remove="Assets\AppIcons\Other\Market.png" />
+    <None Remove="Assets\AppIcons\Other\Mooc.png" />
+    <None Remove="Assets\AppIcons\Other\NetHelper.png" />
+    <None Remove="Assets\AppIcons\Other\Payment.png" />
+    <None Remove="Assets\AppIcons\Other\Print.png" />
+    <None Remove="Assets\AppIcons\Other\TeenHome.png" />
+    <None Remove="Assets\AppIcons\Other\XGXT.png" />
+    <None Remove="Assets\AppIcons\Other\YJS.png" />
     <None Remove="Assets\AppIcons\Study\ClassTimeTable.png" />
     <None Remove="Assets\AppIcons\Study\CourseSearch.png" />
     <None Remove="Assets\AppIcons\Study\LeaveSchool.png" />
@@ -57,6 +76,7 @@
     <None Remove="Assets\AppIcons\Study\PublicNotice.png" />
     <None Remove="Assets\AppIcons\Study\SpareClassroom.png" />
     <None Remove="Assets\AppIcons\Study\WeekTimeTable.png" />
+    <None Remove="Assets\AppIcons\System\Clear.png" />
     <None Remove="Assets\Author.png" />
     <None Remove="Assets\Charge.png" />
     <None Remove="Assets\Ehall.ico" />
@@ -93,12 +113,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -185,10 +199,6 @@
     <Page Update="ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\AppIcons\Library\" />
-    <Folder Include="Assets\AppIcons\Other\" />
   </ItemGroup>
 
   <!-- 

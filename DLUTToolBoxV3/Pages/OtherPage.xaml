@@ -15,71 +15,129 @@
     <StackPanel VerticalAlignment="Stretch">
         <StackPanel Orientation="Horizontal">
             <localControls:AppButton
-                Title="教务主页"
-                Subtitle="新版综合教学管理系统（学生端）学生主页"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/JXGL.png"
+                Title="大工网盘"
+                Subtitle="大连理工大学网盘系统（注意，学校提供的客户端文件系统驱动会导致高版本Windows崩溃）"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/CloudDisk.png"
                 HorizontalAlignment="Left"
                 Margin="16,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="CloudDisk"
+                Click="CloudDisk_Click"/>
             <localControls:AppButton
-                Title="学校校历"
-                Subtitle="本学期学校教学安排和放假安排"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/SchoolCalender.png"
+                Title="大工邮箱"
+                Subtitle="大连理工大学校园邮件系统（延迟挺高的）"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/Mail.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="Mail"
+                Click="Mail_Click"/>
             <localControls:AppButton
-                Title="选课系统"
-                Subtitle="进行一个课的选"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/CourseSelect.png"
+                Title="学工系统"
+                Subtitle="学工一体化平台，可以处理勤工俭学相关事项"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/XGXT.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="XGXT"
+                Click="XGXT_Click"/>
             <localControls:AppButton
-                Title="评教系统"
-                Subtitle="评价老师的教学态度和教学水平，评教后可以在成绩信息里查看成绩"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/CourseEvaluate.png"
+                Title="研究生系统"
+                Subtitle="研究生服务平台"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/YJS.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="YJS"
+                Click="YJS_Click"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <localControls:AppButton
-                Title="考试安排"
-                Subtitle="查看即将到来的考试时间安排"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/ExamArrangement.png"
+                Title="校园缴费平台"
+                Subtitle="校园统一缴费平台（其实玉兰卡服务界面可以完全替代他）"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/Payment.png"
                 HorizontalAlignment="Left"
                 Margin="16,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="Pay"
+                Click="Pay_Click"/>
             <localControls:AppButton
-                Title="缓考系统"
-                Subtitle="考不了了？那就缓考吧"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/ExamDelay.png"
+                Title="网络自助系统"
+                Subtitle="主校区网络自助系统"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/NetHelper.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="NetHelper"
+                Click="NetHelper_Click"/>
             <localControls:AppButton
-                Title="成绩信息"
-                Subtitle="查看考试成绩，别挂科了哦"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/Score.png"
+                Title="跳蚤市场"
+                Subtitle="交易闲置二手物品"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/Market.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="Market"
+                Click="Market_Click"/>
             <localControls:AppButton
-                Title="冲突选课申请"
-                Subtitle="重修复修？来这里搞！"
-                ImagePath="ms-appx:///Assets/AppIcons/Exam/CourseSelectSwitch.png"
+                Title="青年之家"
+                Subtitle="学校在读学生互动交流、信息共享的网络平台，共五个模块"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/TeenHome.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
-                ButtonWidth="240"/>
+                ButtonWidth="240"
+                x:Name="TeenHome"
+                Click="TeenHome_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <localControls:AppButton
+                Title="DUTer建言"
+                Subtitle="征询在校师生为学校发展的意见建议，受理师生各类投诉反映和政策咨询等"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/Duter.png"
+                HorizontalAlignment="Left"
+                Margin="16,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="DUTer"
+                Click="DUTer_Click"/>
+            <localControls:AppButton
+                Title="大工慕课"
+                Subtitle="没见过用过"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/Mooc.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="Mooc"
+                Click="Mooc_Click"/>
+            <localControls:AppButton
+                Title="网上意见箱"
+                Subtitle="向学校领导反映意见"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/Advice.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="Advice"
+                Click="Advice_Click"/>
+            <localControls:AppButton
+                Title="自助打印系统"
+                Subtitle="在线自助打印系统，可以生成证明文件发送到邮箱"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/Print.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="Print"
+                Click="Print_Click"/>
         </StackPanel>
     </StackPanel>
 </Page>
