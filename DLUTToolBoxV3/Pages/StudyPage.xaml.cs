@@ -30,5 +30,45 @@ namespace DLUTToolBoxV3.Pages
         {
             this.InitializeComponent();
         }
+
+        private void WeekTimeTable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MyTimeTable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClassTimeTable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ProgramCompletion_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PublicNotice_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CourseSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SpareClassroom_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LeaveSchool_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

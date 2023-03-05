@@ -16,7 +16,7 @@
         <StackPanel HorizontalAlignment="Left" Margin="8">
             <InfoBar
                 IsOpen="True"
-                Width="330"
+                Width="300"
                 HorizontalAlignment="Left"
                 Title="寝室电费信息&#10;"
                 IsClosable="False"
@@ -25,7 +25,7 @@
             <InfoBar
                 Margin="0,16,0,0"
                 IsOpen="True"
-                Width="330"
+                Width="300"
                 HorizontalAlignment="Left"
                 Title="校园网信息&#10;"
                 IsClosable="False"

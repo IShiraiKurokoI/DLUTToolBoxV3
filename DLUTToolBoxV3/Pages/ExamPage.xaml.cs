@@ -30,5 +30,45 @@ namespace DLUTToolBoxV3.Pages
         {
             this.InitializeComponent();
         }
+
+        private void HomePage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SchoolCalender_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CourseSelect_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CourseEvaluate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExamArrangement_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExamDelay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Score_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CourseSelectSwitch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

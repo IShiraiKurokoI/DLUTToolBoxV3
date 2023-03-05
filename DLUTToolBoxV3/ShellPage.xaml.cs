@@ -68,7 +68,44 @@ namespace DLUTToolBoxV3
 
         private void OnControlsSearchBoxTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            ViewModel.OnAutoSuggestBoxTextChanged(args);
+            if (autoSuggestBox == null)
+            {
+                throw new NullReferenceException("AutoSuggestBox is null, please initialize ShellViewModel with a AutoSuggestBox.");
+            }
+
+            if (args.Reason != 0)
+            {
+                return;
+            }
+
+            List<string> list = new List<string>();
+            List<NavigationViewItem> source = navigationView.MenuItems.OfType<NavigationViewItem>().ToList();
+            string[] querySplit = autoSuggestBox.Text.Split(' ');
+            foreach (NavigationViewItem item in source.Where(delegate (NavigationViewItem item)
+            {
+                bool result = true;
+                string[] array = querySplit;
+                foreach (string value in array)
+                {
+                    if (item.Content.ToString()!.IndexOf(value, StringComparison.CurrentCultureIgnoreCase) < 0)
+                    {
+                        result = false;
+                    }
+                }
+
+                return result;
+            }))
+            {
+                list.Add(item.Content.ToString());
+            }
+
+            if (list.Count > 0)
+            {
+                autoSuggestBox.ItemsSource = list;
+                return;
+            }
+
+            autoSuggestBox.ItemsSource = new string[1] { "未找到匹配的结果" };
         }
     }
 }

@@ -1,4 +1,4 @@
-<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
 <Page
@@ -8,10 +8,78 @@
     xmlns:local="using:DLUTToolBoxV3.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:localControls="using:DLUTToolBoxV3.UserControls"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-
-    </Grid>
+    NavigationCacheMode="Enabled"
+    Background="Transparent">
+    <StackPanel VerticalAlignment="Stretch">
+        <StackPanel Orientation="Horizontal">
+            <localControls:AppButton
+                Title="教务主页"
+                Subtitle="新版综合教学管理系统（学生端）学生主页"
+                ImagePath="ms-appx:///Assets/AppIcons/Exam/JXGL.png"
+                HorizontalAlignment="Left"
+                Margin="16,16,8,0"
+                Width="240"
+                ButtonWidth="240"/>
+            <localControls:AppButton
+                Title="学校校历"
+                Subtitle="本学期学校教学安排和放假安排"
+                ImagePath="ms-appx:///Assets/AppIcons/Exam/SchoolCalender.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"/>
+            <localControls:AppButton
+                Title="选课系统"
+                Subtitle="进行一个课的选"
+                ImagePath="ms-appx:///Assets/AppIcons/Exam/CourseSelect.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"/>
+            <localControls:AppButton
+                Title="评教系统"
+                Subtitle="评价老师的教学态度和教学水平，评教后可以在成绩信息里查看成绩"
+                ImagePath="ms-appx:///Assets/AppIcons/Exam/CourseEvaluate.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <localControls:AppButton
+                Title="考试安排"
+                Subtitle="查看即将到来的考试时间安排"
+                ImagePath="ms-appx:///Assets/AppIcons/Exam/ExamArrangement.png"
+                HorizontalAlignment="Left"
+                Margin="16,16,8,0"
+                Width="240"
+                ButtonWidth="240"/>
+            <localControls:AppButton
+                Title="缓考系统"
+                Subtitle="考不了了？那就缓考吧"
+                ImagePath="ms-appx:///Assets/AppIcons/Exam/ExamDelay.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"/>
+            <localControls:AppButton
+                Title="成绩信息"
+                Subtitle="查看考试成绩，别挂科了哦"
+                ImagePath="ms-appx:///Assets/AppIcons/Exam/Score.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"/>
+            <localControls:AppButton
+                Title="冲突选课申请"
+                Subtitle="重修复修？来这里搞！"
+                ImagePath="ms-appx:///Assets/AppIcons/Exam/CourseSelectSwitch.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"/>
+        </StackPanel>
+    </StackPanel>
 </Page>

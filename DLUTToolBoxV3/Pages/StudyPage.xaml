@@ -1,4 +1,4 @@
-<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
 <Page
@@ -8,10 +8,94 @@
     xmlns:local="using:DLUTToolBoxV3.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:localControls="using:DLUTToolBoxV3.UserControls"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-
-    </Grid>
+    NavigationCacheMode="Enabled"
+    Background="Transparent">
+    <StackPanel VerticalAlignment="Stretch">
+        <StackPanel Orientation="Horizontal">
+            <localControls:AppButton
+                Title="本周课表"
+                Subtitle="i大工通用本周课表"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/WeekTimeTable.png"
+                HorizontalAlignment="Left"
+                Margin="16,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="WeekTimeTable"
+                Click="WeekTimeTable_Click"/>
+            <localControls:AppButton
+                Title="学期课表"
+                Subtitle="本学期所有课表安排"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/MyTimeTable.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="MyTimeTable"
+                Click="MyTimeTable_Click"/>
+            <localControls:AppButton
+                Title="班级课表"
+                Subtitle="根据培养方案安排的班级课表，可作为选课参照"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/ClassTimeTable.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="ClassTimeTable"
+                Click="ClassTimeTable_Click"/>
+            <localControls:AppButton
+                Title="培养方案"
+                Subtitle="学生培养方案，可以看到总学分，学分要求和必修课程要求"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/ProgramCompletion.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="ProgramCompletion"
+                Click="ProgramCompletion_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <localControls:AppButton
+                Title="公共通知"
+                Subtitle="跟学生有关的学校通知"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/PublicNotice.png"
+                HorizontalAlignment="Left"
+                Margin="16,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="PublicNotice"
+                Click="PublicNotice_Click"/>
+            <localControls:AppButton
+                Title="开课查询"
+                Subtitle="全校所有开设课程的列表"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/CourseSearch.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="CourseSearch"
+                Click="CourseSearch_Click"/>
+            <localControls:AppButton
+                Title="空闲教室"
+                Subtitle="查询教室空闲情况"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/SpareClassroom.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="SpareClassroom"
+                Click="SpareClassroom_Click"/>
+            <localControls:AppButton
+                Title="校园进出及请销假管理"
+                Subtitle="校园进出及请销假管理等申请报备界面"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/LeaveSchool.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="LeaveSchool"
+                Click="LeaveSchool_Click"/>
+        </StackPanel>
+    </StackPanel>
 </Page>
