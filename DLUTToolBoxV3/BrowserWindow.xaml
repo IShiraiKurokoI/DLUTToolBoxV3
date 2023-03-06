@@ -86,7 +86,7 @@
                     </AppBarButton.Flyout>
                 </AppBarButton>
             </Grid>
-            <WebView2 Source="about:blank" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" x:Name="WebView" CoreWebView2Initialized="WebView_CoreWebView2Initialized" />
+            <WebView2 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" x:Name="WebView" CoreWebView2Initialized="WebView_CoreWebView2Initialized" />
         </Grid>
     </Grid>
 </Window>

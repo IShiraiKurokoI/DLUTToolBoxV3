@@ -21,6 +21,8 @@ using Windows.ApplicationModel.DataTransfer;
 using DLUTToolBoxV3.Configurations;
 using NLog;
 using DLUTToolBoxV3.Ultilities;
+using DLUTToolBoxV3.Entities;
+using DLUTToolBoxV3.Helpers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -57,12 +59,12 @@ namespace DLUTToolBoxV3.Pages
 
         private void ElectricityCharge_Click(object sender, RoutedEventArgs e)
         {
-
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "电费充值", "ms-appx:///Assets/AppIcons/Charge/Pay.png", "", "https://sso.dlut.edu.cn/cas/login?from=rj&service=https%3A%2F%2Fsso.dlut.edu.cn%2Fcas%2Flogin%3Fservice%3Dhttps%253A%252F%252Fehall.dlut.edu.cn%252Ffp%252FvisitService%253Fservice_id%253Dca2b52e6-1145-4b63-9ea9-e443b376da0d", 0));
         }
 
         private void Ecard_Click(object sender, RoutedEventArgs e)
         {
-
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "玉兰卡", "ms-appx:///Assets/AppIcons/Charge/Ecard.png", "", "about:blank", 2));
         }
 
         private void ElectricityStatusRefresh_Click(object sender, RoutedEventArgs e)

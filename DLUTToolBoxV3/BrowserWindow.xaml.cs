@@ -30,6 +30,8 @@ using Microsoft.Windows.AppNotifications.Builder;
 using Microsoft.Windows.AppNotifications;
 using System.Threading.Tasks;
 using Castle.Core.Internal;
+using System.Text.RegularExpressions;
+using System.Runtime.ConstrainedExecution;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -76,8 +78,11 @@ namespace DLUTToolBoxV3
             WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = true;
             WebView.CoreWebView2.NewWindowRequested += (sender, args) =>
             {
-                WebView.CoreWebView2.ExecuteScriptAsync("window.location.href='" + args.Uri.ToString() + "'");
-                args.Handled = true;
+                if(app.HandleId!=3)
+                {
+                    WebView.CoreWebView2.ExecuteScriptAsync("window.location.href='" + args.Uri.ToString() + "'");
+                    args.Handled = true;
+                }
             };
             WebView.CoreWebView2.ContentLoading += (sender, args) =>
             {
@@ -90,8 +95,56 @@ namespace DLUTToolBoxV3
                 WindowTitle.Text = WebView.CoreWebView2.DocumentTitle;
             };
             WebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
+            WebView.CoreWebView2.NavigationStarting += CoreWebView2_NavigationStarting;
         }
 
+        private void CoreWebView2_NavigationStarting(CoreWebView2 sender, CoreWebView2NavigationStartingEventArgs e)
+        {
+            logger.Info("页面|" + WebView.CoreWebView2.DocumentTitle + "|尝试打开URL:" + e.Uri.ToString());
+            if (e.Uri.StartsWith("https://ibsbjstar.ccb.com.cn/CCBIS/B2CMainPlat"))
+            {
+                if (e.Uri.IndexOf("?CLIENTIP=&BRANCHID=") != -1)
+                {
+                    var builder = new AppNotificationBuilder()
+                        .AddText("正在打开建行Web支付页面，请自行支付!");
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+                    Windows.System.Launcher.LaunchUriAsync(new Uri(e.Uri));
+                    e.Cancel= true;
+                }
+            }
+            if (e.Uri.StartsWith("alipays://"))
+            {
+
+                //new QRPayCodeWindow(e.Uri).Show();
+            }
+            if (e.Uri.StartsWith("https://mclient.alipay.com/cashier/mobilepay.htm?"))
+            {
+                var builder = new AppNotificationBuilder()
+                    .AddText("链接获取成功，请点击打开支付宝APP后使用手机支付宝扫码付款！");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+            }
+            if (e.Uri.StartsWith("weixin://"))
+            {
+                var builder = new AppNotificationBuilder()
+                    .AddText("暂不支持微信支付功能,敬请期待（TNND微信接口太难用了）");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+                e.Cancel = true;
+            }
+            if (e.Uri.IndexOf("mobile/api/unifiedOrderIndex.action?") != -1)
+            {
+                var builder = new AppNotificationBuilder()
+                    .AddText("链接获取成功，请使用云闪付手机APP扫码付款！");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+
+                //new QRPayCodeWindow(e.Uri).Show();
+            }
+        }
+
+        int count = 0;
         private void CoreWebView2_NavigationCompleted(CoreWebView2 sender, CoreWebView2NavigationCompletedEventArgs args)
         {
             if (WebView.CoreWebView2.DocumentTitle.IndexOf("过期") != -1)
@@ -150,6 +203,107 @@ namespace DLUTToolBoxV3
                         logger.Info("开发区校区校园网自服务特殊处理");
                         break;
                     }
+                case 2:
+                    {
+                        logger.Info("玉兰卡特殊处理");
+                        if (WebView.Source.AbsoluteUri.IndexOf("https://card.m.dlut.edu.cn/virtualcard/openVirtualcard?") != -1)
+                        {
+                            WebView.CoreWebView2.ExecuteScriptAsync("document.getElementsByClassName('code')[0].className=''");
+                        }
+                        switch (count)
+                        {
+                            case 0:
+                                {
+                                    WebView.CoreWebView2.Settings.UserAgent = "Mozilla/5.0 (Linux; Android 10; EBG-AN00 Build/HUAWEIEBG-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36 weishao(3.2.2.74616)";
+                                    WebView.Source = new Uri("https://api.m.dlut.edu.cn/oauth/authorize?client_id=19b32196decf419a&redirect_uri=https%3A%2F%2Fcard.m.dlut.edu.cn%2Fhomerj%2FopenRjOAuthPage&response_type=code&scope=base_api&state=weishao");
+                                    break;
+                                }
+                            default:
+                                break;
+                        }
+                        break;
+                    }
+                    case 3:
+                    {
+                        logger.Info("选课系统特殊处理");
+                        if (WebView.Source.AbsoluteUri.IndexOf("/student/home") != -1)
+                        {
+                            WebView.ExecuteScriptAsync("window.location.href='/student/for-std/course-select'");
+                        }
+                        if (WebView.Source.AbsoluteUri.IndexOf("for-std/course-select") != -1)
+                        {
+                            newtab();
+                        }
+                        break;
+                    }
+                    case 4:
+                    {
+                        logger.Info("评教系统特殊处理");
+                        if (WebView.Source.AbsoluteUri.IndexOf("/student/home") != -1)
+                        {
+                            WebView.ExecuteScriptAsync("window.location.href='/student/for-std/evaluation/summative'");
+                        }
+                        break;
+                    }
+                    case 5:
+                    {
+                        logger.Info("考试安排特殊处理");
+                        if (WebView.Source.AbsoluteUri.IndexOf("/student/home") != -1)
+                        {
+                            WebView.ExecuteScriptAsync("window.location.href='/student/for-std/exam-arrange'");
+                        }
+                        break;
+                    }
+                    case 6:
+                    {
+                        logger.Info("缓考系统特殊处理");
+                        if (WebView.Source.AbsoluteUri.IndexOf("/student/home") != -1)
+                        {
+                            WebView.ExecuteScriptAsync("window.location.href='/student/for-std/exam-delay-apply'");
+                        }
+                        break;
+                    }
+                    case 7:
+                    {
+                        logger.Info("成绩信息特殊处理");
+                        if (WebView.Source.AbsoluteUri.IndexOf("/student/home") != -1)
+                        {
+                            WebView.ExecuteScriptAsync("window.location.href='/student/for-std/grade/sheet'");
+                        }
+                        break;
+                    }
+                    case 8:
+                    {
+                        logger.Info("冲突选课特殊处理");
+                        if (WebView.Source.AbsoluteUri.IndexOf("/student/home") != -1)
+                        {
+                            WebView.ExecuteScriptAsync("window.location.href='/student/for-std/course-select-apply'");
+                        }
+                        break;
+                    }
+            }
+            count++;
+        }
+
+        async Task newtab()
+        {
+            try
+            {
+                if(WebView.CoreWebView2 ==null)
+                {
+                    return;
+                }
+                WebView.CoreWebView2.ExecuteScriptAsync("var num=document.getElementsByClassName('get-into').length;for(i = 0; i < num; i++){document.getElementsByClassName('get-into')[i].target = '_blank'}");
+                await Task.Delay(3000);
+                if (WebView.CoreWebView2 == null)
+                {
+                    return;
+                }
+                WebView.CoreWebView2.ExecuteScriptAsync("var num=document.getElementsByClassName('get-into').length;for(i = 0; i < num; i++){document.getElementsByClassName('get-into')[i].target = '_blank'}");
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
             }
         }
 

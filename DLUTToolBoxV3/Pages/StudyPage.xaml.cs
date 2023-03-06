@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using DLUTToolBoxV3.Entities;
+using DLUTToolBoxV3.Helpers;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -37,7 +39,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void WeekTimeTable_Click(object sender, RoutedEventArgs e)
         {
-
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "±¾ÖÜ¿Î±í", "ms-appx:///Assets/AppIcons/Study/WeekTimeTable.png", "", "https://api.m.dlut.edu.cn/login?client_id=9qXqHnRQuhhViycC&redirect_uri=https%3a%2f%2flightapp.m.dlut.edu.cn%2fcheck%2fcourseschedule&response_type=code", 0));
         }
 
         private void MyTimeTable_Click(object sender, RoutedEventArgs e)
