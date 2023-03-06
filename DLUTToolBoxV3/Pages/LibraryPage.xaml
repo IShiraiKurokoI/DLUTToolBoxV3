@@ -64,7 +64,7 @@
                 Margin="16,16,8,0"
                 Width="240"
                 ButtonWidth="240"
-                x:Name="Resources"
+                x:Name="LibraryResources"
                 Click="Resources_Click"/>
             <localControls:AppButton
                 Title="读者入馆培训"

@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation and Contributors.
+ï»¿// Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
 using Microsoft.UI.Xaml;
@@ -23,6 +23,11 @@ using WinUICommunity.Shared.DataModel;
 using Microsoft.UI.Xaml.Media.Animation;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using DLUTToolBoxV3.Helpers;
+using WinUICommunity.Common.Helpers;
+using Microsoft.Windows.AppNotifications.Builder;
+using Microsoft.Windows.AppNotifications;
+using System.Text.RegularExpressions;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -38,7 +43,7 @@ namespace DLUTToolBoxV3.Pages
         public NetworkPage()
         {
             logger = NLog.LogManager.GetCurrentClassLogger();
-            logger.Info("´ò¿ªÍøÂç¹¤¾ßÒ³Ãæ");
+            logger.Info("æ‰“å¼€ç½‘ç»œå·¥å…·é¡µé¢");
             this.InitializeComponent();
         }
 
@@ -49,7 +54,7 @@ namespace DLUTToolBoxV3.Pages
 
         public void LoadNetInfo()
         {
-            logger.Info("¼ÓÔØÍøÂçĞÅÏ¢");
+            logger.Info("åŠ è½½ç½‘ç»œä¿¡æ¯");
             var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
             Task.Run(() =>
             {
@@ -64,7 +69,7 @@ namespace DLUTToolBoxV3.Pages
                         string flowused = FormatFlow(drcomStatus.flow);
                         dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
                         {
-                            NetworkInfo.Message = "Ğ£Ô°ÍøÓà¶î£º" + fee + "\n±¾»úĞ£Ô°ÍøÒÑÓÃÁ÷Á¿£º\n" + flowused + "\nIPV4µØÖ·£º" + V4IP + "\nÍø¿¨MAC£º" + drcomStatus.olmac;
+                            NetworkInfo.Message = "æ ¡å›­ç½‘ä½™é¢ï¼š" + fee + "\næœ¬æœºæ ¡å›­ç½‘å·²ç”¨æµé‡ï¼š\n" + flowused + "\nIPV4åœ°å€ï¼š" + V4IP + "\nç½‘å¡MACï¼š" + drcomStatus.olmac;
                         });
                     }
                 }
@@ -100,42 +105,83 @@ namespace DLUTToolBoxV3.Pages
 
         private void NetworkMonitor_Click(object sender, RoutedEventArgs e)
         {
-
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "æ ¡å›­ç½‘çŠ¶æ€", "ms-appx:///Assets/AppIcons/Network/NetworkMonitor.png", "", ApplicationHelper.GetFullPathToExe() + @"\\Assets\\Web\\Monitor.html", 0));
         }
 
         private void SelfService_Click(object sender, RoutedEventArgs e)
         {
-
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "å¼€å‘åŒºæ ¡å›­ç½‘è‡ªæœåŠ¡", "ms-appx:///Assets/AppIcons/Network/SelfService.png", "", "https://sso.dlut.edu.cn/cas/login?service=http%3A%2F%2F172.20.30.2%3A8080%2FSelf%2Fsso_login%3Flogin_method%3D1", 1));
         }
 
         private void CleanDNS_Click(object sender, RoutedEventArgs e)
         {
-
+            Task.Run(() =>
+            {
+                Process p = new Process();
+                p.StartInfo.FileName = "cmd.exe";
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardInput = true;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                p.StartInfo.CreateNoWindow= true;
+                p.Start();
+                p.StandardInput.WriteLine("ipconfig /flushdns");
+                p.StandardInput.WriteLine("exit");
+                p.StandardInput.AutoFlush = true;
+                string result = p.StandardOutput.ReadToEnd();
+                p.WaitForExit();
+                if (result.IndexOf("æˆåŠŸ") != -1)
+                {
+                    var builder = new AppNotificationBuilder()
+                        .AddText("åˆ·æ–°æˆåŠŸ!");
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+                }
+                else
+                {
+                    var builder = new AppNotificationBuilder()
+                        .AddText("åˆ·æ–°å¤±è´¥!");
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+                }
+            });
         }
 
         private void LSPFix_Click(object sender, RoutedEventArgs e)
         {
-
+            var builder = new AppNotificationBuilder()
+                .AddText("å°šæœªå®ç°!");
+            var notificationManager = AppNotificationManager.Default;
+            notificationManager.Show(builder.BuildNotification());
         }
 
         private void ManualConnect_Click(object sender, RoutedEventArgs e)
         {
-
+            var builder = new AppNotificationBuilder()
+                .AddText("å°šæœªå®ç°!");
+            var notificationManager = AppNotificationManager.Default;
+            notificationManager.Show(builder.BuildNotification());
         }
 
         private void ManualDisconnect_Click(object sender, RoutedEventArgs e)
         {
-
+            var builder = new AppNotificationBuilder()
+                .AddText("å°šæœªå®ç°!");
+            var notificationManager = AppNotificationManager.Default;
+            notificationManager.Show(builder.BuildNotification());
         }
 
         private void NetworkEnhance_Click(object sender, RoutedEventArgs e)
         {
-
+            var builder = new AppNotificationBuilder()
+                .AddText("å°šæœªå®ç°!");
+            var notificationManager = AppNotificationManager.Default;
+            notificationManager.Show(builder.BuildNotification());
         }
 
         private void RefreshNetworkStatus_Click(object sender, RoutedEventArgs e)
         {
-            NetworkInfo.Message = "ÕıÔÚ¼ÓÔØĞÅÏ¢¡£¡£¡£";
+            NetworkInfo.Message = "æ­£åœ¨åŠ è½½ä¿¡æ¯ã€‚ã€‚ã€‚";
             LoadNetInfo();
         }
     }

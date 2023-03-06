@@ -8,176 +8,283 @@
     <meta http-equiv="refresh" content="100">
 </head>
 <body>
-<style type="text/css">
-	.bot{
-		top: 0;
-		left: 0;
-		width: auto;
-		height: auto;
-		opacity: 0.9;
-	}
-	.con{
-		position: absolute;
-		top:0;
-		z-index: 999;
-	}
-	div,body,p,span,h1,h2,h3,h4{ color:black}
-	a{color:red}
-</style>
-<!--<div class="bot" style="">
-  <canvas id="d" ></canvas>
-  <script src="http://www.bootstrapmb.com/Content/js/catebg.js"></script> 
-</div>-->
-<div class="con">
-  <h1>大连地区CERNET监控页<br/>(数据来源：大连理工大学网信中心&#124&#124仅校园网内可用)</h1>
-  <h2>主干线路</h2>
-  <table width="auto">
-    <tr>
-      <td><div><b><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.98_23.html">大连－沈阳100G</a> </b></div>
-        <div><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.98_23.html"><img border="0" alt="dln-qda Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/101.4.119.98_23-day.png"></a> </div></td>
-    </tr>
-    <td><div><b><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_66.html">大连－沈阳10G 1</a> </b></div>
-        <div><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_66.html"><img border="0" alt="dln-qda Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_66-day.png"></a> </div></td>
-      <td><div><b><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_67.html">大连－沈阳10G 2</a> </b></div>
-        <div><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_67.html"><img border="0" alt="dln-qda Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_67-day.png"></a> </div></td>
-  </table>
-  <h2>备份线路</h2>
-  <table>
-    <td><div><b><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.118_10.html">大连－青岛备份10G</a> </b></div>
-        <div><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.118_10.html"><img border="0" alt="dln-qda Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/101.4.119.118_10-day.png"></a> </div></td>
-  </table>
-  <h2>负载状况</h2>
-  <table border="0" >
-    <tr>
-      <td><div><b><a href="http://mrtg.dlut.edu.cn/mrtg/cernet.html">CERNET出口负载1</a></b></div>
-        <div><a href="http://mrtg.dlut.edu.cn/mrtg/cernet.html"><img border="0" alt="cernet Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/cernet-day.png"></a> <br>
-        </div></td>
-      <td><div><b><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-2.html">CERNET出口负载2</a></b></div>
-        <div><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-2.html"><img border="0" alt="cernet Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/cernet-2-day.png"></a> </div></td>
-    </tr>
-    <tr>
-      <td><div><b><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-3.html">CERNET出口负载3</a></b></div>
-        <div><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-3.html"><img border="0" alt="cernet Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/cernet-3-day.png"></a> </div></td>
-      <td><div><b><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-4.html">CERNET出口负载4</a></b></div>
-        <div><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-4.html"><img border="0" alt="cernet Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/cernet-4-day.png"></a> </div></td>
-    </tr>
-  </table>
-  <table>
-    <td><div><b><a href="http://mrtg.dlut.edu.cn/mrtg/cernet2.html">CERNET2出口负载</a> </b></div>
-        <div><a href="http://mrtg.dlut.edu.cn/mrtg/cernet2.html"><img border="0" alt="cernet2 Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/cernet2-day.png"></a> <br>
-        </div></td>
-  </table>
-  <h2>大连各高校部门网络监控</h2>
-  <table border="0" cols="2" width="auto">
-    <tbody>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dutcernets.html">大连理工大学</a></b>
-          <p><small></small></p>
-          <div><a href="http://mrtg.dlut.edu.cn/mrtg/dutcernets.html"><img border="0" alt="dlut2 Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dutcernets-day.png"></a></div></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlmu.html">大连海事大学</a>
-          <p><small><!--#flastmod file="dlmu.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/dlmu.html"><img alt="dlmu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlmu-day.png"></a> </b></td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlou.html">大连海洋大学</a></b>
-          <p><small><!--#flastmod file="dlou.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/dlou.html"><img alt="dlou Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlou-day.png"></a></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dufe.html">东北财经大学</a></b>
-          <p><small><!--#flastmod file="dufe.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/dufe.html"><img alt="dufe Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dufe-day.png"></a></td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlufe.html">大连财经学院</a></b>
-          <p><small><!--#flastmod file="dlufe.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/dlufe.html"><img alt="dlufe Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlufe-day.png"></a></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/djtu.html">大连交通大学</a></b>
-          <p><small><!--#flastmod file="djtu.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/djtu.html"><img alt="djtu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/djtu-day.png"></a></td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlu.html">大连大学</a></b>
-          <p><small><!--#flastmod file="dlu.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/dlu.html"><img alt="dlu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlu-day.png"></a></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlufl.html">大连外国语大学</a></b>
-          <p><small><!--#flastmod file="210.30.19.192_46.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/dlufl.html"><img alt="dlufl Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlufl-day.png"></a></td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/lnnu.html">辽宁师范大学</a></b>
-          <p><small><!--#flastmod file="lnnu.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/lnnu.html"><img alt="lnnu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/lnnu-day.png"></a></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/zwww.html">大连政务外网互连接口</a></b>
-          <p><small><!--#flastmod file="zwww.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/zwww.html"><img alt="zwww Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/zwww-day.png"></a></td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlvtc.html">大连职业技术学院</a></b>
-          <p><small><!--#flastmod file="dlvtc.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/dlvtc.html"><img alt="dlvtc Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlvtc-day.png"></a></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dmu.html">大连医科大学</a></b>
-          <p><small><!--#flastmod file="dmu.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/dmu.html"><img alt="dmu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dmu-day.png"></a></td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/luibe.html">辽宁对外经贸职业学院</a></b>
-          <p><small><!--#flastmod file="luibe.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/luibe.html"><img alt="luibe Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/luibe-day.png"></a></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlpu.html">大连工业大学</a></b>
-          <p><small><!--#flastmod file="dlpu.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/dlpu.html"><img alt="dlpu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlpu-day.png"></a></td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlnu.html">大连民族大学</a></b>
-          <p><small><!--#flastmod file="dlnu.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/dlnu.html"><img alt="dlnu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlnu-day.png"></a></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/lnqg.html">辽宁轻工职业学院</a></b>
-          <p><small><!--#flastmod file="lnqg.html" --></small> </p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/lnqg.html"><img border="0" alt="lnqg Traffic Graph" width="500" height="135"src="http://mrtg.dlut.edu.cn/mrtg/lnqg-day.png"></a> <br>
-            </td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/neusoft.html">大连东软信息学院</a></b>
-          <p><a href="http://mrtg.dlut.edu.cn/mrtg/neusoft.html"><img border="0" alt="neusoft Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/neusoft-day.png"></a> <br>
-            <small><!--#flastmod file="neusoft.html" --></small> </p></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlust.html">大连科技学院</a></b>
-          <p><a href="http://mrtg.dlut.edu.cn/mrtg/dlust.html"><img border="0" alt="dlust Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dlust-day.png"></a> <br>
-            <small><!--#flastmod file="dlust.html" --></small> </p></td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlrjedu.html">大连软件职业学院</a></b>
-          <p><a href="http://mrtg.dlut.edu.cn/mrtg/dlrjedu.html"><img border="0" alt="dlrjedu Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dlrjedu-day.png"></a> <br>
-            <small><!--#flastmod file="dlrjedu.html" --></small> </p></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dac.html">大连艺术学院</a></b>
-          <p><a href="http://mrtg.dlut.edu.cn/mrtg/dac.html"><img border="0" alt="dac Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dac-day.png"></a> <br>
-            <small><!--#flastmod file="dac.html" --></small> </p></td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlrtvu.html">大连广播电视大学</a></b>
-          <p><small><!--#flastmod file="dlrtvu.html" --></small></p>
-          <a href="http://mrtg.dlut.edu.cn/mrtg/dlrtvu.html"><img alt="dlrtvu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlrtvu-day.png"></a></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlsc.html">大连航运职业学院</a></b>
-          <p><small><!--#flastmod file="dlsc.html" --></small> </p>
-			<a href="http://mrtg.dlut.edu.cn/mrtg/dlsc.html"><img border="0" alt="dlsc Traffic Graph" width="500" height="135"src="http://mrtg.dlut.edu.cn/mrtg/dlsc-day.png"></a> <br>
-            </td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dmuzs.html">大连医科大学中山学院</a></b>
-          <p><a href="http://mrtg.dlut.edu.cn/mrtg/dmuzs.html"><img border="0" alt="dmuzs Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dmuzs-day.png"></a> <br>
-            <small><!--#flastmod file="dmuzs.html" --></small> </p></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dna.html">海军大连舰艇学院</a></b>
-          <p><a href="http://mrtg.dlut.edu.cn/mrtg/dna.html"><img border="0" alt="dna Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dna-day.png"></a> <br>
-            <small><!--#flastmod file="dna.html" --></small> </p></td>
-      </tr>
-      <tr>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/dlxgjy.html">大连枫叶职业技术学院</a></b>
-          <p><a href="http://mrtg.dlut.edu.cn/mrtg/dlxgjy.html"><img border="0" alt="dlxgjy Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dlxgjy-day.png"></a> <br>
-            <small><!--#flastmod file="dlxgjy.html" --></small> </p></td>
-        <td><b><a href="http://mrtg.dlut.edu.cn/mrtg/lnnzy.html">辽宁农业职业技术学院</a></b>
-          <p><a href="http://mrtg.dlut.edu.cn/mrtg/lnnzy.html"><img border="0" alt="lnnzy Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/lnnzy-day.png"></a> <br>
-            <small><!--#flastmod file="lnnzy.html" --></small> </p></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+    <style type="text/css">
+        .bot {
+            top: 0;
+            left: 0;
+            width: auto;
+            height: auto;
+            opacity: 0.9;
+        }
+
+        .con {
+            position: absolute;
+            top: 0;
+            z-index: 999;
+        }
+
+        div, body, p, span, h1, h2, h3, h4 {
+            color: black
+        }
+
+        a {
+            color: red
+        }
+    </style>
+    <!--<div class="bot" style="">
+      <canvas id="d" ></canvas>
+      <script src="http://www.bootstrapmb.com/Content/js/catebg.js"></script>
+    </div>-->
+    <div class="con">
+        <h1>大连地区CERNET监控页<br />(数据来源：大连理工大学网信中心&#124&#124仅校园网内可用)</h1>
+        <h2>主干线路</h2>
+        <table>
+            <tr>
+                <td>
+                    <div><b><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.120.40_164.html">大连－青岛100G</a> </b></div>
+                    <div>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/101.4.120.40_164.html"><img border="0" alt="dln-qda Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/101.4.120.40_164-day.png"></a>
+                    </div>
+                </td>
+                <td>
+                    <div><b><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.98_23.html">大连－沈阳100G</a> </b></div>
+                    <div>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.98_23.html"><img border="0" alt="dln-qda Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/101.4.119.98_23-day.png"></a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div><b><a href="http://mrtg.dlut.edu.cn/mrtg/cernet2.html">CERNET2大连-沈阳100G</a> </b></div>
+                    <div>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/cernet2.html"><img border="0" alt="cernet2 Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/cernet2-day.png"></a>
+                        <br>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div><b><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_66.html">大连－沈阳10G 1</a> </b></div>
+                    <div><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_66.html"><img border="0" alt="dln-qda Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_66-day.png"></a> </div>
+                </td>
+                <td>
+                    <div><b><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_67.html">大连－沈阳10G 2</a> </b></div>
+                    <div><a href="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_67.html"><img border="0" alt="dln-qda Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/101.4.119.128_67-day.png"></a> </div>
+                </td>
+            </tr>
+        </table>
+        <h2>负载状况</h2>
+        <table border="0">
+            <tr>
+                <td>
+                    <div><b><a href="http://mrtg.dlut.edu.cn/mrtg/cernet.html">CERNET出口负载1</a></b></div>
+                    <div>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/cernet.html"><img border="0" alt="cernet Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/cernet-day.png"></a> <br>
+                    </div>
+                </td>
+                <td>
+                    <div><b><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-2.html">CERNET出口负载2</a></b></div>
+                    <div><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-2.html"><img border="0" alt="cernet Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/cernet-2-day.png"></a> </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div><b><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-3.html">CERNET出口负载3</a></b></div>
+                    <div><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-3.html"><img border="0" alt="cernet Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/cernet-3-day.png"></a> </div>
+                </td>
+                <td>
+                    <div><b><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-4.html">CERNET出口负载4</a></b></div>
+                    <div><a href="http://mrtg.dlut.edu.cn/mrtg/cernet-4.html"><img border="0" alt="cernet Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/cernet-4-day.png"></a> </div>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <div><b><a href="http://mrtg.dlut.edu.cn/mrtg/cernet2.html">CERNET2出口负载</a> </b></div>
+                    <div>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/cernet2.html"><img border="0" alt="cernet2 Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/cernet2-day.png"></a> <br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <h2>大连各高校部门网络监控</h2>
+        <table border="0" cols="2">
+            <tbody>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dutcernets.html">大连理工大学</a></b>
+                        <p><small></small></p>
+                        <div><a href="http://mrtg.dlut.edu.cn/mrtg/dutcernets.html"><img border="0" alt="dlut2 Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dutcernets-day.png"></a></div>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlmu.html">大连海事大学</a></b>
+                        <p><small><!--#flastmod file="dlmu.html" --></small></p>
+                        <div><a href="http://mrtg.dlut.edu.cn/mrtg/dlmu.html"><img alt="dlmu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlmu-day.png"></a> </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlou.html">大连海洋大学</a></b>
+                        <p><small><!--#flastmod file="dlou.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/dlou.html"><img alt="dlou Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlou-day.png"></a>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dufe.html">东北财经大学</a></b>
+                        <p><small><!--#flastmod file="dufe.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/dufe.html"><img alt="dufe Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dufe-day.png"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlufe.html">大连财经学院</a></b>
+                        <p><small><!--#flastmod file="dlufe.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/dlufe.html"><img alt="dlufe Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlufe-day.png"></a>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/djtu.html">大连交通大学</a></b>
+                        <p><small><!--#flastmod file="djtu.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/djtu.html"><img alt="djtu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/djtu-day.png"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlu.html">大连大学</a></b>
+                        <p><small><!--#flastmod file="dlu.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/dlu.html"><img alt="dlu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlu-day.png"></a>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlufl.html">大连外国语大学</a></b>
+                        <p><small><!--#flastmod file="210.30.19.192_46.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/dlufl.html"><img alt="dlufl Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlufl-day.png"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/lnnu.html">辽宁师范大学</a></b>
+                        <p><small><!--#flastmod file="lnnu.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/lnnu.html"><img alt="lnnu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/lnnu-day.png"></a>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/zwww.html">大连政务外网互连接口</a></b>
+                        <p><small><!--#flastmod file="zwww.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/zwww.html"><img alt="zwww Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/zwww-day.png"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlvtc.html">大连职业技术学院</a></b>
+                        <p><small><!--#flastmod file="dlvtc.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/dlvtc.html"><img alt="dlvtc Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlvtc-day.png"></a>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dmu.html">大连医科大学</a></b>
+                        <p><small><!--#flastmod file="dmu.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/dmu.html"><img alt="dmu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dmu-day.png"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/luibe.html">辽宁对外经贸职业学院</a></b>
+                        <p><small><!--#flastmod file="luibe.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/luibe.html"><img alt="luibe Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/luibe-day.png"></a>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlpu.html">大连工业大学</a></b>
+                        <p><small><!--#flastmod file="dlpu.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/dlpu.html"><img alt="dlpu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlpu-day.png"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlnu.html">大连民族大学</a></b>
+                        <p><small><!--#flastmod file="dlnu.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/dlnu.html"><img alt="dlnu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlnu-day.png"></a>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/lnqg.html">辽宁轻工职业学院</a></b>
+                        <p><small><!--#flastmod file="lnqg.html" --></small> </p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/lnqg.html"><img border="0" alt="lnqg Traffic Graph" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/lnqg-day.png"></a> <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/neusoft.html">大连东软信息学院</a></b>
+                        <p>
+                            <a href="http://mrtg.dlut.edu.cn/mrtg/neusoft.html"><img border="0" alt="neusoft Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/neusoft-day.png"></a> <br>
+                            <small><!--#flastmod file="neusoft.html" --></small>
+                        </p>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlust.html">大连科技学院</a></b>
+                        <p>
+                            <a href="http://mrtg.dlut.edu.cn/mrtg/dlust.html"><img border="0" alt="dlust Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dlust-day.png"></a> <br>
+                            <small><!--#flastmod file="dlust.html" --></small>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlrjedu.html">大连软件职业学院</a></b>
+                        <p>
+                            <a href="http://mrtg.dlut.edu.cn/mrtg/dlrjedu.html"><img border="0" alt="dlrjedu Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dlrjedu-day.png"></a> <br>
+                            <small><!--#flastmod file="dlrjedu.html" --></small>
+                        </p>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dac.html">大连艺术学院</a></b>
+                        <p>
+                            <a href="http://mrtg.dlut.edu.cn/mrtg/dac.html"><img border="0" alt="dac Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dac-day.png"></a> <br>
+                            <small><!--#flastmod file="dac.html" --></small>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlrtvu.html">大连广播电视大学</a></b>
+                        <p><small><!--#flastmod file="dlrtvu.html" --></small></p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/dlrtvu.html"><img alt="dlrtvu Trafic Graph" border="0" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlrtvu-day.png"></a>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlsc.html">大连航运职业学院</a></b>
+                        <p><small><!--#flastmod file="dlsc.html" --></small> </p>
+                        <a href="http://mrtg.dlut.edu.cn/mrtg/dlsc.html"><img border="0" alt="dlsc Traffic Graph" width="500" height="135" src="http://mrtg.dlut.edu.cn/mrtg/dlsc-day.png"></a> <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dmuzs.html">大连医科大学中山学院</a></b>
+                        <p>
+                            <a href="http://mrtg.dlut.edu.cn/mrtg/dmuzs.html"><img border="0" alt="dmuzs Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dmuzs-day.png"></a> <br>
+                            <small><!--#flastmod file="dmuzs.html" --></small>
+                        </p>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dna.html">海军大连舰艇学院</a></b>
+                        <p>
+                            <a href="http://mrtg.dlut.edu.cn/mrtg/dna.html"><img border="0" alt="dna Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dna-day.png"></a> <br>
+                            <small><!--#flastmod file="dna.html" --></small>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/dlxgjy.html">大连枫叶职业技术学院</a></b>
+                        <p>
+                            <a href="http://mrtg.dlut.edu.cn/mrtg/dlxgjy.html"><img border="0" alt="dlxgjy Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/dlxgjy-day.png"></a> <br>
+                            <small><!--#flastmod file="dlxgjy.html" --></small>
+                        </p>
+                    </td>
+                    <td>
+                        <b><a href="http://mrtg.dlut.edu.cn/mrtg/lnnzy.html">辽宁农业职业技术学院</a></b>
+                        <p>
+                            <a href="http://mrtg.dlut.edu.cn/mrtg/lnnzy.html"><img border="0" alt="lnnzy Traffic Graph" src="http://mrtg.dlut.edu.cn/mrtg/lnnzy-day.png"></a> <br>
+                            <small><!--#flastmod file="lnnzy.html" --></small>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

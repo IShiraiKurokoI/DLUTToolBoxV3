@@ -78,6 +78,16 @@ namespace DLUTToolBoxV3.Ultilities
                         ElectricityStatus electricityStatus = JsonConvert.DeserializeObject<ElectricityStatus>(Response);
                         dispatcherQueue.TryEnqueue(() =>
                         {
+                            if (electricityStatus.resultData == null)
+                            {
+                                infoBar.Message = "电费余额查询失败";
+                                return;
+                            }
+                            if (electricityStatus.resultData.sydl == null)
+                            {
+                                infoBar.Message = "电费余额查询失败";
+                                return;
+                            }
                             infoBar.Message = "您寝室电费余额为" + electricityStatus.resultData.sydl.Substring(0, electricityStatus.resultData.sydl.Length - 2) + "度";
                             if (double.Parse(electricityStatus.resultData.sydl) < 10)
                             {

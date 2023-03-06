@@ -1,7 +1,8 @@
 {
   "profiles": {
     "DLUTToolBoxV3 (Package)": {
-      "commandName": "MsixPackage"
+      "commandName": "MsixPackage",
+      "nativeDebugging": false
     },
     "DLUTToolBoxV3 (Unpackaged)": {
       "commandName": "Project"
