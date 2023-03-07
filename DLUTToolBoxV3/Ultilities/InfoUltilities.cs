@@ -123,7 +123,30 @@ namespace DLUTToolBoxV3.Ultilities
                 string retString = myStreamReader.ReadToEnd();
                 myStreamReader.Close();
                 myResponseStream.Close();
-
+                return retString;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                logger.Error(ex);
+            }
+            return ret;
+        }
+        public static string CommonGetWebRequest(string url, Encoding dataEncode)
+        {
+            string ret = string.Empty;
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "GET";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.5249.91 Safari/537.36";
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream myResponseStream = response.GetResponseStream();
+                int statusCode = (int)response.StatusCode;
+                StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+                string retString = myStreamReader.ReadToEnd();
+                myStreamReader.Close();
+                myResponseStream.Close();
                 return retString;
             }
             catch (Exception ex)

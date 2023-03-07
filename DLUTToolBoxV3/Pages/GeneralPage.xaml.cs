@@ -190,7 +190,6 @@ namespace DLUTToolBoxV3.Pages
             {
                 ClassTable.Source = new Uri("https://api.m.dlut.edu.cn/login?client_id=9qXqHnRQuhhViycC&redirect_uri=https%3a%2f%2flightapp.m.dlut.edu.cn%2fcheck%2fcourseschedule&response_type=code");
                 Weather.Source = Weather.BaseUri;
-                Page_Loaded(null, null);
             }
         }
 

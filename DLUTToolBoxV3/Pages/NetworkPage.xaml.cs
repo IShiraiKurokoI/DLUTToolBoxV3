@@ -29,6 +29,8 @@ using Microsoft.Windows.AppNotifications.Builder;
 using Microsoft.Windows.AppNotifications;
 using System.Text.RegularExpressions;
 using System.Text;
+using DLUTToolBoxV3.Configurations;
+using System.Net;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -177,10 +179,59 @@ namespace DLUTToolBoxV3.Pages
 
         private void ManualConnect_Click(object sender, RoutedEventArgs e)
         {
-            var builder = new AppNotificationBuilder()
-                .AddText("尚未实现!");
-            var notificationManager = AppNotificationManager.Default;
-            notificationManager.Show(builder.BuildNotification());
+            NetworkInfo.Message = "正在尝试登录。。。";
+            DrcomStatus drcomStatus = InfoUltilities.GetEDANetworkOnlineInfo();
+            if(drcomStatus != null)
+            {
+                if(drcomStatus.result != 1)
+                {
+                    string LoginURL = "https://sso.dlut.edu.cn/cas/login?service=http%3A%2F%2F172.20.30.2%3A8080%2FSelf%2Fsso_login%3Fwlan_user_ip%3D"+drcomStatus.v46ip+ "%26authex_enable%3D%26type%3D1";
+                    //string Response = InfoUltilities.CommonGetWebRequest(LoginURL, Encoding.UTF8);
+                    //string LT = Response.Split("<input type=\"hidden\" id=\"lt\" name=\"lt\" value=\"", StringSplitOptions.None)[1].Split("\">")[0];
+                    //string JSESSIONIDCAS = Response.Split("action=\"/cas/login;JSESSIONIDCAS=", StringSplitOptions.None)[1].Split("?service=")[0];
+                    //string rsa = DES.GetRSA(ApplicationConfig.GetSettings("Uid"), ApplicationConfig.GetSettings("Password"), LT);
+                    WebView2 loginweb = new WebView2();
+                    loginweb.CoreWebView2Initialized += (sender, args) =>
+                    {
+                        loginweb.NavigationCompleted += (sender1, args1) =>
+                        {
+                            if (loginweb.Source.AbsoluteUri.IndexOf("https://sso.dlut.edu.cn/cas/login?service=http%3A%2F%2F172.20.30.2%3A8080%2FSelf%2Fsso_login") != -1)
+                            {
+                                logger.Info("执行sso登录注入");
+                                string jscode = "un.value='" + ApplicationConfig.GetSettings("Uid") + "'";
+                                string jscode1 = "pd.value='" + ApplicationConfig.GetSettings("Password") + "'";
+                                string rm = "rememberName.checked='checked'";
+                                loginweb.CoreWebView2.ExecuteScriptAsync(rm);
+                                loginweb.CoreWebView2.ExecuteScriptAsync(jscode);
+                                loginweb.CoreWebView2.ExecuteScriptAsync(jscode1);
+                                string jscode2 = "login()";
+                                loginweb.CoreWebView2.ExecuteScriptAsync(jscode2);
+                            }
+                            else if (loginweb.Source.AbsoluteUri.IndexOf("http://172.20.30.2:8080/Self/dashboard;jsessionid=") != -1)
+                            {
+                                var builder = new AppNotificationBuilder()
+                                    .AddText("登陆成功!");
+                                var notificationManager = AppNotificationManager.Default;
+                                notificationManager.Show(builder.BuildNotification());
+                                logger.Info("登陆成功");
+                                loginweb.CoreWebView2.CookieManager.DeleteCookiesWithDomainAndPath("JSESSIONID", "172.20.30.2", "/Self");
+                                loginweb.CoreWebView2.CookieManager.DeleteCookiesWithDomainAndPath("JSESSIONID", "172.20.30.2", "/");
+                                LoadNetInfo();
+                            }
+                        };
+                        loginweb.Source = new Uri(LoginURL);
+                    };
+                    loginweb.EnsureCoreWebView2Async();
+                }
+                else
+                {
+                    var builder = new AppNotificationBuilder()
+                        .AddText("无需登录!");
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+                    logger.Info("无需登录");
+                }
+            }
         }
 
         private void ManualDisconnect_Click(object sender, RoutedEventArgs e)
@@ -215,6 +266,14 @@ namespace DLUTToolBoxV3.Pages
                             notificationManager.Show(builder.BuildNotification());
                             logger.Info("注销失败");
                         }
+                    }
+                    else
+                    {
+                        var builder = new AppNotificationBuilder()
+                            .AddText("无需注销!");
+                        var notificationManager = AppNotificationManager.Default;
+                        notificationManager.Show(builder.BuildNotification());
+                        logger.Info("无需注销");
                     }
                 }
                 catch (Exception ex)

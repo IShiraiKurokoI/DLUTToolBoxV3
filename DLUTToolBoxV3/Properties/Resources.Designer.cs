@@ -59,5 +59,37 @@ namespace DLUTToolBoxV3.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   查找类似 /** 
+        ///* DES加密解密 
+        ///* @Copyright Copyright (c) 2006 
+        ///* @author Guapo 
+        ///* @see DESCore 
+        ///*/  
+        ///  
+        ////* 
+        ///* encrypt the string to string made up of hex 
+        ///* return the encrypted string 
+        ///*/  
+        ///
+        ///function GetRSA(uplt)
+        ///{
+        ///return strEnc(uplt,&apos;1&apos;,&apos;2&apos;,&apos;3&apos;)
+        ///}
+        ///
+        ///function strEnc(data,firstKey,secondKey,thirdKey){  
+        ///  
+        /// var leng = data.length;  
+        /// var encData = &quot;&quot;;  
+        /// var firstKeyBt,secondKeyBt,thirdKeyBt,firstLength,secondLength,thirdLength;  
+        /// if(firstKey != null &amp;&amp; firstKey != &quot;&quot;){      
+        ///   firstKeyBt = getKey [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string StrEnc {
+            get {
+                return ResourceManager.GetString("StrEnc", resourceCulture);
+            }
+        }
     }
 }
