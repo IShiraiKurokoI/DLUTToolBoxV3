@@ -8,6 +8,8 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Windows.AppNotifications.Builder;
+using Microsoft.Windows.AppNotifications;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,6 +31,14 @@ namespace DLUTToolBoxV3.Pages
         public SystemPage()
         {
             this.InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            var builder = new AppNotificationBuilder()
+                .AddText("此页面尚未完成，敬请期待！");
+            var notificationManager = AppNotificationManager.Default;
+            notificationManager.Show(builder.BuildNotification());
         }
     }
 }

@@ -19,7 +19,8 @@ namespace DLUTToolBoxV3.Helpers
         {
             logger.Debug("新建浏览器页面");
             BrowserWindow browserWindow = new BrowserWindow(appDataItem);
-            ThemeHelper.Initialize(browserWindow, BackdropType.DesktopAcrylic);
+            WindowHelper.TrackWindow(browserWindow);
+            ThemeHelper.Initialize(null, BackdropType.DesktopAcrylic);
             browserWindow.Activate();
         }
     }

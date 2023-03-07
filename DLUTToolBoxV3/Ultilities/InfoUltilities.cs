@@ -109,7 +109,30 @@ namespace DLUTToolBoxV3.Ultilities
                 }
             }
         }
+        public static string GetWebRequest(string url, Encoding dataEncode)
+        {
+            string ret = string.Empty;
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "GET";
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream myResponseStream = response.GetResponseStream();
+                int statusCode = (int)response.StatusCode;
+                StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+                string retString = myStreamReader.ReadToEnd();
+                myStreamReader.Close();
+                myResponseStream.Close();
 
+                return retString;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                logger.Error(ex);
+            }
+            return ret;
+        }
         private static string PostWebRequest(string postUrl, string paramData, Encoding dataEncode)
         {
             string ret = string.Empty;

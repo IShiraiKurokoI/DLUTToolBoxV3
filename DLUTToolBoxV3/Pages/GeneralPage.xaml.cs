@@ -65,6 +65,13 @@ namespace DLUTToolBoxV3.Pages
                             NetworkInfo.Message = "校园网余额：" + fee + "\n本机校园网已用流量：\n" + flowused + "\nIPV4地址：" + V4IP + "\n网卡MAC：" + drcomStatus.olmac;
                         });
                     }
+                    else
+                    {
+                        dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+                        {
+                            NetworkInfo.Message = "校园网已连接但尚未认证";
+                        });
+                    }
                 }
             });
             Task.Run(() =>
@@ -183,6 +190,7 @@ namespace DLUTToolBoxV3.Pages
             {
                 ClassTable.Source = new Uri("https://api.m.dlut.edu.cn/login?client_id=9qXqHnRQuhhViycC&redirect_uri=https%3a%2f%2flightapp.m.dlut.edu.cn%2fcheck%2fcourseschedule&response_type=code");
                 Weather.Source = Weather.BaseUri;
+                Page_Loaded(null, null);
             }
         }
 

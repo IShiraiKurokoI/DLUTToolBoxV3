@@ -66,6 +66,14 @@ namespace DLUTToolBoxV3
             {
                 WebView.Source = appDataItem.Uri;
                 WindowTitle.Text= appDataItem.Title;
+                if(appDataItem.HandleId!=-1&&appDataItem.HandleId!=2)
+                {
+                    m_AppWindow.Resize(new SizeInt32(1720,800));
+                }
+                else
+                {
+                    m_AppWindow.Resize(new SizeInt32(530, 900));
+                }
             }
         }
 
@@ -78,7 +86,7 @@ namespace DLUTToolBoxV3
             WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = true;
             WebView.CoreWebView2.NewWindowRequested += (sender, args) =>
             {
-                if(app.HandleId!=3)
+                if(app.HandleId!=3&&app.HandleId!=-2)
                 {
                     WebView.CoreWebView2.ExecuteScriptAsync("window.location.href='" + args.Uri.ToString() + "'");
                     args.Handled = true;
@@ -194,6 +202,8 @@ namespace DLUTToolBoxV3
             }
             switch(app.HandleId)
             {
+                case -2:
+                case -1:
                 case 0:
                     {
                         break;
@@ -281,8 +291,90 @@ namespace DLUTToolBoxV3
                         }
                         break;
                     }
+                    case 9:
+                    {
+                        logger.Info("我的课表特殊处理");
+                        if (WebView.Source.AbsoluteUri.IndexOf("/student/home") != -1)
+                        {
+                            WebView.ExecuteScriptAsync("window.location.href='/student/for-std/course-table'");
+                        }
+                        break;
+                    }
+                    case 10:
+                    {
+                        logger.Info("班级课表特殊处理");
+                        if (WebView.Source.AbsoluteUri.IndexOf("/student/home") != -1)
+                        {
+                            WebView.ExecuteScriptAsync("window.location.href='/student/for-std/adminclass-course-table'");
+                        }
+                        break;
+                    }
+                    case 11:
+                    {
+                        logger.Info("培养方案特殊处理");
+                        if (WebView.Source.AbsoluteUri.IndexOf("/student/home") != -1)
+                        {
+                            WebView.ExecuteScriptAsync("window.location.href='/student/for-std/program-completion-preview'");
+                        }
+                        break;
+                    }
+                    case 12:
+                    {
+                        logger.Info("开课查询特殊处理");
+                        if (WebView.Source.AbsoluteUri.IndexOf("/student/home") != -1)
+                        {
+                            WebView.ExecuteScriptAsync("window.location.href='/student/for-std/lesson-search'");
+                        }
+                        break;
+                    }
+                    case 13:
+                    {
+                        logger.Info("座位预约特殊处理");
+                        if (WebView.Source.AbsoluteUri.ToString().IndexOf("http://seat.lib.dlut.edu.cn/yanxiujian/client/orderSeat.php") != -1)
+                        {
+                            resize();
+                        }
+                        else
+                        {
+                            resize_back();
+                        }
+                        break;
+                    }
+                    case 14:
+                    {
+                        logger.Info("大工邮箱特殊处理");
+                        if(WebView.Source.AbsoluteUri.ToString()== "https://mail.dlut.edu.cn/")
+                        {
+                            string rm = "domain.value='mail.dlut.edu.cn'";
+                            WebView.CoreWebView2.ExecuteScriptAsync(rm);
+                        }
+                        break;
+                    }
             }
             count++;
+        }
+
+
+        void resize()
+        {
+            WebView.CoreWebView2.ExecuteScriptAsync("document.body.style.zoom = \"50%\";");
+            string rs = "document.getElementsByClassName('main-container')[0].style='margin:0px;padding:0px;width:100%'";
+            WebView.CoreWebView2.ExecuteScriptAsync(rs);
+            rs = "document.getElementsByClassName('container')[2].style='margin:0px;padding:0px;width:100%;'";
+            WebView.CoreWebView2.ExecuteScriptAsync(rs);
+            rs = "document.getElementsByClassName('row')[2].style='margin:0px;padding:0px;width:100%'";
+            WebView.CoreWebView2.ExecuteScriptAsync(rs);
+        }
+
+        void resize_back()
+        {
+            WebView.CoreWebView2.ExecuteScriptAsync("document.body.style.zoom = \"100%\";");
+            string rs = "document.getElementsByClassName('main-container')[0].style=''";
+            WebView.CoreWebView2.ExecuteScriptAsync(rs);
+            rs = "document.getElementsByClassName('container')[2].style=''";
+            WebView.CoreWebView2.ExecuteScriptAsync(rs);
+            rs = "document.getElementsByClassName('row')[2].style=''";
+            WebView.CoreWebView2.ExecuteScriptAsync(rs);
         }
 
         async Task newtab()

@@ -28,6 +28,7 @@ using WinUICommunity.Common.Helpers;
 using Microsoft.Windows.AppNotifications.Builder;
 using Microsoft.Windows.AppNotifications;
 using System.Text.RegularExpressions;
+using System.Text;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -70,6 +71,13 @@ namespace DLUTToolBoxV3.Pages
                         dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
                         {
                             NetworkInfo.Message = "校园网余额：" + fee + "\n本机校园网已用流量：\n" + flowused + "\nIPV4地址：" + V4IP + "\n网卡MAC：" + drcomStatus.olmac;
+                        });
+                    }
+                    else
+                    {
+                        dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+                        {
+                            NetworkInfo.Message = "校园网已连接但尚未认证";
                         });
                     }
                 }
@@ -123,7 +131,7 @@ namespace DLUTToolBoxV3.Pages
                 p.StartInfo.RedirectStandardInput = true;
                 p.StartInfo.RedirectStandardOutput = true;
                 p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                p.StartInfo.CreateNoWindow= true;
+                p.StartInfo.CreateNoWindow = true;
                 p.Start();
                 p.StandardInput.WriteLine("ipconfig /flushdns");
                 p.StandardInput.WriteLine("exit");
@@ -149,10 +157,22 @@ namespace DLUTToolBoxV3.Pages
 
         private void LSPFix_Click(object sender, RoutedEventArgs e)
         {
-            var builder = new AppNotificationBuilder()
-                .AddText("尚未实现!");
-            var notificationManager = AppNotificationManager.Default;
-            notificationManager.Show(builder.BuildNotification());
+            Task.Run(() =>
+            {
+                Process p = new Process();
+                p.StartInfo.FileName = "netsh.exe";
+                p.StartInfo.UseShellExecute = true;
+                p.StartInfo.Verb = "runas";
+                p.StartInfo.Arguments = "winsock reset";
+                p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                p.StartInfo.CreateNoWindow = true;
+                p.Start();
+                p.WaitForExit();
+                var builder = new AppNotificationBuilder()
+                    .AddText("修复成功!");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+            });
         }
 
         private void ManualConnect_Click(object sender, RoutedEventArgs e)
@@ -165,10 +185,47 @@ namespace DLUTToolBoxV3.Pages
 
         private void ManualDisconnect_Click(object sender, RoutedEventArgs e)
         {
-            var builder = new AppNotificationBuilder()
-                .AddText("尚未实现!");
-            var notificationManager = AppNotificationManager.Default;
-            notificationManager.Show(builder.BuildNotification());
+            var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
+            logger.Info("注销校园网");
+            Task.Run(() =>
+            {
+                try
+                {
+                    DrcomStatus drcomStatus = InfoUltilities.GetEDANetworkOnlineInfo();
+                    if (drcomStatus != null && drcomStatus.result == 1)
+                    {
+                        string Response =  InfoUltilities.GetWebRequest("http://172.20.30.1:801/eportal/portal/logout?callback=&wlan_user_ip=" + drcomStatus.v4ip, Encoding.UTF8);
+                        if(Response.Contains("成功"))
+                        {
+                            var builder = new AppNotificationBuilder()
+                                .AddText("注销成功!");
+                            var notificationManager = AppNotificationManager.Default;
+                            notificationManager.Show(builder.BuildNotification());
+                            logger.Info("注销成功");
+                            dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+                            {
+                                LoadNetInfo();
+                            });
+                        }
+                        else
+                        {
+                            var builder = new AppNotificationBuilder()
+                                .AddText("注销失败!");
+                            var notificationManager = AppNotificationManager.Default;
+                            notificationManager.Show(builder.BuildNotification());
+                            logger.Info("注销失败");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var builder = new AppNotificationBuilder()
+                        .AddText("注销失败!\n"+ex.Message);
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+                    logger.Error(ex);
+                }
+            });
         }
 
         private void NetworkEnhance_Click(object sender, RoutedEventArgs e)
