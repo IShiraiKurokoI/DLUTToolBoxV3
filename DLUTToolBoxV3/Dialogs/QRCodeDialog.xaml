@@ -1,0 +1,16 @@
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<ContentDialog
+    x:Class="DLUTToolBoxV3.Dialogs.QRCodeDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DLUTToolBoxV3.Dialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PrimaryButtonText="确定">
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Image x:Name="QRCode" Margin="8" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+    </StackPanel>
+</ContentDialog>

@@ -32,6 +32,9 @@ using System.Threading.Tasks;
 using Castle.Core.Internal;
 using System.Text.RegularExpressions;
 using System.Runtime.ConstrainedExecution;
+using QRCoder;
+using static QRCoder.PayloadGenerator;
+using DLUTToolBoxV3.Dialogs;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -108,6 +111,7 @@ namespace DLUTToolBoxV3
 
         private void CoreWebView2_NavigationStarting(CoreWebView2 sender, CoreWebView2NavigationStartingEventArgs e)
         {
+            Debug.WriteLine(e.Uri);
             logger.Info("页面|" + WebView.CoreWebView2.DocumentTitle + "|尝试打开URL:" + e.Uri.ToString());
             if (e.Uri.StartsWith("https://ibsbjstar.ccb.com.cn/CCBIS/B2CMainPlat"))
             {
@@ -123,8 +127,7 @@ namespace DLUTToolBoxV3
             }
             if (e.Uri.StartsWith("alipays://"))
             {
-
-                //new QRPayCodeWindow(e.Uri).Show();
+                ShowQRCode(e.Uri);
             }
             if (e.Uri.StartsWith("https://mclient.alipay.com/cashier/mobilepay.htm?"))
             {
@@ -132,6 +135,7 @@ namespace DLUTToolBoxV3
                     .AddText("链接获取成功，请点击打开支付宝APP后使用手机支付宝扫码付款！");
                 var notificationManager = AppNotificationManager.Default;
                 notificationManager.Show(builder.BuildNotification());
+                ShowQRCode(e.Uri);
             }
             if (e.Uri.StartsWith("weixin://"))
             {
@@ -147,8 +151,33 @@ namespace DLUTToolBoxV3
                     .AddText("链接获取成功，请使用云闪付手机APP扫码付款！");
                 var notificationManager = AppNotificationManager.Default;
                 notificationManager.Show(builder.BuildNotification());
+                ShowQRCode(e.Uri);
+            }
+        }
 
-                //new QRPayCodeWindow(e.Uri).Show();
+        public void ShowQRCode(string Uri)
+        {
+            try
+            {
+                QRCodeGenerator.ECCLevel eccLevel = (QRCodeGenerator.ECCLevel)(1);
+                using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+                {
+                    using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(Uri, eccLevel))
+                    {
+                        using (QRCode qrCode = new QRCode(qrCodeData))
+                        {
+                            System.Drawing.Bitmap bmp = qrCode.GetGraphic(20, System.Drawing.Color.Black, System.Drawing.Color.White, false);
+                            QRCodeDialog qRCodeDialog = new QRCodeDialog(bmp);
+                            qRCodeDialog.XamlRoot = this.Content.XamlRoot;
+                            qRCodeDialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+                            qRCodeDialog.ShowAsync();
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
             }
         }
 

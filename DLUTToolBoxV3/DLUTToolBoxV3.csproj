@@ -20,10 +20,11 @@
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxPackageDir>D:\app\DLUTToolBoxV3\Generation\</AppxPackageDir>
-    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
-    <AppxBundle>Never</AppxBundle>
+    <AppxBundle>Auto</AppxBundle>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="ItemTemplates.xaml.cs" />
@@ -91,6 +92,7 @@
     <None Remove="Assets\Study.png" />
     <None Remove="Assets\Web\Monitor.html" />
     <None Remove="BrowserWindow.xaml" />
+    <None Remove="Dialogs\QRCodeDialog.xaml" />
     <None Remove="ItemTemplates.xaml" />
     <None Remove="NLog.config" />
     <None Remove="Pages\AboutPage.xaml" />
@@ -122,11 +124,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230217.4" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="NLog" Version="5.1.2" />
     <PackageReference Include="NLog.Schema" Version="5.1.2" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
     <PackageReference Include="WinUICommunity.Common" Version="3.2.4" />
     <PackageReference Include="WinUICommunity.SettingsUI" Version="3.1.1" />
     <Manifest Include="$(ApplicationManifest)" />
@@ -163,6 +167,9 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="Dialogs\QRCodeDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Pages\WebViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

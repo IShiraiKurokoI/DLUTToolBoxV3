@@ -156,6 +156,7 @@ namespace DLUTToolBoxV3.Ultilities
             }
             return ret;
         }
+
         private static string PostWebRequest(string postUrl, string paramData, Encoding dataEncode)
         {
             string ret = string.Empty;

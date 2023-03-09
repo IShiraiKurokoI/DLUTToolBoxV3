@@ -82,6 +82,8 @@
                                     <HyperlinkButton Content="WinUICommunity/SettingsUI" NavigateUri="https://github.com/WinUICommunity/SettingsUI"  Margin="5" FontSize="18"/>
                                     <HyperlinkButton Content="Newtonsoft/Json" NavigateUri="https://www.newtonsoft.com/json"  Margin="5" FontSize="18"/>
                                     <HyperlinkButton Content="NLog" NavigateUri="https://nlog-project.org/"  Margin="5" FontSize="18"/>
+                                    <HyperlinkButton Content="HtmlAgilityPack" NavigateUri="https://html-agility-pack.net/"  Margin="5" FontSize="18"/>
+                                    <HyperlinkButton Content="QRCoder" NavigateUri="https://github.com/codebude/QRCoder/"  Margin="5" FontSize="18"/>
                                 </StackPanel>
                             </ScrollViewer>
                         </labs:SettingsCard.Description>
