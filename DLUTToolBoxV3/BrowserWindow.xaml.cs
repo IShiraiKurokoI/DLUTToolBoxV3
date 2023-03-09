@@ -111,7 +111,6 @@ namespace DLUTToolBoxV3
 
         private void CoreWebView2_NavigationStarting(CoreWebView2 sender, CoreWebView2NavigationStartingEventArgs e)
         {
-            Debug.WriteLine(e.Uri);
             logger.Info("页面|" + WebView.CoreWebView2.DocumentTitle + "|尝试打开URL:" + e.Uri.ToString());
             if (e.Uri.StartsWith("https://ibsbjstar.ccb.com.cn/CCBIS/B2CMainPlat"))
             {

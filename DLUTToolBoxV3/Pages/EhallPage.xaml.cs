@@ -23,6 +23,9 @@ using Windows.Foundation.Collections;
 using Castle.Core.Internal;
 using Windows.ApplicationModel.DataTransfer;
 using DLUTToolBoxV3.Helpers;
+using DLUTToolBoxV3.Dialogs;
+using NLog;
+using QRCoder;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,8 +38,11 @@ namespace DLUTToolBoxV3.Pages
     public sealed partial class EhallPage : Page
     {
         bool LoginTried = false;
+        public NLog.Logger logger;
         public EhallPage()
         {
+            logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Info("打开办事大厅页面");
             this.InitializeComponent();
         }
 
@@ -89,6 +95,78 @@ namespace DLUTToolBoxV3.Pages
             else
             {
                 LoginTried = false;
+            }
+        }
+
+
+        private void WebView_NavigationStarting(WebView2 sender, CoreWebView2NavigationStartingEventArgs e)
+        {
+            logger.Info("页面|" + WebView.CoreWebView2.DocumentTitle + "|尝试打开URL:" + e.Uri.ToString());
+            if (e.Uri.StartsWith("https://ibsbjstar.ccb.com.cn/CCBIS/B2CMainPlat"))
+            {
+                if (e.Uri.IndexOf("?CLIENTIP=&BRANCHID=") != -1)
+                {
+                    var builder = new AppNotificationBuilder()
+                        .AddText("正在打开建行Web支付页面，请自行支付!");
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+                    Windows.System.Launcher.LaunchUriAsync(new Uri(e.Uri));
+                    e.Cancel = true;
+                }
+            }
+            if (e.Uri.StartsWith("alipays://"))
+            {
+                ShowQRCode(e.Uri);
+            }
+            if (e.Uri.StartsWith("https://mclient.alipay.com/cashier/mobilepay.htm?"))
+            {
+                var builder = new AppNotificationBuilder()
+                    .AddText("链接获取成功，请点击打开支付宝APP后使用手机支付宝扫码付款！");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+                ShowQRCode(e.Uri);
+            }
+            if (e.Uri.StartsWith("weixin://"))
+            {
+                var builder = new AppNotificationBuilder()
+                    .AddText("暂不支持微信支付功能,敬请期待（TNND微信接口太难用了）");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+                e.Cancel = true;
+            }
+            if (e.Uri.IndexOf("mobile/api/unifiedOrderIndex.action?") != -1)
+            {
+                var builder = new AppNotificationBuilder()
+                    .AddText("链接获取成功，请使用云闪付手机APP扫码付款！");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+                ShowQRCode(e.Uri);
+            }
+        }
+
+        public void ShowQRCode(string Uri)
+        {
+            try
+            {
+                QRCodeGenerator.ECCLevel eccLevel = (QRCodeGenerator.ECCLevel)(1);
+                using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+                {
+                    using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(Uri, eccLevel))
+                    {
+                        using (QRCode qrCode = new QRCode(qrCodeData))
+                        {
+                            System.Drawing.Bitmap bmp = qrCode.GetGraphic(20, System.Drawing.Color.Black, System.Drawing.Color.White, false);
+                            QRCodeDialog qRCodeDialog = new QRCodeDialog(bmp);
+                            qRCodeDialog.XamlRoot = this.Content.XamlRoot;
+                            qRCodeDialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+                            qRCodeDialog.ShowAsync();
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
             }
         }
 
