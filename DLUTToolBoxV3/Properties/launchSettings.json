@@ -2,6 +2,7 @@
   "profiles": {
     "DLUTToolBoxV3 (Package)": {
       "commandName": "MsixPackage",
+      "commandLineArgs": "login",
       "nativeDebugging": false
     },
     "DLUTToolBoxV3 (Unpackaged)": {

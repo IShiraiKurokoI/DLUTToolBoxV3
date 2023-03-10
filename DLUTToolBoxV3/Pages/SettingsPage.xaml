@@ -54,6 +54,13 @@
             </controls:SettingsGroup>
             <controls:SettingsGroup Header="杂项" Margin="4,-24,4,4">
                 <labs:SettingsCard
+                    Header="开发区校区校园网自动登录">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xf32a;"/>
+                    </labs:SettingsCard.HeaderIcon>
+                    <ToggleSwitch x:Name="AutoLoginSwitch" Toggled="AutoLoginSwitch_Toggled" Margin="0,0,20,0"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard
                     Header="清除WebViewCookie">
                     <labs:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xe74d;"/>
@@ -61,6 +68,7 @@
                     <Button 
                         HorizontalAlignment="Right"
                         Content="点击清除"
+                        Width="100"
                     Click="Button_Click"/>
                 </labs:SettingsCard>
                 <labs:SettingsCard
@@ -71,6 +79,7 @@
                     <Button 
                         HorizontalAlignment="Right"
                         Content="打开文件夹"
+                        Width="100"
                         Click="Button_Click_2"/>
                 </labs:SettingsCard>
                 <controls:Setting 
@@ -110,6 +119,7 @@
                             <Button 
                                 HorizontalAlignment="Right"
                                 Content="检查更新" 
+                        Width="100"
                                 Click="Button_Click_1"/>
                         </StackPanel>
                     </controls:Setting.ActionContent>

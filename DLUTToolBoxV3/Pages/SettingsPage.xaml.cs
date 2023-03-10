@@ -53,6 +53,10 @@ namespace DLUTToolBoxV3.Pages
             ThemeHelper.SetComboBoxDefaultItem(ThemePanel);
             Uid.Text = ApplicationConfig.GetSettings("Uid");
             Password.Password = ApplicationConfig.GetSettings("Password");
+            if (ApplicationConfig.GetSettings("AutoLogin") != "None")
+            {
+                AutoLoginSwitch.IsOn= true;
+            }
         }
 
         private void ThemePanel_SelectionChanged(object sender, RoutedEventArgs e)
@@ -221,6 +225,18 @@ namespace DLUTToolBoxV3.Pages
         {
             logger.Info("打开日志文件夹");
             Windows.System.Launcher.LaunchUriAsync(new Uri(ApplicationHelper.GetFullPathToExe()+ "\\Log"));
+        }
+
+        private void AutoLoginSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            if(AutoLoginSwitch.IsOn)
+            {
+                ApplicationConfig.SaveSettings("AutoLogin", "EDA");
+            }
+            else
+            {
+                ApplicationConfig.SaveSettings("AutoLogin", "None");
+            }
         }
     }
 }
