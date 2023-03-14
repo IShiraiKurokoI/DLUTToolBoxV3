@@ -28,6 +28,9 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinUICommunity.Common.Helpers;
 using System.Diagnostics;
+using System.IO.Pipes;
+using System.Security.Principal;
+using System.Text.RegularExpressions;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -150,5 +153,6 @@ namespace DLUTToolBoxV3
             //记录日志
             logger.Error(ex.ToString());
         }
+
     }
 }

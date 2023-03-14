@@ -167,6 +167,60 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Update="Win64\SystemCore\Microsoft.Toolkit.Uwp.Notifications.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\SystemCore\System.ValueTuple.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\SystemCore\ToolBox.System.Core.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\UserCore\Microsoft.Toolkit.Uwp.Notifications.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\UserCore\SysAutoFix.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\UserCore\System.ValueTuple.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\UserCore\ToolBox.User.Core.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\UserCore\ToolBox.User.Core.exe.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\VisualCore\Microsoft.Toolkit.Uwp.Notifications.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\VisualCore\RH\ResourceHacker.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\VisualCore\RH\Templates\Win10script.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\VisualCore\RH\Templates\Win10Template.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\VisualCore\RH\Templates\Win11Newscript.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\VisualCore\RH\Templates\Win11NewTemplate.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\VisualCore\RH\Templates\Win11script.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\VisualCore\RH\Templates\Win11Template.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\VisualCore\System.ValueTuple.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\VisualCore\ToolBox.Visual.Core.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Page Update="Dialogs\QRCodeDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,7 +276,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Win64\" />
+    <Folder Include="Win64\VisualCore\" />
   </ItemGroup>
 
   <!-- 

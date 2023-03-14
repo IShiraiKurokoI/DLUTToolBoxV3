@@ -115,7 +115,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void NetworkMonitor_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "校园网状态", "ms-appx:///Assets/AppIcons/Network/NetworkMonitor.png", "", ApplicationHelper.GetFullPathToExe() + @"\\Assets\\Web\\Monitor.html", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "校园网状态", "ms-appx:///Assets/AppIcons/Network/NetworkMonitor.png", "", ApplicationHelper.GetFullPathToExe() + @"\Assets\Web\Monitor.html", 0));
         }
 
         private void SelfService_Click(object sender, RoutedEventArgs e)
@@ -143,14 +143,14 @@ namespace DLUTToolBoxV3.Pages
                 if (result.IndexOf("成功") != -1)
                 {
                     var builder = new AppNotificationBuilder()
-                        .AddText("刷新成功!");
+                        .AddText("清理成功!");
                     var notificationManager = AppNotificationManager.Default;
                     notificationManager.Show(builder.BuildNotification());
                 }
                 else
                 {
                     var builder = new AppNotificationBuilder()
-                        .AddText("刷新失败!");
+                        .AddText("清理失败!");
                     var notificationManager = AppNotificationManager.Default;
                     notificationManager.Show(builder.BuildNotification());
                 }
@@ -289,10 +289,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void NetworkEnhance_Click(object sender, RoutedEventArgs e)
         {
-            var builder = new AppNotificationBuilder()
-                .AddText("尚未实现!");
-            var notificationManager = AppNotificationManager.Default;
-            notificationManager.Show(builder.BuildNotification());
+            ActionHelper.SendMessageToUserCore("3");
         }
 
         private void RefreshNetworkStatus_Click(object sender, RoutedEventArgs e)

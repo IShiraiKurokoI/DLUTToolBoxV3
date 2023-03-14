@@ -1,0 +1,10 @@
+  [FILENAMES]
+  Exe=    Win10Template.dll
+  SaveAs= Frame.dll	
+  [COMMANDS]
+  -modify Bitmap241.bmp,Bitmap,241,0
+  -modify Bitmap242.bmp,Bitmap,242,0
+  -modify Bitmap243.bmp,Bitmap,243,0
+  -modify Bitmap244.bmp,Bitmap,244,0
+  -modify Bitmap245.bmp,Bitmap,245,0
+  -modify Bitmap246.bmp,Bitmap,246,0
