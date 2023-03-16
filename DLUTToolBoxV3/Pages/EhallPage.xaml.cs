@@ -80,7 +80,7 @@ namespace DLUTToolBoxV3.Pages
                 WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
                 WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
             }
-            if (WebView.Source.AbsoluteUri.StartsWith("https://sso.dlut.edu.cn/cas/login?service="))
+            if (WebView.Source.AbsoluteUri.Contains("/cas/login?service="))
             {
                 if (LoginTried)
                 {
@@ -95,6 +95,10 @@ namespace DLUTToolBoxV3.Pages
             else
             {
                 LoginTried = false;
+            }
+            if (WebView.Source.AbsoluteUri.Contains("https://webvpn.dlut.edu.cn/login"))
+            {
+                WebView.ExecuteScriptAsync("window.location.href = \"https://webvpn.dlut.edu.cn/login?cas_login=true\"");
             }
         }
 
