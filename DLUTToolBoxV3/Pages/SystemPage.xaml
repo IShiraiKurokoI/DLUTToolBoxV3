@@ -1,4 +1,4 @@
-<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
 <Page
@@ -8,7 +8,191 @@
     xmlns:local="using:DLUTToolBoxV3.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:WinUICommunity.SettingsUI.Controls"
+    xmlns:labs="using:WinUICommunity.SettingsUI.SettingsControls"
     mc:Ignorable="d"
     Background="Transparent"
     Loaded="Page_Loaded">
+    <ScrollViewer>
+        <StackPanel x:Name="SourceElement" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="24,16,24,24">
+            <controls:SettingsGroup Header="系统功能" Margin="4,-24,4,4">
+                <labs:SettingsCard
+                    Header="系统预留空间">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xeda2;"/>
+                    </labs:SettingsCard.HeaderIcon>
+                    <ToggleSwitch x:Name="ReservedSpace" Toggled="ReservedSpace_Toggled"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard
+                    Header="幽灵熔断补丁">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xe7ef;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <ToggleSwitch x:Name="MeltDownPatch" Toggled="MeltDownPatch_Toggled"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard
+                    Header="基于虚拟化的安全性">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xf552;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <ToggleSwitch x:Name="VBS" Toggled="VBS_Toggled"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard
+                    Header="TSX多事务管理">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xe7c4;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <ToggleSwitch x:Name="TSX" Toggled="TSX_Toggled"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard
+                    Header="系统时间线历史记录">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xee93;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <ToggleSwitch x:Name="TimeLine" Toggled="TimeLine_Toggled"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard
+                    Header="桌面壁纸高画质">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xf103;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <ToggleSwitch x:Name="HighQualityWallpaper" Toggled="HighQualityWallpaper_Toggled"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard
+                    Header="重置截图序号">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xe72c;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <Button Content="点击重置" x:Name="ResetScreenshotNumber" Click="ResetScreenshotNumber_Click"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard
+                    Header="重启资源管理器">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xec50;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <Button Content="点击重启" x:Name="RestartFileExpolerer" Click="RestartFileExpolerer_Click"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard
+                    Header="进行系统修复">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xec7a;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <Button Content="点击启动" x:Name="SystemFix" Click="SystemFix_Click"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard ActionIconToolTip="打开高级系统设置页面"
+                               Description="打开高级系统设置页面"
+                               Header="高级系统设置"
+                               IsClickEnabled="True"
+                                   x:Name="SystemAdvanceSettings"
+                                   Click="SystemAdvanceSettings_Click">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xf259;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <labs:SettingsCard.ActionIcon>
+                        <FontIcon FontSize="12"
+                              Glyph="&#xE8A7;" />
+                    </labs:SettingsCard.ActionIcon>
+                </labs:SettingsCard>
+                <labs:SettingsCard ActionIconToolTip="打开性能选项页面"
+                               Description="打开性能选项页面"
+                               Header="性能选项"
+                               IsClickEnabled="True"
+                                   x:Name="Performance"
+                                   Click="Performance_Click">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xe95e;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <labs:SettingsCard.ActionIcon>
+                        <FontIcon FontSize="12"
+                              Glyph="&#xE8A7;" />
+                    </labs:SettingsCard.ActionIcon>
+                </labs:SettingsCard>
+            </controls:SettingsGroup>
+            <controls:SettingsGroup Header="磁盘管理" Margin="4,-24,4,4">
+                <labs:SettingsCard
+                    Header="清理C盘QQ文件">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xe74d;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <Button Content="点击清理" x:Name="QQClean" Click="QQClean_Click"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard
+                    Header="清理系统文件">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xe770;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <Button Content="点击清理" x:Name="SystemClean" Click="SystemClean_Click"/>
+                </labs:SettingsCard>
+                <labs:SettingsCard ActionIconToolTip="打开磁盘分析器页面"
+                               Description="打开磁盘分析器页面"
+                               Header="磁盘分析器"
+                               IsClickEnabled="True"
+                                   x:Name="DriveAnalyzer" Click="DriveAnalyzer_Click">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xeca5;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <labs:SettingsCard.ActionIcon>
+                        <FontIcon FontSize="12"
+                              Glyph="&#xE8A7;" />
+                    </labs:SettingsCard.ActionIcon>
+                </labs:SettingsCard>
+                <labs:SettingsCard ActionIconToolTip="打开磁盘管理页面"
+                               Description="打开磁盘管理页面"
+                               Header="磁盘管理"
+                               IsClickEnabled="True"
+                                   x:Name="DriveManagement" Click="DriveManagement_Click">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xe912;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <labs:SettingsCard.ActionIcon>
+                        <FontIcon FontSize="12"
+                              Glyph="&#xE8A7;" />
+                    </labs:SettingsCard.ActionIcon>
+                </labs:SettingsCard>
+                <labs:SettingsCard ActionIconToolTip="打开还原点管理页面"
+                               Description="打开还原点管理页面"
+                               Header="还原点管理"
+                               IsClickEnabled="True"
+                                   x:Name="HistoryPoint" Click="HistoryPoint_Click">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xf738;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <labs:SettingsCard.ActionIcon>
+                        <FontIcon FontSize="12"
+                              Glyph="&#xE8A7;" />
+                    </labs:SettingsCard.ActionIcon>
+                </labs:SettingsCard>
+                <labs:SettingsCard ActionIconToolTip="打开CCleaner"
+                               Description="打开CCleaner"
+                               Header="CCleaner"
+                               IsClickEnabled="True"
+                                   x:Name="CCleaner"
+                                   Click="CCleaner_Click">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xe74c;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <labs:SettingsCard.ActionIcon>
+                        <FontIcon FontSize="12"
+                              Glyph="&#xE8A7;" />
+                    </labs:SettingsCard.ActionIcon>
+                </labs:SettingsCard>
+            </controls:SettingsGroup>
+            <controls:SettingsGroup Header="系统个性化" Margin="4,-24,4,4">
+                <labs:SettingsCard ActionIconToolTip="打开文件夹背景自定义"
+                               Description="文件夹资源管理器背景自定义"
+                               Header="文件夹背景"
+                               IsClickEnabled="True"
+                                   x:Name="FileExplorerCustomization"
+                                   Click="FileExplorerCustomization_Click">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xf7ed;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <labs:SettingsCard.ActionIcon>
+                        <FontIcon FontSize="12"
+                              Glyph="&#xE8A7;" />
+                    </labs:SettingsCard.ActionIcon>
+                </labs:SettingsCard>
+            </controls:SettingsGroup>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

@@ -35,10 +35,97 @@ namespace DLUTToolBoxV3.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var builder = new AppNotificationBuilder()
-                .AddText("此页面尚未完成，敬请期待！");
-            var notificationManager = AppNotificationManager.Default;
-            notificationManager.Show(builder.BuildNotification());
+
+        }
+
+        private void ReservedSpace_Toggled(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MeltDownPatch_Toggled(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void VBS_Toggled(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TSX_Toggled(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TimeLine_Toggled(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HighQualityWallpaper_Toggled(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ResetScreenshotNumber_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RestartFileExpolerer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SystemFix_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SystemAdvanceSettings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Performance_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void QQClean_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SystemClean_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DriveAnalyzer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DriveManagement_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HistoryPoint_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CCleaner_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void FileExplorerCustomization_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

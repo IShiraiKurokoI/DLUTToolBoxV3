@@ -73,6 +73,13 @@ namespace DLUTToolBoxV3.Pages
                         });
                     }
                 }
+                else
+                {
+                    dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+                    {
+                        NetworkInfo.Message = "Î´Á¬½ÓÐ£Ô°Íø";
+                    });
+                }
             });
             Task.Run(() =>
             {

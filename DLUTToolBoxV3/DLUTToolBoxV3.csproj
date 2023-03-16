@@ -167,28 +167,13 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Update="Win64\SystemCore\Microsoft.Toolkit.Uwp.Notifications.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Win64\SystemCore\System.ValueTuple.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Win64\SystemCore\ToolBox.System.Core.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Win64\UserCore\Microsoft.Toolkit.Uwp.Notifications.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Win64\UserCore\SysAutoFix.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Win64\UserCore\System.ValueTuple.dll">
+    <None Update="Win64\SysAutoFix.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Win64\UserCore\ToolBox.User.Core.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Win64\UserCore\ToolBox.User.Core.exe.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Win64\VisualCore\Microsoft.Toolkit.Uwp.Notifications.dll">

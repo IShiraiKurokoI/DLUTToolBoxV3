@@ -83,6 +83,13 @@ namespace DLUTToolBoxV3.Pages
                         });
                     }
                 }
+                else
+                {
+                    dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+                    {
+                        NetworkInfo.Message = "未连接校园网";
+                    });
+                }
             });
         }
 
@@ -289,7 +296,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void NetworkEnhance_Click(object sender, RoutedEventArgs e)
         {
-            ActionHelper.SendMessageToUserCore("3");
+            ActionHelper.SendMessageToUserCore("2");
         }
 
         private void RefreshNetworkStatus_Click(object sender, RoutedEventArgs e)

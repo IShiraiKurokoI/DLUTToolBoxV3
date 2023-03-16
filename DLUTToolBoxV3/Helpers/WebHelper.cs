@@ -19,8 +19,15 @@ namespace DLUTToolBoxV3.Helpers
         {
             logger.Debug("新建浏览器页面");
             BrowserWindow browserWindow = new BrowserWindow(appDataItem);
-            //WindowHelper.TrackWindow(browserWindow);
-            //ThemeHelper.Initialize(null, BackdropType.DesktopAcrylic);
+            try
+            {
+                WindowHelper.TrackWindow(browserWindow);
+                ThemeHelper.Initialize(null, BackdropType.DesktopAcrylic);
+            }
+            catch(Exception ex)
+            {
+
+            }
             //To Be Fixed
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(browserWindow);
             Microsoft.UI.WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
