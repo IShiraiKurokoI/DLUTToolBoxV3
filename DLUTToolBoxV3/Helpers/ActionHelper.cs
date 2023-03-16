@@ -145,12 +145,14 @@ namespace DLUTToolBoxV3.Helpers
         {
             await Task.Run(async () =>
             {
+                string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+                DirectoryCopy(ApplicationHelper.GetFullPathToExe() + "\\Win64\\ThirdParty\\CCleaner", directory + "\\CCleaner", true);
                 try
                 {
                     Process P = new Process();
                     P.StartInfo.UseShellExecute = true;
                     P.StartInfo.Verb = "runas";
-                    P.StartInfo.FileName = ApplicationHelper.GetFullPathToExe() + "\\Win64\\ThirdParty\\CCleaner\\CCleaner64.exe";
+                    P.StartInfo.FileName = directory + "\\CCleaner\\CCleaner64.exe";
                     P.Start();
                 }catch(Exception ex)
                 {
@@ -161,6 +163,42 @@ namespace DLUTToolBoxV3.Helpers
                     notificationManager.Show(builder.BuildNotification());
                 }
             });
+        }
+
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            // Get the subdirectories for the specified directory.
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found:"
+                    + sourceDirName);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            // If the destination directory doesn't exist, create it.       
+            Directory.CreateDirectory(destDirName);
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string tempPath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(tempPath, true);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string tempPath = Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, tempPath, copySubDirs);
+                }
+            }
         }
     }
 }

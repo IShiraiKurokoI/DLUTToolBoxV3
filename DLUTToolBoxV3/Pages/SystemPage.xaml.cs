@@ -21,6 +21,7 @@ using DLUTToolBoxV3.Helpers;
 using System.Diagnostics;
 using Microsoft.Win32;
 using System.Text.RegularExpressions;
+using NLog;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,8 +33,11 @@ namespace DLUTToolBoxV3.Pages
     /// </summary>
     public sealed partial class SystemPage : Page
     {
+        public NLog.Logger logger;
         public SystemPage()
         {
+            logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Info("打开系统工具页面");
             this.InitializeComponent();
         }
 
@@ -103,10 +107,12 @@ namespace DLUTToolBoxV3.Pages
                 HighQualityWallpaper.IsOn = (hkcd1.GetValue("JPEGImportQuality").ToString() == "100");
             }
             StatusInitialized = true;
+            logger.Info("页面状态初始化完成");
         }
         bool RLF = false;
         private void ReservedSpace_Toggled(object sender, RoutedEventArgs e)
         {
+            logger.Info("切换预留空间");
             if (StatusInitialized&&!RLF)
             {
                 var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
@@ -129,6 +135,7 @@ namespace DLUTToolBoxV3.Pages
         bool MLF = false;
         private void MeltDownPatch_Toggled(object sender, RoutedEventArgs e)
         {
+            logger.Info("切换熔断补丁");
             if (StatusInitialized&&!MLF)
             {
                 var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
@@ -163,6 +170,7 @@ namespace DLUTToolBoxV3.Pages
         bool VLF = false;
         private void VBS_Toggled(object sender, RoutedEventArgs e)
         {
+            logger.Info("切换虚拟安全性");
             if (StatusInitialized&&!VLF)
             {
                 var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
@@ -200,6 +208,7 @@ namespace DLUTToolBoxV3.Pages
         bool TLF = false;
         private void TSX_Toggled(object sender, RoutedEventArgs e)
         {
+            logger.Info("切换TSX");
             if (StatusInitialized&&!TLF)
             {
                 var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
@@ -231,6 +240,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void TimeLine_Toggled(object sender, RoutedEventArgs e)
         {
+            logger.Info("切换时间线");
             if (StatusInitialized&&!TLLF)
             {
                 var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
@@ -261,6 +271,7 @@ namespace DLUTToolBoxV3.Pages
         bool HLF  = false;
         private void HighQualityWallpaper_Toggled(object sender, RoutedEventArgs e)
         {
+            logger.Info("切换壁纸清晰度");
             if (StatusInitialized&&!HLF)
             {
                 var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
@@ -290,6 +301,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void ResetScreenshotNumber_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("重置截图编号");
             ActionHelper.SendMessageToUserCore("3", (o, e) =>
             {
 
@@ -298,6 +310,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void RestartFileExpolerer_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("重启文件资源管理器");
             ActionHelper.SendMessageToSystemCore("6", (o, e) =>
             {
 
@@ -306,39 +319,64 @@ namespace DLUTToolBoxV3.Pages
 
         private void SystemFix_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("执行系统修复");
             ActionHelper.LaunchSysAutoFix();
         }
 
         private void SystemAdvanceSettings_Click(object sender, RoutedEventArgs e)
         {
-            Process P = new Process();
-            P.StartInfo.UseShellExecute = true;
-            P.StartInfo.Verb = "runas";
-            P.StartInfo.FileName = @"C:\Windows\System32\SystemPropertiesAdvanced.exe";
-            P.Start();
+            logger.Info("打开高级系统设置");
+            try
+            {
+                Process P = new Process();
+                P.StartInfo.UseShellExecute = true;
+                P.StartInfo.Verb = "runas";
+                P.StartInfo.FileName = @"C:\Windows\System32\SystemPropertiesAdvanced.exe";
+                P.Start();
+            }catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
         }
 
         private void Performance_Click(object sender, RoutedEventArgs e)
         {
-            Process P = new Process();
-            P.StartInfo.UseShellExecute = true;
-            P.StartInfo.Verb = "runas";
-            P.StartInfo.FileName = @"C:\Windows\System32\SystemPropertiesPerformance.exe";
-            P.Start();
+            logger.Info("打开性能选项");
+            try
+            {
+                Process P = new Process();
+                P.StartInfo.UseShellExecute = true;
+                P.StartInfo.Verb = "runas";
+                P.StartInfo.FileName = @"C:\Windows\System32\SystemPropertiesPerformance.exe";
+                P.Start();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
         }
 
         private void DesktopIcon_Click(object sender, RoutedEventArgs e)
         {
-            Process P = new Process();
-            P.StartInfo.UseShellExecute = true;
-            P.StartInfo.Verb = "runas";
-            P.StartInfo.FileName = @"C:\Windows\System32\rundll32.exe";
-            P.StartInfo.Arguments = "shell32.dll,Control_RunDLL desk.cpl,,0";
-            P.Start();
+            logger.Info("打开桌面图标管理");
+            try
+            {
+                Process P = new Process();
+                P.StartInfo.UseShellExecute = true;
+                P.StartInfo.Verb = "runas";
+                P.StartInfo.FileName = @"C:\Windows\System32\rundll32.exe";
+                P.StartInfo.Arguments = "shell32.dll,Control_RunDLL desk.cpl,,0";
+                P.Start();
+            }
+            catch(Exception ex)
+            {
+                logger.Error(ex);
+            }
         }
 
         private void QQClean_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("清理QQ");
             ActionHelper.SendMessageToUserCore("1", (o, e) =>
             {
 
@@ -347,39 +385,59 @@ namespace DLUTToolBoxV3.Pages
 
         private void SystemClean_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("启动系统文件清理");
             Process.Start("C:\\windows\\System32\\cleanmgr.exe", "");
         }
 
         private void DriveAnalyzer_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("启动磁盘分析器");
             ActionHelper.LaunchSpaceSniffer();
         }
 
         private void DriveManagement_Click(object sender, RoutedEventArgs e)
         {
-            Process P = new Process();
-            P.StartInfo.UseShellExecute = true;
-            P.StartInfo.Verb = "runas";
-            P.StartInfo.FileName = @"C:\Windows\System32\diskmgmt.msc";
-            P.Start();
+            logger.Info("启动磁盘管理");
+            try
+            {
+                Process P = new Process();
+                P.StartInfo.UseShellExecute = true;
+                P.StartInfo.Verb = "runas";
+                P.StartInfo.FileName = @"C:\Windows\System32\diskmgmt.msc";
+                P.Start();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
         }
 
         private void HistoryPoint_Click(object sender, RoutedEventArgs e)
         {
-            Process P = new Process();
-            P.StartInfo.UseShellExecute = true;
-            P.StartInfo.Verb = "runas";
-            P.StartInfo.FileName = @"C:\Windows\System32\SystemPropertiesProtection.exe";
-            P.Start();
+            logger.Info("打开还原点界面");
+            try
+            {
+                Process P = new Process();
+                P.StartInfo.UseShellExecute = true;
+                P.StartInfo.Verb = "runas";
+                P.StartInfo.FileName = @"C:\Windows\System32\SystemPropertiesProtection.exe";
+                P.Start();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
         }
 
         private void CCleaner_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("打开CCleaner");
             ActionHelper.LaunchCCleaner();
         }
 
         private void FileExplorerCustomization_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("打开文件资源管理器背景自定义界面");
             var builder = new AppNotificationBuilder()
                 .AddText("尚未实现！");
             var notificationManager = AppNotificationManager.Default;
