@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation and Contributors.
+ï»¿// Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
 using Microsoft.UI.Xaml;
@@ -46,7 +46,7 @@ namespace DLUTToolBoxV3
             if(ApplicationConfig.GetSettings("Uid").IsNullOrEmpty()|| ApplicationConfig.GetSettings("Password").IsNullOrEmpty())
             {
                 var builder = new AppNotificationBuilder()
-                    .AddText("ÇëÏÈÔÚ²ÎÊıÅäÖÃ½çÃæÉèÖÃÑ§¹¤ºÅºÍÍ³Ò»ÈÏÖ¤ÃÜÂë!\nÉèÖÃÍê³Éºó·½¿ÉÕı³£Ê¹ÓÃËùÓĞ¹¦ÄÜ£¡");
+                    .AddText("è¯·å…ˆåœ¨å‚æ•°é…ç½®ç•Œé¢è®¾ç½®å­¦å·¥å·å’Œç»Ÿä¸€è®¤è¯å¯†ç !\nè®¾ç½®å®Œæˆåâš é‡å¯æœ¬ç¨‹åºâš æ–¹å¯æ­£å¸¸ä½¿ç”¨æ‰€æœ‰åŠŸèƒ½ï¼");
                 var notificationManager = AppNotificationManager.Default;
                 notificationManager.Show(builder.BuildNotification());
             }
@@ -105,7 +105,7 @@ namespace DLUTToolBoxV3
                 return;
             }
 
-            autoSuggestBox.ItemsSource = new string[1] { "Î´ÕÒµ½Æ¥ÅäµÄ½á¹û" };
+            autoSuggestBox.ItemsSource = new string[1] { "æœªæ‰¾åˆ°åŒ¹é…çš„ç»“æœ" };
         }
     }
 }

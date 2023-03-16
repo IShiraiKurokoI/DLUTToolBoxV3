@@ -224,7 +224,7 @@ namespace DLUTToolBoxV3.Pages
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             logger.Info("打开日志文件夹");
-            Windows.System.Launcher.LaunchUriAsync(new Uri(ApplicationHelper.GetFullPathToExe()+ "\\Log"));
+            Windows.System.Launcher.LaunchUriAsync(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\DLUTToolBoxV3\\Log"));
         }
 
         private void AutoLoginSwitch_Toggled(object sender, RoutedEventArgs e)
