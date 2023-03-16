@@ -296,7 +296,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void NetworkEnhance_Click(object sender, RoutedEventArgs e)
         {
-            ActionHelper.SendMessageToUserCore("2");
+            ActionHelper.SendMessageToUserCore("2", (o, e) => { });
         }
 
         private void RefreshNetworkStatus_Click(object sender, RoutedEventArgs e)

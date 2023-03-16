@@ -107,6 +107,20 @@
                               Glyph="&#xE8A7;" />
                     </labs:SettingsCard.ActionIcon>
                 </labs:SettingsCard>
+                <labs:SettingsCard ActionIconToolTip="打开桌面图标设置"
+                               Description="打开桌面图标设置页面"
+                               Header="桌面图标设置"
+                               IsClickEnabled="True"
+                                   x:Name="DesktopIcon"
+                                   Click="DesktopIcon_Click">
+                    <labs:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xec6c;" />
+                    </labs:SettingsCard.HeaderIcon>
+                    <labs:SettingsCard.ActionIcon>
+                        <FontIcon FontSize="12"
+                              Glyph="&#xE8A7;" />
+                    </labs:SettingsCard.ActionIcon>
+                </labs:SettingsCard>
             </controls:SettingsGroup>
             <controls:SettingsGroup Header="磁盘管理" Margin="4,-24,4,4">
                 <labs:SettingsCard

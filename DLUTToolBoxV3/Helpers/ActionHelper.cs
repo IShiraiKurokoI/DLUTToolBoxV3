@@ -19,7 +19,7 @@ namespace DLUTToolBoxV3.Helpers
     {
         public static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         
-        public async static Task SendMessageToUserCore(string msg)
+        public async static Task SendMessageToUserCore(string msg, EventHandler ExitHandler)
         {
             //1.清理QQ文件
             //2.网络优化
@@ -39,6 +39,8 @@ namespace DLUTToolBoxV3.Helpers
                     P.StartInfo.FileName = directory + "\\ToolBox.User.Core.exe";
                     P.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     P.StartInfo.Arguments = msg;
+                    P.EnableRaisingEvents = true;
+                    P.Exited += ExitHandler;
                     P.Start();
                 }catch(Exception ex)
                 {
@@ -47,11 +49,12 @@ namespace DLUTToolBoxV3.Helpers
                         .AddText($"UserCore启动失败：\n{ex.Message}");
                     var notificationManager = AppNotificationManager.Default;
                     notificationManager.Show(builder.BuildNotification());
+                    ExitHandler(null, null);
                 }
             });
         }
         
-        public async static Task SendMessageToSystemCore(string msg)
+        public async static Task SendMessageToSystemCore(string msg, EventHandler ExitHandler)
         {
             //1.切换系统预留空间
             //2.切换幽灵熔断补丁
@@ -73,12 +76,87 @@ namespace DLUTToolBoxV3.Helpers
                     P.StartInfo.FileName = directory + "\\ToolBox.System.Core.exe";
                     P.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     P.StartInfo.Arguments = msg;
+                    P.EnableRaisingEvents = true;
+                    P.Exited+= ExitHandler;
                     P.Start();
                 }catch(Exception ex)
                 {
                     logger.Error(ex);
                     var builder = new AppNotificationBuilder()
                         .AddText($"SystemCore启动失败：\n{ex.Message}");
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+                    ExitHandler(null,null);
+                }
+            });
+        }
+        
+        public async static Task LaunchSpaceSniffer()
+        {
+            await Task.Run(async () =>
+            {
+                try
+                {
+                    string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+                    await File.WriteAllBytesAsync(directory + "\\SpaceSniffer.exe", File.ReadAllBytes(ApplicationHelper.GetFullPathToExe() + "\\Win64\\ThirdParty\\SpaceSniffer\\SpaceSniffer.exe"));
+                    logger.Info("SpaceSniffer位置：" + directory + "\\SpaceSniffer.exe");
+                    Process P = new Process();
+                    P.StartInfo.UseShellExecute = true;
+                    P.StartInfo.Verb = "runas";
+                    P.StartInfo.FileName = directory + "\\SpaceSniffer.exe";
+                    P.Start();
+                }catch(Exception ex)
+                {
+                    logger.Error(ex);
+                    var builder = new AppNotificationBuilder()
+                        .AddText($"SpaceSniffer启动失败：\n{ex.Message}");
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+                }
+            });
+        }
+        
+        public async static Task LaunchSysAutoFix()
+        {
+            await Task.Run(async () =>
+            {
+                try
+                {
+                    string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+                    await File.WriteAllBytesAsync(directory + "\\SysAutoFix.exe", File.ReadAllBytes(ApplicationHelper.GetFullPathToExe() + "\\Win64\\SysAutoFix.exe"));
+                    logger.Info("SysAutoFix位置：" + directory + "\\SysAutoFix.exe");
+                    Process P = new Process();
+                    P.StartInfo.UseShellExecute = true;
+                    P.StartInfo.Verb = "runas";
+                    P.StartInfo.FileName = directory + "\\SysAutoFix.exe";
+                    P.Start();
+                }catch(Exception ex)
+                {
+                    logger.Error(ex);
+                    var builder = new AppNotificationBuilder()
+                        .AddText($"SysAutoFix启动失败：\n{ex.Message}");
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+                }
+            });
+        }
+        
+        public async static Task LaunchCCleaner()
+        {
+            await Task.Run(async () =>
+            {
+                try
+                {
+                    Process P = new Process();
+                    P.StartInfo.UseShellExecute = true;
+                    P.StartInfo.Verb = "runas";
+                    P.StartInfo.FileName = ApplicationHelper.GetFullPathToExe() + "\\Win64\\ThirdParty\\CCleaner\\CCleaner64.exe";
+                    P.Start();
+                }catch(Exception ex)
+                {
+                    logger.Error(ex);
+                    var builder = new AppNotificationBuilder()
+                        .AddText($"CCleaner启动失败：\n{ex.Message}");
                     var notificationManager = AppNotificationManager.Default;
                     notificationManager.Show(builder.BuildNotification());
                 }

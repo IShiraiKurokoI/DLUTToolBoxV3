@@ -1,0 +1,69 @@
+﻿File|文件
+Help|帮助
+Proxy Server:|代理服务器:
+Port:|端口:
+Exit|结束
+User Name:|使用者名称:
+Password:|密码:
+Save and Close|储存后关闭
+Version|版本
+Save Log|储存记录
+Refresh|重新整理
+Close|关闭
+Settings|设定
+Documentation|文件
+About|关于
+Check For Update|检查更新
+Functions|功能
+Proxy Settings|Proxy 设定
+Visit Website|造访网站
+Save To:|储存到:
+File Size:|文件大小:
+Download Speed:|下载速度:
+Language:|语言:
+Online Documentation|在线文件
+Saved Path|储存路径
+Speed:|速度:
+Speed: Calculating...|速度: 计算中...
+Rules Last Updated:|上次已更新的规则:
+Would you like to save|您是否要储存规则文件使得应用程序
+so CCEnhancer can find it next time?|CCEnhancer 能在下一次找到它呢?
+Rules Last Updated|上次已更新的规则
+Download Latest|下载最新的规则
+Automatically download and install the latest definitions to increase the cleaning capabilities of CCleaner by adding hundreds of extra programs.|自动下载并安装最新的规则，增加数以百计的程序来提高 CCleaner 的清除能力。
+Buy Me Cake :)|Buy Me Cake :)
+Update On Windows Startup|在 Windows 启动时更新
+Run CCleaner Silently On Completion|完成时自动执行 CCleaner
+Delete Custom Rules|删除自定义规则
+Install For Portable CCleaner|供可携式 CCleaner 安装
+Cancelled|已取消
+Download has been cancelled.|已取消下载。
+Successfully downloaded|已下载成功
+Would you like to run CCleaner now?|您要马上执行 CCleaner 吗?
+Update completed|已更新完成
+The rules have not been downloaded yet.|尚未下载规则。
+The custom rules were successfully removed.|自定义规则已移除成功。
+It looks like the rules aren't installed or you don't have permission to delete the file. You can manually remove the custom rules by deleting the following file:|看起来像是未安装规则或是您没有权限删除该文件。您可以删除下列文件来手动移除自定规则:
+Could not make a connection to The Web Atom server or the Upload Central server. Please see our online help for assistance.|无法联机到 Web Atom 服务器或上载中央服务器。请参阅我们的联机帮助来寻求协助。
+This error can be caused by incorrect proxy settings or a security product conflict.|此错误能可能是错误的 Proxy 设定或安全性产品冲突所导致。
+An error was encountered.|发生错误。
+An error occurred while downloading file. Possibe causes:|下载文件时发生错误。可能原因:
+1) File doesn't exist|1) 文件不存在
+2) Remote server error|2) 远程服务器错误
+error|错误
+Please select the directory containing portable CCleaner.|请选取包含可携式 CCleaner 的目录。
+CCleaner.exe could not be found in the directory you selected.|无法在您所选的目录中找到 CCleaner.exe。
+Use proxy server to download definitions?|要使用代理服务器来下载规则吗?
+Advanced|高级
+Use IE Native Downloader|使用IE下载
+Debug winapp2.ini entries|打开配置文件
+Update On Windows startup|Windows启动时更新规则
+Run CCleaner silently on completion|更新完成后静默运行 CCleaner
+Options|选项
+Portable Locations|绿色安装位置
+Add Portable Location|添加绿色安装位置
+Trim winapp2.ini|整理winapp2.ini
+Trim definition file to improve performance|整理规则，提高性能
+Custom Entries|自定义规则
+The following entries will be added to CCleaner after each definition update.|自定义规制将会被添加到CCleaner里
+Use alternative download URL|使用备用下载地址

@@ -173,6 +173,57 @@
     <None Update="Win64\SysAutoFix.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Win64\ThirdParty\CCleaner\branding.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\CCEnhancer.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\CCleaner.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\CCleaner.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\ccleaner.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\CCleaner64.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\CCleanerDU.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\CCleanerPerformanceOptimizer.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\CCleanerPerformanceOptimizerService.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\CCleanerReactivator.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\CCleanerReactivator.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\cc_config.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\lang\lang-2052.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\locales\lang.Chinese_Simplified.locale">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\portable.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\CCleaner\uninst.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Win64\ThirdParty\SpaceSniffer\SpaceSniffer.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Win64\UserCore\ToolBox.User.Core.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
