@@ -31,6 +31,7 @@ using System.Diagnostics;
 using System.IO.Pipes;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
+using DLUTToolBoxV3.Helpers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -68,16 +69,12 @@ namespace DLUTToolBoxV3
             //非UI线程未捕获异常处理事件(例如自己创建的一个子线程)
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-            Debug.WriteLine(e.Arguments);
-            if (e.Arguments != null)
+
+            if (ApplicationConfig.GetSettings("AutoLogin") != "None")
             {
-                string[] arguments = e.Arguments.Split(' ');
-                Debug.WriteLine(arguments[0]);
-                if (arguments[0] == "login")
-                {
-                   
-                }
+                ActionHelper.CheckAccountData();
             }
+
             m_window = new MainWindow();
             if (ApplicationConfig.GetSettings("Theme") != null)
             {

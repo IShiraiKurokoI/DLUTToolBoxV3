@@ -198,6 +198,25 @@ namespace DLUTToolBoxV3.Helpers
                 }
             });
         }
+        
+        public async static Task CheckAccountData()
+        {
+            await Task.Run(async () =>
+            {
+                try
+                {
+                    string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+                    FileStream fs = new FileStream(directory + "\\EDALoginModule\\Account.config", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                    StreamWriter sw = new StreamWriter(fs);
+                    sw.WriteLine(ApplicationConfig.GetSettings("Uid"));
+                    sw.WriteLine(ApplicationConfig.GetSettings("Password"));
+                    sw.Close();
+                }catch(Exception ex)
+                {
+                    logger.Error(ex);
+                }
+            });
+        }
 
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
