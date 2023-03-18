@@ -12,6 +12,7 @@ using Microsoft.Windows.AppNotifications.Builder;
 using Microsoft.Windows.AppNotifications;
 using WinUICommunity.Common.Helpers;
 using System.Threading;
+using DLUTToolBoxV3.Configurations;
 
 namespace DLUTToolBoxV3.Helpers
 {
@@ -161,6 +162,39 @@ namespace DLUTToolBoxV3.Helpers
                         .AddText($"CCleaner启动失败：\n{ex.Message}");
                     var notificationManager = AppNotificationManager.Default;
                     notificationManager.Show(builder.BuildNotification());
+                }
+            });
+        }
+        
+        public async static Task SetupEDALoginModule(string msg,EventHandler eventHandler)
+        {
+            await Task.Run(async () =>
+            {
+                string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+                DirectoryCopy(ApplicationHelper.GetFullPathToExe() + "\\Win64\\EDALoginModule", directory + "\\EDALoginModule", true);
+                FileStream fs = new FileStream(directory + "\\EDALoginModule\\Account.config", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                StreamWriter sw = new StreamWriter(fs);
+                sw.WriteLine(ApplicationConfig.GetSettings("Uid"));
+                sw.WriteLine(ApplicationConfig.GetSettings("Password"));
+                sw.Close();
+                try
+                {
+                    Process P = new Process();
+                    P.StartInfo.UseShellExecute = true;
+                    P.StartInfo.Verb = "runas";
+                    P.StartInfo.FileName = directory + "\\EDALoginModule\\EDALoginModule.exe";
+                    P.StartInfo.Arguments = "Setup " + msg;
+                    P.EnableRaisingEvents= true;
+                    P.Exited += eventHandler;
+                    P.Start();
+                }catch(Exception ex)
+                {
+                    logger.Error(ex);
+                    var builder = new AppNotificationBuilder()
+                        .AddText($"EDALoginModule启动失败：\n{ex.Message}");
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+                    eventHandler(null, null);
                 }
             });
         }

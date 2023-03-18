@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation and Contributors.
+Ôªø// Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
 using DLUTToolBoxV3.Configurations;
@@ -23,6 +23,7 @@ using Windows.ApplicationModel;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Runtime.ConstrainedExecution;
+using DLUTToolBoxV3.Helpers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -44,9 +45,11 @@ namespace DLUTToolBoxV3.Pages
         public SettingsPage()
         {
             logger = NLog.LogManager.GetCurrentClassLogger();
-            logger.Info("¥Úø™≤Œ ˝≈‰÷√“≥√Ê");
+            logger.Info("ÊâìÂºÄÂèÇÊï∞ÈÖçÁΩÆÈ°µÈù¢");
             this.InitializeComponent();
         }
+
+        bool AutoLoginSwitchInitialized = false;
 
         private void SourceElement_Loaded(object sender, RoutedEventArgs e)
         {
@@ -56,6 +59,7 @@ namespace DLUTToolBoxV3.Pages
             if (ApplicationConfig.GetSettings("AutoLogin") != "None")
             {
                 AutoLoginSwitch.IsOn= true;
+                AutoLoginSwitchInitialized=true;
             }
         }
 
@@ -86,22 +90,22 @@ namespace DLUTToolBoxV3.Pages
             // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "»∑»œ«Â≥˝À˘”–Cookie¬£ø";
-            dialog.PrimaryButtonText = "»∑∂®";
-            dialog.CloseButtonText = "»°œ˚";
+            dialog.Title = "Á°ÆËÆ§Ê∏ÖÈô§ÊâÄÊúâCookieÂêóÔºü";
+            dialog.PrimaryButtonText = "Á°ÆÂÆö";
+            dialog.CloseButtonText = "ÂèñÊ∂à";
             dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = "ƒ„À˘”–¥Úø™µƒÕ¯“≥◊¥Ã¨∂ºª·∂™ ß£°";
+            dialog.Content = "‰Ω†ÊâÄÊúâÊâìÂºÄÁöÑÁΩëÈ°µÁä∂ÊÄÅÈÉΩ‰ºö‰∏¢Â§±ÔºÅ";
 
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                logger.Info("«Â≥˝cookie");
+                logger.Info("Ê∏ÖÈô§cookie");
                 WebView2 webView2 = new WebView2();
                 webView2.CoreWebView2Initialized += (sender, args) =>
                 {
                     webView2.CoreWebView2.CookieManager.DeleteAllCookies();
                     var builder = new AppNotificationBuilder()
-                        .AddText("«Â≥˝≥…π¶£°");
+                        .AddText("Ê∏ÖÈô§ÊàêÂäüÔºÅ");
                     var notificationManager = AppNotificationManager.Default;
                     notificationManager.Show(builder.BuildNotification());
                 };
@@ -111,7 +115,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            logger.Info("ºÏ≤È∏¸–¬");
+            logger.Info("Ê£ÄÊü•Êõ¥Êñ∞");
             CheckUpdate();
         }
 
@@ -145,15 +149,15 @@ namespace DLUTToolBoxV3.Pages
                     {
                         dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, async () =>
                         {
-                            logger.Info($"∑¢œ÷–¬∞Ê±æ{ver.TagName}");
+                            logger.Info($"ÂèëÁé∞Êñ∞ÁâàÊú¨{ver.TagName}");
                             ContentDialog dialog = new ContentDialog();
                             dialog.XamlRoot = this.XamlRoot;
                             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-                            dialog.Title = "∑¢œ÷–¬∞Ê±æ£°";
-                            dialog.PrimaryButtonText = "«∞Õ˘∏¸–¬";
-                            dialog.CloseButtonText = "‘›≤ª∏¸–¬";
+                            dialog.Title = "ÂèëÁé∞Êñ∞ÁâàÊú¨ÔºÅ";
+                            dialog.PrimaryButtonText = "ÂâçÂæÄÊõ¥Êñ∞";
+                            dialog.CloseButtonText = "ÊöÇ‰∏çÊõ¥Êñ∞";
                             dialog.DefaultButton = ContentDialogButton.Primary;
-                            dialog.Content = $"ºÏ≤‚µΩ–¬∞Ê±æ£∫V{ver.TagName}\n∑¢≤º ±º‰£∫{ver.PublishedAt}\n¥Û–°£∫{SizeString}";
+                            dialog.Content = $"Ê£ÄÊµãÂà∞Êñ∞ÁâàÊú¨ÔºöV{ver.TagName}\nÂèëÂ∏ÉÊó∂Èó¥Ôºö{ver.PublishedAt}\nÂ§ßÂ∞èÔºö{SizeString}";
                             var result = await dialog.ShowAsync();
                             if (result == ContentDialogResult.Primary)
                             {
@@ -164,7 +168,7 @@ namespace DLUTToolBoxV3.Pages
                     else
                     {
                         var builder = new AppNotificationBuilder()
-                            .AddText($"ƒ˙µ±«∞ π”√µƒ «◊Ó–¬∞Ê±æ£°");
+                            .AddText($"ÊÇ®ÂΩìÂâç‰ΩøÁî®ÁöÑÊòØÊúÄÊñ∞ÁâàÊú¨ÔºÅ");
                         var notificationManager = AppNotificationManager.Default;
                         notificationManager.Show(builder.BuildNotification());
                     }
@@ -180,7 +184,7 @@ namespace DLUTToolBoxV3.Pages
                 {
                     logger.Error(e);
                     var builder = new AppNotificationBuilder()
-                        .AddText($"ºÏ≤È∏¸–¬ ß∞‹£∫{e.Message}");
+                        .AddText($"Ê£ÄÊü•Êõ¥Êñ∞Â§±Ë¥•Ôºö{e.Message}");
                     var notificationManager = AppNotificationManager.Default;
                     notificationManager.Show(builder.BuildNotification());
                     dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
@@ -194,25 +198,25 @@ namespace DLUTToolBoxV3.Pages
         public Dictionary<string, double> ByteConversionGBMBKB(int KSize)
         {
             var dic = new Dictionary<string, double>();
-            int GB = 1024 * 1024 * 1024;//∂®“ÂGBµƒº∆À„≥£¡ø
-            int MB = 1024 * 1024;//∂®“ÂMBµƒº∆À„≥£¡ø
-            int KB = 1024;//∂®“ÂKBµƒº∆À„≥£¡ø
+            int GB = 1024 * 1024 * 1024;//ÂÆö‰πâGBÁöÑËÆ°ÁÆóÂ∏∏Èáè
+            int MB = 1024 * 1024;//ÂÆö‰πâMBÁöÑËÆ°ÁÆóÂ∏∏Èáè
+            int KB = 1024;//ÂÆö‰πâKBÁöÑËÆ°ÁÆóÂ∏∏Èáè
 
-            if (KSize / GB >= 1)//»Áπ˚µ±«∞Byteµƒ÷µ¥Û”⁄µ»”⁄1GB
+            if (KSize / GB >= 1)//Â¶ÇÊûúÂΩìÂâçByteÁöÑÂÄºÂ§ß‰∫éÁ≠â‰∫é1GB
             {
-                dic.Add("GB", Math.Round(KSize / (float)GB, 2)); //Ω´∆‰◊™ªª≥…GB
+                dic.Add("GB", Math.Round(KSize / (float)GB, 2)); //Â∞ÜÂÖ∂ËΩ¨Êç¢ÊàêGB
             }
-            else if (KSize / MB >= 1)//»Áπ˚µ±«∞Byteµƒ÷µ¥Û”⁄µ»”⁄1MB
+            else if (KSize / MB >= 1)//Â¶ÇÊûúÂΩìÂâçByteÁöÑÂÄºÂ§ß‰∫éÁ≠â‰∫é1MB
             {
-                dic.Add("MB", Math.Round(KSize / (float)MB, 2)); //Ω´∆‰◊™ªª≥…MB
+                dic.Add("MB", Math.Round(KSize / (float)MB, 2)); //Â∞ÜÂÖ∂ËΩ¨Êç¢ÊàêMB
             }
-            else if (KSize / KB >= 1)//»Áπ˚µ±«∞Byteµƒ÷µ¥Û”⁄µ»”⁄1KB
+            else if (KSize / KB >= 1)//Â¶ÇÊûúÂΩìÂâçByteÁöÑÂÄºÂ§ß‰∫éÁ≠â‰∫é1KB
             {
-                dic.Add("KB", Math.Round(KSize / (float)KB, 2)); //Ω´∆‰◊™ªª≥…KB
+                dic.Add("KB", Math.Round(KSize / (float)KB, 2)); //Â∞ÜÂÖ∂ËΩ¨Êç¢ÊàêKB
             }
             else
             {
-                dic.Add("Byte", KSize);  //œ‘ æByte÷µ
+                dic.Add("Byte", KSize);  //ÊòæÁ§∫ByteÂÄº
             }
             return dic;
         }
@@ -223,19 +227,69 @@ namespace DLUTToolBoxV3.Pages
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            logger.Info("¥Úø™»’÷æŒƒº˛º–");
+            logger.Info("ÊâìÂºÄÊó•ÂøóÊñá‰ª∂Â§π");
             Windows.System.Launcher.LaunchUriAsync(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\DLUTToolBoxV3\\Log"));
         }
 
         private void AutoLoginSwitch_Toggled(object sender, RoutedEventArgs e)
         {
-            if(AutoLoginSwitch.IsOn)
+            var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
+            if (AutoLoginSwitchInitialized)
             {
-                ApplicationConfig.SaveSettings("AutoLogin", "EDA");
-            }
-            else
-            {
-                ApplicationConfig.SaveSettings("AutoLogin", "None");
+                if (AutoLoginSwitch.IsOn)
+                {
+                    ApplicationConfig.SaveSettings("AutoLogin", "EDA");
+                    ActionHelper.SetupEDALoginModule("True", (o, e) =>
+                    {
+                        if (o == null)
+                        {
+                            dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+                            {
+                                AutoLoginSwitchInitialized = false;
+                                AutoLoginSwitch.IsOn = false;
+                                AutoLoginSwitchInitialized = true;
+                            });
+                            var builder = new AppNotificationBuilder()
+                                .AddText($"ÂºÄÂêØEDAËá™Âä®ÁôªÂΩïÂ§±Ë¥•ÔºÅ");
+                            var notificationManager = AppNotificationManager.Default;
+                            notificationManager.Show(builder.BuildNotification());
+                        }
+                        else
+                        {
+                            var builder = new AppNotificationBuilder()
+                                .AddText($"ÂºÄÂêØEDAËá™Âä®ÁôªÂΩïÊàêÂäüÔºÅ\n‚ö†Â¶ÇÊûú‰øÆÊîπ‰∫ÜÁªü‰∏ÄËÆ§ËØÅÂØÜÁ†ÅÔºåËØ∑ÂÖ≥Èó≠ÂêéÈáçÊñ∞ÊâìÂºÄÊ≠§ÂäüËÉΩ‚ö†");
+                            var notificationManager = AppNotificationManager.Default;
+                            notificationManager.Show(builder.BuildNotification());
+                        }
+                    });
+                }
+                else
+                {
+                    ApplicationConfig.SaveSettings("AutoLogin", "None");
+                    ActionHelper.SetupEDALoginModule("False", (o, e) =>
+                    {
+                        if(o==null)
+                        {
+                            dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+                            {
+                                AutoLoginSwitchInitialized = false;
+                                AutoLoginSwitch.IsOn = true;
+                                AutoLoginSwitchInitialized = true;
+                            });
+                            var builder = new AppNotificationBuilder()
+                                .AddText($"ÂÖ≥Èó≠EDAËá™Âä®ÁôªÂΩïÂ§±Ë¥•ÔºÅ");
+                            var notificationManager = AppNotificationManager.Default;
+                            notificationManager.Show(builder.BuildNotification());
+                        }
+                        else
+                        {
+                            var builder = new AppNotificationBuilder()
+                                .AddText($"ÂÖ≥Èó≠EDAËá™Âä®ÁôªÂΩïÊàêÂäüÔºÅ");
+                            var notificationManager = AppNotificationManager.Default;
+                            notificationManager.Show(builder.BuildNotification());
+                        }
+                    });
+                }
             }
         }
     }
