@@ -59,8 +59,8 @@ namespace DLUTToolBoxV3.Pages
             if (ApplicationConfig.GetSettings("AutoLogin") != "None")
             {
                 AutoLoginSwitch.IsOn= true;
-                AutoLoginSwitchInitialized=true;
             }
+            AutoLoginSwitchInitialized = true;
         }
 
         private void ThemePanel_SelectionChanged(object sender, RoutedEventArgs e)
