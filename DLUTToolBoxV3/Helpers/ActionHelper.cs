@@ -171,12 +171,31 @@ namespace DLUTToolBoxV3.Helpers
             await Task.Run(async () =>
             {
                 string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-                DirectoryCopy(ApplicationHelper.GetFullPathToExe() + "\\Win64\\EDALoginModule", directory + "\\EDALoginModule", true);
-                FileStream fs = new FileStream(directory + "\\EDALoginModule\\Account.config", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                StreamWriter sw = new StreamWriter(fs);
-                sw.WriteLine(ApplicationConfig.GetSettings("Uid"));
-                sw.WriteLine(ApplicationConfig.GetSettings("Password"));
-                sw.Close();
+                try
+                {
+                    if (!File.Exists(directory + "\\EDALoginModule\\EDALoginModule.exe"))
+                    {
+                        DirectoryCopy(ApplicationHelper.GetFullPathToExe() + "\\Win64\\EDALoginModule", directory + "\\EDALoginModule", true);
+                    }
+                    else
+                    {
+                        var ExistingModule = File.ReadAllBytes(directory + "\\EDALoginModule\\EDALoginModule.exe");
+                        var PackageModule = File.ReadAllBytes(ApplicationHelper.GetFullPathToExe() + "\\Win64\\EDALoginModule\\EDALoginModule.exe");
+                        if (ExistingModule != PackageModule)
+                        {
+                            DirectoryCopy(ApplicationHelper.GetFullPathToExe() + "\\Win64\\EDALoginModule", directory + "\\EDALoginModule", true);
+                        }
+                    }
+                    FileStream fs = new FileStream(directory + "\\EDALoginModule\\Account.config", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                    StreamWriter sw = new StreamWriter(fs);
+                    sw.WriteLine(ApplicationConfig.GetSettings("Uid"));
+                    sw.WriteLine(ApplicationConfig.GetSettings("Password"));
+                    sw.Close();
+                }
+                catch(Exception e)
+                {
+                    logger.Error(e);
+                }
                 try
                 {
                     Process P = new Process();

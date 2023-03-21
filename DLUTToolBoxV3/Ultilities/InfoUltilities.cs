@@ -91,7 +91,7 @@ namespace DLUTToolBoxV3.Ultilities
                             infoBar.Message = "您寝室电费余额为" + electricityStatus.resultData.sydl.Substring(0, electricityStatus.resultData.sydl.Length - 2) + "度";
                             if (double.Parse(electricityStatus.resultData.sydl) < 10)
                             {
-                                infoBar.Message += "\n⚠您电费余额不足10度，请及时充值！⚠";
+                                infoBar.Message += "\n⚠余额不足10度，请及时充值！⚠";
                             }
                         });
                     }
