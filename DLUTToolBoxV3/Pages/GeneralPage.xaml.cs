@@ -60,9 +60,10 @@ namespace DLUTToolBoxV3.Pages
                         fee /= 10000;
                         string V4IP = drcomStatus.v4ip;
                         string flowused = FormatFlow(drcomStatus.flow);
+                        string flowLeft = FormatFlow(drcomStatus.olflow);
                         dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
                         {
-                            NetworkInfo.Message = "校园网余额：" + fee + "\n本机校园网已用流量：\n" + flowused + "\nIPV4地址：" + V4IP + "\n网卡MAC：" + drcomStatus.olmac;
+                            NetworkInfo.Message = "校园网余额：" + fee + "\n校园网已用流量：\n" + flowused + "\n校园网剩余流量：\n" + flowLeft + "\nIPV4地址：" + V4IP + "\n网卡MAC：" + drcomStatus.olmac;
                         });
                     }
                     else
@@ -94,16 +95,16 @@ namespace DLUTToolBoxV3.Pages
             if (temp > 1048576)
             {
                 temp /= (double)(1024 * 1024);
-                re = temp.ToString() + "GB";
+                re = temp.ToString("f2") + "GB";
             }
             else if (temp > 1024)
             {
                 temp /= (double)(1024);
-                re = temp.ToString() + "MB";
+                re = temp.ToString("f2") + "MB";
             }
             else
             {
-                re = temp + "KB";
+                re = temp.ToString("f2") + "KB";
             }
             return re;
         }

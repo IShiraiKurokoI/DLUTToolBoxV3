@@ -31,6 +31,8 @@ using System.Text.RegularExpressions;
 using System.Text;
 using DLUTToolBoxV3.Configurations;
 using System.Net;
+using static QRCoder.PayloadGenerator;
+using System.Net.Http;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -70,9 +72,10 @@ namespace DLUTToolBoxV3.Pages
                         fee /= 10000;
                         string V4IP = drcomStatus.v4ip;
                         string flowused = FormatFlow(drcomStatus.flow);
+                        string flowLeft = FormatFlow(drcomStatus.olflow);
                         dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
                         {
-                            NetworkInfo.Message = "校园网余额：" + fee + "\n本机校园网已用流量：\n" + flowused + "\nIPV4地址：" + V4IP + "\n网卡MAC：" + drcomStatus.olmac;
+                            NetworkInfo.Message = "校园网余额：" + fee + "\n校园网已用流量：\n" + flowused + "\n校园网剩余流量：\n" + flowLeft + "\nIPV4地址：" + V4IP + "\n网卡MAC：" + drcomStatus.olmac;
                         });
                     }
                     else
@@ -100,16 +103,16 @@ namespace DLUTToolBoxV3.Pages
             if (temp > 1048576)
             {
                 temp /= (double)(1024 * 1024);
-                re = temp.ToString() + "GB";
+                re = temp.ToString("f2") + "GB";
             }
             else if (temp > 1024)
             {
                 temp /= (double)(1024);
-                re = temp.ToString() + "MB";
+                re = temp.ToString("f2") + "MB";
             }
             else
             {
-                re = temp + "KB";
+                re = temp.ToString("f2") + "KB";
             }
             return re;
         }
@@ -184,6 +187,74 @@ namespace DLUTToolBoxV3.Pages
             });
         }
 
+        //private void ManualConnect_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
+        //    logger.Info("登陆校园网");
+        //    NetworkInfo.Message = "正在尝试登录。。。";
+        //    Task.Run(() =>
+        //    {
+        //        DrcomStatus drcomStatus = InfoUltilities.GetEDANetworkOnlineInfo();
+        //        if (drcomStatus != null)
+        //        {
+        //            if (drcomStatus.result != 1)
+        //            {
+        //                dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+        //                {
+        //                    string LoginURL = "https://sso.dlut.edu.cn/cas/login?service=http%3A%2F%2F172.20.30.2%3A8080%2FSelf%2Fsso_login%3Fwlan_user_ip%3D" + drcomStatus.v46ip + "%26authex_enable%3D%26type%3D1";
+        //                    //string Response = InfoUltilities.CommonGetWebRequest(LoginURL, Encoding.UTF8);
+        //                    //string LT = Response.Split("<input type=\"hidden\" id=\"lt\" name=\"lt\" value=\"", StringSplitOptions.None)[1].Split("\">")[0];
+        //                    //string JSESSIONIDCAS = Response.Split("action=\"/cas/login;JSESSIONIDCAS=", StringSplitOptions.None)[1].Split("?service=")[0];
+        //                    //string rsa = DES.GetRSA(ApplicationConfig.GetSettings("Uid"), ApplicationConfig.GetSettings("Password"), LT);
+        //                    WebView2 loginweb = new WebView2();
+        //                    loginweb.CoreWebView2Initialized += (sender, args) =>
+        //                    {
+        //                        loginweb.NavigationCompleted += (sender1, args1) =>
+        //                        {
+        //                            if (loginweb.Source.AbsoluteUri.IndexOf("https://sso.dlut.edu.cn/cas/login?service=http%3A%2F%2F172.20.30.2%3A8080%2FSelf%2Fsso_login") != -1)
+        //                            {
+        //                                logger.Info("执行sso登录注入");
+        //                                string jscode = "un.value='" + ApplicationConfig.GetSettings("Uid") + "'";
+        //                                string jscode1 = "pd.value='" + ApplicationConfig.GetSettings("Password") + "'";
+        //                                string rm = "rememberName.checked='checked'";
+        //                                loginweb.CoreWebView2.ExecuteScriptAsync(rm);
+        //                                loginweb.CoreWebView2.ExecuteScriptAsync(jscode);
+        //                                loginweb.CoreWebView2.ExecuteScriptAsync(jscode1);
+        //                                string jscode2 = "login()";
+        //                                loginweb.CoreWebView2.ExecuteScriptAsync(jscode2);
+        //                            }
+        //                            else if (loginweb.Source.AbsoluteUri.IndexOf("http://172.20.30.2:8080/Self/dashboard;jsessionid=") != -1)
+        //                            {
+        //                                var builder = new AppNotificationBuilder()
+        //                                    .AddText("登陆成功!");
+        //                                var notificationManager = AppNotificationManager.Default;
+        //                                notificationManager.Show(builder.BuildNotification());
+        //                                logger.Info("登陆成功");
+        //                                loginweb.CoreWebView2.CookieManager.DeleteCookiesWithDomainAndPath("JSESSIONID", "172.20.30.2", "/Self");
+        //                                loginweb.CoreWebView2.CookieManager.DeleteCookiesWithDomainAndPath("JSESSIONID", "172.20.30.2", "/");
+        //                                LoadNetInfo();
+        //                            }
+        //                        };
+        //                        loginweb.Source = new Uri(LoginURL);
+        //                    };
+        //                    loginweb.EnsureCoreWebView2Async();
+        //                });
+        //            }
+        //            else
+        //            {
+        //                var builder = new AppNotificationBuilder()
+        //                    .AddText("无需登录!");
+        //                var notificationManager = AppNotificationManager.Default;
+        //                notificationManager.Show(builder.BuildNotification());
+        //                logger.Info("无需登录");
+        //                dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () => {
+        //                    LoadNetInfo();
+        //                });
+        //            }
+        //        }
+        //    });
+        //}
+        
         private void ManualConnect_Click(object sender, RoutedEventArgs e)
         {
             var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
@@ -199,42 +270,62 @@ namespace DLUTToolBoxV3.Pages
                         dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
                         {
                             string LoginURL = "https://sso.dlut.edu.cn/cas/login?service=http%3A%2F%2F172.20.30.2%3A8080%2FSelf%2Fsso_login%3Fwlan_user_ip%3D" + drcomStatus.v46ip + "%26authex_enable%3D%26type%3D1";
-                            //string Response = InfoUltilities.CommonGetWebRequest(LoginURL, Encoding.UTF8);
-                            //string LT = Response.Split("<input type=\"hidden\" id=\"lt\" name=\"lt\" value=\"", StringSplitOptions.None)[1].Split("\">")[0];
-                            //string JSESSIONIDCAS = Response.Split("action=\"/cas/login;JSESSIONIDCAS=", StringSplitOptions.None)[1].Split("?service=")[0];
-                            //string rsa = DES.GetRSA(ApplicationConfig.GetSettings("Uid"), ApplicationConfig.GetSettings("Password"), LT);
-                            WebView2 loginweb = new WebView2();
-                            loginweb.CoreWebView2Initialized += (sender, args) =>
+                            var cookieContainer = new CookieContainer();
+                            using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer,AllowAutoRedirect = true })
+                            using (HttpClient client = new HttpClient(handler))
                             {
-                                loginweb.NavigationCompleted += (sender1, args1) =>
+                                try
                                 {
-                                    if (loginweb.Source.AbsoluteUri.IndexOf("https://sso.dlut.edu.cn/cas/login?service=http%3A%2F%2F172.20.30.2%3A8080%2FSelf%2Fsso_login") != -1)
+                                    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.44");
+                                    client.Timeout = new TimeSpan(0, 0, 10); // 10是秒数，用于设置超时时长
+                                    Task<HttpResponseMessage> res = client.GetAsync(LoginURL);
+                                    string Response = res.Result.Content.ReadAsStringAsync().Result;
+                                    logger.Info($"{Response}");
+                                    string JSESSIONIDCAS = res.Result.Headers.ToString().Split("JSESSIONIDCAS=")[1].Split("; path=")[0];
+                                    Debug.WriteLine($"{JSESSIONIDCAS}");
+                                    logger.Info(JSESSIONIDCAS);
+                                    string LT = Response.Split("<input type=\"hidden\" id=\"lt\" name=\"lt\" value=\"", StringSplitOptions.None)[1].Split("\"")[0];
+                                    Debug.WriteLine(LT);
+                                    logger.Info(LT);
+                                    string execution = Response.Split("<input type=\"hidden\" name=\"execution\" value=\"", StringSplitOptions.None)[1].Split("\"")[0];
+                                    Debug.WriteLine(execution);
+                                    logger.Info(execution);
+                                    string RSA = DES.GetRSA(ApplicationConfig.GetSettings("Uid"), ApplicationConfig.GetSettings("Password"), LT);
+                                    Debug.WriteLine(RSA);
+                                    logger.Info(RSA);
+                                    HttpContent content = new StringContent("none=on&rsa="+RSA+"&ul="+ ApplicationConfig.GetSettings("Uid").Length+ "&pl="+ ApplicationConfig.GetSettings("Password").Length + "&sl=0&lt="+LT+"&execution="+execution+"&_eventId=submit");
+                                    content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-www-form-urlencoded");
+                                    cookieContainer.Add(new Uri("https://sso.dlut.edu.cn"), new Cookie("cas_hash", ""));
+                                    cookieContainer.Add(new Uri("https://sso.dlut.edu.cn"), new Cookie("dlut_cas_un", ApplicationConfig.GetSettings("Uid")));
+                                    cookieContainer.Add(new Uri("https://sso.dlut.edu.cn"), new Cookie("Language", "zh_CN"));
+                                    cookieContainer.Add(new Uri("https://sso.dlut.edu.cn"), new Cookie("JSESSIONIDCAS", JSESSIONIDCAS));
+                                    Task<HttpResponseMessage> res1 = client.PostAsync(LoginURL, content);
+                                    HttpResponseMessage Response1 = res1.Result;
+                                    Debug.WriteLine(Response1.Headers.Location);
+                                    logger.Info(Response1.Headers.Location);
+                                    Task<HttpResponseMessage> res2 = client.GetAsync(Response1.Headers.Location);
+                                    HttpResponseMessage Response2 = res2.Result;
+                                    String FinalResponse = Response2.Content.ReadAsStringAsync().Result;
+                                    Debug.WriteLine($"{FinalResponse}");
+                                    if (FinalResponse.Contains("您好！"))
                                     {
-                                        logger.Info("执行sso登录注入");
-                                        string jscode = "un.value='" + ApplicationConfig.GetSettings("Uid") + "'";
-                                        string jscode1 = "pd.value='" + ApplicationConfig.GetSettings("Password") + "'";
-                                        string rm = "rememberName.checked='checked'";
-                                        loginweb.CoreWebView2.ExecuteScriptAsync(rm);
-                                        loginweb.CoreWebView2.ExecuteScriptAsync(jscode);
-                                        loginweb.CoreWebView2.ExecuteScriptAsync(jscode1);
-                                        string jscode2 = "login()";
-                                        loginweb.CoreWebView2.ExecuteScriptAsync(jscode2);
-                                    }
-                                    else if (loginweb.Source.AbsoluteUri.IndexOf("http://172.20.30.2:8080/Self/dashboard;jsessionid=") != -1)
-                                    {
+                                        logger.Info("登陆成功");
                                         var builder = new AppNotificationBuilder()
                                             .AddText("登陆成功!");
                                         var notificationManager = AppNotificationManager.Default;
                                         notificationManager.Show(builder.BuildNotification());
-                                        logger.Info("登陆成功");
-                                        loginweb.CoreWebView2.CookieManager.DeleteCookiesWithDomainAndPath("JSESSIONID", "172.20.30.2", "/Self");
-                                        loginweb.CoreWebView2.CookieManager.DeleteCookiesWithDomainAndPath("JSESSIONID", "172.20.30.2", "/");
                                         LoadNetInfo();
                                     }
-                                };
-                                loginweb.Source = new Uri(LoginURL);
-                            };
-                            loginweb.EnsureCoreWebView2Async();
+                                }
+                                catch (Exception ex)
+                                {
+                                    logger.Error(ex);
+                                }
+                                finally
+                                {
+                                    client.Dispose();
+                                }
+                            }
                         });
                     }
                     else
