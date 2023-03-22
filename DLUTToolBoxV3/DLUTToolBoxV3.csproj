@@ -179,25 +179,13 @@
     <None Update="Win64\EDALoginModule\Microsoft.Toolkit.Uwp.Notifications.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Win64\EDALoginModule\Microsoft.Web.WebView2.Core.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Win64\EDALoginModule\Microsoft.Web.WebView2.WinForms.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Win64\EDALoginModule\Microsoft.Web.WebView2.Wpf.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Win64\EDALoginModule\Newtonsoft.Json.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Win64\EDALoginModule\runtimes\win-arm64\native\WebView2Loader.dll">
+    <None Update="Win64\EDALoginModule\NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Win64\EDALoginModule\runtimes\win-x64\native\WebView2Loader.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Win64\EDALoginModule\runtimes\win-x86\native\WebView2Loader.dll">
+    <None Update="Win64\EDALoginModule\NLog.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Win64\EDALoginModule\System.ValueTuple.dll">

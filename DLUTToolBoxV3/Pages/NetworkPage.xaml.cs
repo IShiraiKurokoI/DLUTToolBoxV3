@@ -33,6 +33,7 @@ using DLUTToolBoxV3.Configurations;
 using System.Net;
 using static QRCoder.PayloadGenerator;
 using System.Net.Http;
+using System.Threading;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -282,16 +283,12 @@ namespace DLUTToolBoxV3.Pages
                                     string Response = res.Result.Content.ReadAsStringAsync().Result;
                                     logger.Info($"{Response}");
                                     string JSESSIONIDCAS = res.Result.Headers.ToString().Split("JSESSIONIDCAS=")[1].Split("; path=")[0];
-                                    Debug.WriteLine($"{JSESSIONIDCAS}");
                                     logger.Info(JSESSIONIDCAS);
                                     string LT = Response.Split("<input type=\"hidden\" id=\"lt\" name=\"lt\" value=\"", StringSplitOptions.None)[1].Split("\"")[0];
-                                    Debug.WriteLine(LT);
                                     logger.Info(LT);
                                     string execution = Response.Split("<input type=\"hidden\" name=\"execution\" value=\"", StringSplitOptions.None)[1].Split("\"")[0];
-                                    Debug.WriteLine(execution);
                                     logger.Info(execution);
                                     string RSA = DES.GetRSA(ApplicationConfig.GetSettings("Uid"), ApplicationConfig.GetSettings("Password"), LT);
-                                    Debug.WriteLine(RSA);
                                     logger.Info(RSA);
                                     HttpContent content = new StringContent("none=on&rsa="+RSA+"&ul="+ ApplicationConfig.GetSettings("Uid").Length+ "&pl="+ ApplicationConfig.GetSettings("Password").Length + "&sl=0&lt="+LT+"&execution="+execution+"&_eventId=submit");
                                     content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-www-form-urlencoded");
@@ -301,12 +298,10 @@ namespace DLUTToolBoxV3.Pages
                                     cookieContainer.Add(new Uri("https://sso.dlut.edu.cn"), new Cookie("JSESSIONIDCAS", JSESSIONIDCAS));
                                     Task<HttpResponseMessage> res1 = client.PostAsync(LoginURL, content);
                                     HttpResponseMessage Response1 = res1.Result;
-                                    Debug.WriteLine(Response1.Headers.Location);
                                     logger.Info(Response1.Headers.Location);
                                     Task<HttpResponseMessage> res2 = client.GetAsync(Response1.Headers.Location);
                                     HttpResponseMessage Response2 = res2.Result;
                                     String FinalResponse = Response2.Content.ReadAsStringAsync().Result;
-                                    Debug.WriteLine($"{FinalResponse}");
                                     if (FinalResponse.Contains("您好！"))
                                     {
                                         logger.Info("登陆成功");
@@ -314,6 +309,7 @@ namespace DLUTToolBoxV3.Pages
                                             .AddText("登陆成功!");
                                         var notificationManager = AppNotificationManager.Default;
                                         notificationManager.Show(builder.BuildNotification());
+                                        Thread.Sleep(500);
                                         LoadNetInfo();
                                     }
                                 }
