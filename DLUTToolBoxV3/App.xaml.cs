@@ -32,6 +32,7 @@ using System.IO.Pipes;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
 using DLUTToolBoxV3.Helpers;
+using WinUICommunity.Common.Tools;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -53,6 +54,7 @@ namespace DLUTToolBoxV3
         }
 
         public NLog.Logger logger;
+        public static ThemeManager themeManager { get; private set; }
         /// <summary>
         /// Invoked when the application is launched.
         /// </summary>
@@ -76,9 +78,10 @@ namespace DLUTToolBoxV3
             }
 
             m_window = new MainWindow();
+            themeManager = ThemeManager.Initialize(m_window, BackdropType.DesktopAcrylic);
             if (ApplicationConfig.GetSettings("Theme") != null)
             {
-                ThemeHelper.ChangeTheme(GeneralHelper.GetEnum<ElementTheme>(ApplicationConfig.GetSettings("Theme")));
+                themeManager.ChangeTheme(GeneralHelper.GetEnum<ElementTheme>(ApplicationConfig.GetSettings("Theme")));
             }
             else
             {
@@ -89,7 +92,6 @@ namespace DLUTToolBoxV3
                 ApplicationConfig.SaveSettings("AutoLogin", "None");
             }
             logger.Info("程序主题" + ApplicationConfig.GetSettings("Theme"));
-            ThemeHelper.Initialize(m_window, BackdropType.DesktopAcrylic);
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(m_window);
             Microsoft.UI.WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             Microsoft.UI.Windowing.AppWindow appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);

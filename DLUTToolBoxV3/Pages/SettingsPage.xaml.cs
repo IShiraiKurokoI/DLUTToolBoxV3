@@ -53,7 +53,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void SourceElement_Loaded(object sender, RoutedEventArgs e)
         {
-            ThemeHelper.SetComboBoxDefaultItem(ThemePanel);
+            App.themeManager.SetComboBoxDefaultItem(ThemePanel);
             Uid.Text = ApplicationConfig.GetSettings("Uid");
             Password.Password = ApplicationConfig.GetSettings("Password");
             if (ApplicationConfig.GetSettings("AutoLogin") != "None")
@@ -66,7 +66,7 @@ namespace DLUTToolBoxV3.Pages
         private void ThemePanel_SelectionChanged(object sender, RoutedEventArgs e)
         {
             ApplicationConfig.SaveSettings("Theme", ((ComboBoxItem)ThemePanel.SelectedItem).Tag.ToString());
-            ThemeHelper.ComboBoxSelectionChanged(sender);
+            App.themeManager.OnComboBoxSelectionChanged(sender);
         }
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {

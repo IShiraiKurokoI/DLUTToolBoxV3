@@ -125,14 +125,14 @@
 
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230217.4" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230313.1" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NLog" Version="5.1.2" />
     <PackageReference Include="NLog.Schema" Version="5.1.2" />
     <PackageReference Include="QRCoder" Version="1.4.3" />
-    <PackageReference Include="WinUICommunity.Common" Version="3.2.4" />
-    <PackageReference Include="WinUICommunity.SettingsUI" Version="3.1.1" />
+    <PackageReference Include="WinUICommunity.Common" Version="3.2.6" />
+    <PackageReference Include="WinUICommunity.SettingsUI" Version="3.2.3" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
