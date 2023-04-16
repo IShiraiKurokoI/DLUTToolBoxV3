@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WinUICommunity.Shared.DataModel;
 
 namespace DLUTToolBoxV3.Entities
 {

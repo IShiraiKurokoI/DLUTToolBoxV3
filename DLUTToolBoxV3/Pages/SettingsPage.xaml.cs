@@ -18,7 +18,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using WinUICommunity.Common.Helpers;
+using WinUICommunity;
 using Windows.ApplicationModel;
 using System.Threading.Tasks;
 using System.Diagnostics;
@@ -53,7 +53,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void SourceElement_Loaded(object sender, RoutedEventArgs e)
         {
-            App.themeManager.SetComboBoxDefaultItem(ThemePanel);
+            App.themeManager.SetThemeComboBoxDefaultItem(ThemePanel);
             Uid.Text = ApplicationConfig.GetSettings("Uid");
             Password.Password = ApplicationConfig.GetSettings("Password");
             if (ApplicationConfig.GetSettings("AutoLogin") != "None")
@@ -66,7 +66,7 @@ namespace DLUTToolBoxV3.Pages
         private void ThemePanel_SelectionChanged(object sender, RoutedEventArgs e)
         {
             ApplicationConfig.SaveSettings("Theme", ((ComboBoxItem)ThemePanel.SelectedItem).Tag.ToString());
-            App.themeManager.OnComboBoxSelectionChanged(sender);
+            App.themeManager.OnThemeComboBoxSelectionChanged(sender);
         }
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {

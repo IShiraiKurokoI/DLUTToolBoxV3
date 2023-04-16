@@ -16,7 +16,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Windows.Graphics;
-using WinUICommunity.Common.Helpers;
+using WinUICommunity;
 using Microsoft.UI.Windowing;
 using DLUTToolBoxV3.Entities;
 using System.Diagnostics;
@@ -35,6 +35,8 @@ using System.Runtime.ConstrainedExecution;
 using QRCoder;
 using static QRCoder.PayloadGenerator;
 using DLUTToolBoxV3.Dialogs;
+using System.Runtime.Intrinsics.Arm;
+using System.Runtime.InteropServices;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -51,6 +53,10 @@ namespace DLUTToolBoxV3
         bool LoginTried = false;
         bool APILoginTried = false;
         private AppDataItem app;
+
+        [DllImport("user32.dll")]
+        static extern int GetDpiForWindow(IntPtr hwnd);
+
         public BrowserWindow(AppDataItem appDataItem)
         {
             logger = NLog.LogManager.GetCurrentClassLogger();
@@ -60,7 +66,8 @@ namespace DLUTToolBoxV3
             {
                 WebView.Close();
             };
-            m_AppWindow = WindowHelper.GetAppWindowForCurrentWindow(this);
+            int dpi = GetDpiForWindow(WindowHelper.GetWindowHandleForCurrentWindow(this));
+            m_AppWindow = this.AppWindow;
             m_AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
             m_AppWindow.SetIcon("Assets/logo.ico");
             this.Title = "内容子界面";
@@ -71,11 +78,11 @@ namespace DLUTToolBoxV3
                 WindowTitle.Text= appDataItem.Title;
                 if(appDataItem.HandleId!=-1&&appDataItem.HandleId!=2)
                 {
-                    m_AppWindow.Resize(new SizeInt32(1720,800));
+                    m_AppWindow.Resize(new SizeInt32((int)(1570 * (double)((double)dpi / (double)120)), (int)(800 * (double)((double)dpi / (double)120))));
                 }
                 else
                 {
-                    m_AppWindow.Resize(new SizeInt32(530, 900));
+                    m_AppWindow.Resize(new SizeInt32((int)(530 * (double)((double)dpi / (double)120)), (int)(900 * (double)((double)dpi / (double)120))));
                 }
             }
         }
@@ -438,7 +445,7 @@ namespace DLUTToolBoxV3
 
         async Task apilogin()
         {
-            if (ApplicationConfig.GetSettings("Uid").IsNullOrEmpty() || ApplicationConfig.GetSettings("Password").IsNullOrEmpty())
+            if (String.IsNullOrEmpty(ApplicationConfig.GetSettings("Uid")) || String.IsNullOrEmpty(ApplicationConfig.GetSettings("Password")))
             {
                 var builder = new AppNotificationBuilder()
                     .AddText("⚠请先配置账号密码⚠")
@@ -460,7 +467,7 @@ namespace DLUTToolBoxV3
 
         async Task login()
         {
-            if (ApplicationConfig.GetSettings("Uid").IsNullOrEmpty() || ApplicationConfig.GetSettings("Password").IsNullOrEmpty())
+            if (String.IsNullOrEmpty(ApplicationConfig.GetSettings("Uid")) || String.IsNullOrEmpty(ApplicationConfig.GetSettings("Password")))
             {
                 var builder = new AppNotificationBuilder()
                     .AddText("⚠请先配置账号密码⚠")

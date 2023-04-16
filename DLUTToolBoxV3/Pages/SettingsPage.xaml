@@ -8,8 +8,7 @@
     xmlns:local="using:DLUTToolBoxV3.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:WinUICommunity.SettingsUI.Controls"
-    xmlns:labs="using:WinUICommunity.SettingsUI.SettingsControls"
+    xmlns:controls="using:WinUICommunity"
     xmlns:converters="using:DLUTToolBoxV3.Converters"
     mc:Ignorable="d"
     Loaded="Page_Loaded"
@@ -21,67 +20,67 @@
     <ScrollViewer>
         <StackPanel x:Name="SourceElement" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="SourceElement_Loaded" Margin="24,16,24,24">
             <controls:SettingsGroup Header="统一认证信息" Margin="4,-24,4,4">
-                <labs:SettingsCard
+                <controls:SettingsCard
                     Header="学工号">
-                    <labs:SettingsCard.HeaderIcon>
+                    <controls:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xe716;" />
-                    </labs:SettingsCard.HeaderIcon>
+                    </controls:SettingsCard.HeaderIcon>
                     <TextBox x:Name="Uid" Width="300" InputScope="Number" TextChanged="Uid_TextChanged"/>
-                </labs:SettingsCard>
-                <labs:SettingsCard
+                </controls:SettingsCard>
+                <controls:SettingsCard
                     Header="密码">
-                    <labs:SettingsCard.HeaderIcon>
+                    <controls:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xf7b5;" Width="14" Height="14"/>
-                    </labs:SettingsCard.HeaderIcon>
+                    </controls:SettingsCard.HeaderIcon>
                     <PasswordBox x:Name="Password" Width="300" PasswordChanged="Password_PasswordChanged" IsPasswordRevealButtonEnabled="True" PasswordRevealMode="Peek"/>
-                </labs:SettingsCard>
+                </controls:SettingsCard>
             </controls:SettingsGroup>
             <controls:SettingsGroup Header="程序主题" Margin="4,-24,4,4">
-                <labs:SettingsCard
+                <controls:SettingsCard
                 Header="全局主题模式">
-                    <labs:SettingsCard.HeaderIcon>
+                    <controls:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xe771;" />
-                    </labs:SettingsCard.HeaderIcon>
+                    </controls:SettingsCard.HeaderIcon>
                     <ComboBox x:Name="ThemePanel" SelectionChanged="ThemePanel_SelectionChanged">
                         <ComboBoxItem Tag="Light" Content="浅色"/>
                         <ComboBoxItem Tag="Dark" Content="深色" />
                         <ComboBoxItem Tag="Default" Content="跟随系统" x:Name="Default"/>
                     </ComboBox>
-                    <labs:SettingsCard.Description>
+                    <controls:SettingsCard.Description>
                         <HyperlinkButton Content="点此打开系统主题设置" Click="HyperlinkButton_Click" Visibility="{x:Bind Default.IsSelected,Mode=OneWay, Converter={StaticResource VisibilityBoolenConverter}}"/>
-                    </labs:SettingsCard.Description>
-                </labs:SettingsCard>
+                    </controls:SettingsCard.Description>
+                </controls:SettingsCard>
             </controls:SettingsGroup>
             <controls:SettingsGroup Header="杂项" Margin="4,-24,4,4">
-                <labs:SettingsCard
+                <controls:SettingsCard
                     Header="开发区校区校园网自动登录">
-                    <labs:SettingsCard.HeaderIcon>
+                    <controls:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xf32a;"/>
-                    </labs:SettingsCard.HeaderIcon>
+                    </controls:SettingsCard.HeaderIcon>
                     <ToggleSwitch x:Name="AutoLoginSwitch" Toggled="AutoLoginSwitch_Toggled" Margin="0,0,20,0"/>
-                </labs:SettingsCard>
-                <labs:SettingsCard
+                </controls:SettingsCard>
+                <controls:SettingsCard
                     Header="清除WebViewCookie">
-                    <labs:SettingsCard.HeaderIcon>
+                    <controls:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xe74d;"/>
-                    </labs:SettingsCard.HeaderIcon>
+                    </controls:SettingsCard.HeaderIcon>
                     <Button 
                         HorizontalAlignment="Right"
                         Content="点击清除"
                         Width="100"
                     Click="Button_Click"/>
-                </labs:SettingsCard>
-                <labs:SettingsCard
+                </controls:SettingsCard>
+                <controls:SettingsCard
                     Header="打开日志文件夹">
-                    <labs:SettingsCard.HeaderIcon>
+                    <controls:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xe8b7;"/>
-                    </labs:SettingsCard.HeaderIcon>
+                    </controls:SettingsCard.HeaderIcon>
                     <Button 
                         HorizontalAlignment="Right"
                         Content="打开文件夹"
                         Width="100"
                         Click="Button_Click_2"/>
-                </labs:SettingsCard>
+                </controls:SettingsCard>
                 <controls:Setting 
                         Header="{x:Bind Version}"
                         Icon="&#xE117;">

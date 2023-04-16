@@ -129,7 +129,7 @@ namespace DLUTToolBoxV3.Pages
         {
             string un = ApplicationConfig.GetSettings("Uid");
             string upd = ApplicationConfig.GetSettings("Password");
-            if (un.IsNullOrEmpty()||upd.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(un)||string.IsNullOrEmpty(upd))
             {
                 ClassTable.Reload();
                 return;

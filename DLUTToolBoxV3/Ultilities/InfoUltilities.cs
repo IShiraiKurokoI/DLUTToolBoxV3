@@ -51,7 +51,7 @@ namespace DLUTToolBoxV3.Ultilities
             }
             else
             {
-                if (ApplicationConfig.GetSettings("Uid").IsNullOrEmpty())
+                if (String.IsNullOrEmpty(ApplicationConfig.GetSettings("Uid")))
                 {
                     return;
                 }

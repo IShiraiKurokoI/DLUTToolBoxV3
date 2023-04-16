@@ -7,8 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WinUICommunity.Common.Helpers;
-using WinUICommunity.Common.Tools;
+using WinUICommunity;
 
 namespace DLUTToolBoxV3.Helpers
 {
@@ -18,16 +17,43 @@ namespace DLUTToolBoxV3.Helpers
         public static ThemeManager themeManager { get; private set; }
         public static void AddOrCreateNewPage(AppDataItem appDataItem)
         {
+            ElementTheme SettingsTheme = ElementTheme.Default;
+            if (ApplicationConfig.GetSettings("Theme") != null)
+            {
+                if (ApplicationConfig.GetSettings("Theme") == "Light")
+                {
+                    SettingsTheme = ElementTheme.Light;
+                }
+                if (ApplicationConfig.GetSettings("Theme") == "Dark")
+                {
+                    SettingsTheme = ElementTheme.Dark;
+                }
+            }
+            else
+            {
+                ApplicationConfig.SaveSettings("Theme", "Default");
+            }
             logger.Debug("新建浏览器页面");
             BrowserWindow browserWindow = new BrowserWindow(appDataItem);
             try
             {
                 themeManager = ThemeManager.GetCurrent()
                                             .UseWindow(browserWindow)
-                                            .UseBackdrop(BackdropType.DesktopAcrylic)
+                                            .UseThemeOptions(new ThemeOptions
+                                            {
+                                                BackdropType = BackdropType.DesktopAcrylic,
+                                                ElementTheme = SettingsTheme,
+                                                ForceBackdrop = true,
+                                                ForceElementTheme = true,
+                                                UseBuiltInSettings = true,
+                                                TitleBarCustomization = new TitleBarCustomization
+                                                {
+                                                    TitleBarType = TitleBarType.AppWindow
+                                                }
+                                            })
                                             .Build();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }

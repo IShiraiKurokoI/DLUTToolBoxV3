@@ -10,9 +10,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Windows.AppNotifications.Builder;
 using Microsoft.Windows.AppNotifications;
-using WinUICommunity.Common.Helpers;
+using WinUICommunity;
 using System.Threading;
 using DLUTToolBoxV3.Configurations;
+using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace DLUTToolBoxV3.Helpers
 {

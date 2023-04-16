@@ -8,8 +8,7 @@
     xmlns:local="using:DLUTToolBoxV3.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:WinUICommunity.SettingsUI.Controls"
-    xmlns:labs="using:WinUICommunity.SettingsUI.SettingsControls"
+    xmlns:controls="using:WinUICommunity"
     mc:Ignorable="d"
     Background="Transparent">
 
@@ -24,9 +23,9 @@
                 </StackPanel>
             </StackPanel>
 
-            <labs:SettingsCard
+            <controls:SettingsCard
                     Margin="0,20,0,0">
-                <labs:SettingsCard.Header>
+                <controls:SettingsCard.Header>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,5" HorizontalAlignment="Left">
                         <PersonPicture ProfilePicture="ms-appx:///Assets/Author.png" DisplayName="IShirai_KurokoI" HorizontalAlignment="Left"/>
                         <StackPanel Margin="10,0,0,0">
@@ -35,45 +34,45 @@
                             <HyperlinkButton Content="BiliBili主页" NavigateUri="https://space.bilibili.com/310144483"/>
                         </StackPanel>
                     </StackPanel>
-                </labs:SettingsCard.Header>
-            </labs:SettingsCard>
+                </controls:SettingsCard.Header>
+            </controls:SettingsCard>
 
-            <labs:SettingsCard
+            <controls:SettingsCard
                     Header="点此复制项目链接分享给好友"
                     Margin="0,4,0,0">
-                <labs:SettingsCard.HeaderIcon>
+                <controls:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xe72d;" />
-                </labs:SettingsCard.HeaderIcon>
+                </controls:SettingsCard.HeaderIcon>
                 <Button 
                         x:Name="CopyLink"
                         HorizontalAlignment="Right"
                         Content="复制链接" 
                         Click="HyperlinkButton_Click"/>
-            </labs:SettingsCard>
+            </controls:SettingsCard>
 
-            <labs:SettingsCard ActionIconToolTip="打开项目页面"
+            <controls:SettingsCard ActionIconToolTip="打开项目页面"
                                Description="你可以点此打开本浏览器项目页面"
                                Header="项目页面"
                                IsClickEnabled="True"
                                Click="SettingsCard_Click"
                                Margin="0,4,0,0">
-                <labs:SettingsCard.HeaderIcon>
+                <controls:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE12B;" />
-                </labs:SettingsCard.HeaderIcon>
-                <labs:SettingsCard.ActionIcon>
+                </controls:SettingsCard.HeaderIcon>
+                <controls:SettingsCard.ActionIcon>
                     <FontIcon FontSize="12"
                               Glyph="&#xE8A7;" />
-                </labs:SettingsCard.ActionIcon>
-            </labs:SettingsCard>
+                </controls:SettingsCard.ActionIcon>
+            </controls:SettingsCard>
 
-            <labs:SettingsExpander Header="感谢以下本应用中使用的开源项目"
+            <controls:SettingsExpander Header="感谢以下本应用中使用的开源项目"
                                Margin="0,4,0,30">
-                <labs:SettingsExpander.HeaderIcon>
+                <controls:SettingsExpander.HeaderIcon>
                     <FontIcon Glyph="&#xe734;" />
-                </labs:SettingsExpander.HeaderIcon>
-                <labs:SettingsExpander.Items>
-                    <labs:SettingsCard>
-                        <labs:SettingsCard.Description>
+                </controls:SettingsExpander.HeaderIcon>
+                <controls:SettingsExpander.Items>
+                    <controls:SettingsCard>
+                        <controls:SettingsCard.Description>
                             <ScrollViewer>
                                 <StackPanel>
                                     <HyperlinkButton Content="Microsoft.Windows.SDK.BuildTools" NavigateUri="https://aka.ms/WinSDKProjectURL" Margin="5" FontSize="18"/>
@@ -86,10 +85,10 @@
                                     <HyperlinkButton Content="QRCoder" NavigateUri="https://github.com/codebude/QRCoder/"  Margin="5" FontSize="18"/>
                                 </StackPanel>
                             </ScrollViewer>
-                        </labs:SettingsCard.Description>
-                    </labs:SettingsCard>
-                </labs:SettingsExpander.Items>
-            </labs:SettingsExpander>
+                        </controls:SettingsCard.Description>
+                    </controls:SettingsCard>
+                </controls:SettingsExpander.Items>
+            </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
 </Page>

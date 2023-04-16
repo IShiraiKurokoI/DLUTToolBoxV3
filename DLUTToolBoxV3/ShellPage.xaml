@@ -8,35 +8,33 @@
     xmlns:local="using:DLUTToolBoxV3"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:helpers="using:WinUICommunity.Common.Helpers"
+    xmlns:helpers="using:WinUICommunity"
     xmlns:views="using:DLUTToolBoxV3.Pages"
     mc:Ignorable="d"
-    Loaded="UserControl_Loaded"
     Background="Transparent">
     <Grid>
         <NavigationView
             x:Name="navigationView"
             IsSettingsVisible="False"
             IsTitleBarAutoPaddingEnabled="False"
-            ItemInvoked="navigationView_ItemInvoked"
             IsBackButtonVisible="Collapsed"
             OpenPaneLength="200"
-            CompactPaneLength="65"
-            SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}">
-
+            CompactPaneLength="65">
+            
             <NavigationView.Resources>
                 <x:Double x:Key="NavigationViewItemOnLeftIconBoxHeight">28</x:Double>
+                <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent"/>
+                <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="Transparent"/>
             </NavigationView.Resources>
 
             <NavigationView.AutoSuggestBox>
-                <AutoSuggestBox Name="autoSuggestBox" QueryIcon="Find" PlaceholderText="搜索" TextChanged="OnControlsSearchBoxTextChanged" QuerySubmitted="OnControlsSearchBoxQuerySubmitted"/>
+                <AutoSuggestBox Name="autoSuggestBox" QueryIcon="Find" PlaceholderText="搜索"/>
             </NavigationView.AutoSuggestBox>
 
             <NavigationView.MenuItems>
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="信息总览"
-                    IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:GeneralPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/General.ico"/>
@@ -45,7 +43,6 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="网络工具"
-                    IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:NetworkPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Network.png"/>
@@ -54,7 +51,6 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="日常缴费"
-                    IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:ChargePage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Charge.png"/>
@@ -63,7 +59,6 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="考试教务"
-                    IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:ExamPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Exam.png"/>
@@ -72,7 +67,6 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="学习生活"
-                    IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:StudyPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Study.png"/>
@@ -81,7 +75,6 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="办事大厅"
-                    IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:EhallPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Ehall.ico"/>
@@ -90,7 +83,6 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="图书馆"
-                    IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:LibraryPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Library.png"/>
@@ -99,7 +91,6 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="其它系统"
-                    IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:OtherPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Other.png"/>
@@ -108,7 +99,6 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="系统工具"
-                    IsSelected="True"
                     helpers:NavHelper.NavigateTo="views:SystemPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/OSSettings.ico"/>

@@ -185,7 +185,7 @@ namespace DLUTToolBoxV3.Pages
 
         async Task login()
         {
-            if (ApplicationConfig.GetSettings("Uid").IsNullOrEmpty() || ApplicationConfig.GetSettings("Password").IsNullOrEmpty())
+            if (String.IsNullOrEmpty(ApplicationConfig.GetSettings("Uid")) || String.IsNullOrEmpty(ApplicationConfig.GetSettings("Password")))
             {
                 var builder = new AppNotificationBuilder()
                     .AddText("⚠请先配置账号密码⚠")

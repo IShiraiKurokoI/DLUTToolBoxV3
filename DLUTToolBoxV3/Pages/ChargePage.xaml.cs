@@ -16,7 +16,6 @@ using Microsoft.Windows.AppNotifications.Builder;
 using Microsoft.Windows.AppNotifications;
 using Castle.Core.Internal;
 using System.Diagnostics;
-using WinUICommunity.Common.Extensions;
 using Windows.ApplicationModel.DataTransfer;
 using DLUTToolBoxV3.Configurations;
 using NLog;

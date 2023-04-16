@@ -26,13 +26,14 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using WinUICommunity.Common.Helpers;
 using System.Diagnostics;
 using System.IO.Pipes;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
 using DLUTToolBoxV3.Helpers;
-using WinUICommunity.Common.Tools;
+using WinUICommunity;
+using Windows.UI;
+using System.Drawing;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -71,27 +72,42 @@ namespace DLUTToolBoxV3
             //非UI线程未捕获异常处理事件(例如自己创建的一个子线程)
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-
             if (ApplicationConfig.GetSettings("AutoLogin") != "None")
             {
                 ActionHelper.CheckAccountData();
             }
 
-            m_window = new MainWindow();
-            themeManager = ThemeManager.Initialize(m_window, BackdropType.DesktopAcrylic);
+            ElementTheme SettingsTheme = ElementTheme.Default;
             if (ApplicationConfig.GetSettings("Theme") != null)
             {
-                themeManager.ChangeTheme(GeneralHelper.GetEnum<ElementTheme>(ApplicationConfig.GetSettings("Theme")));
+                if(ApplicationConfig.GetSettings("Theme") == "Light")
+                {
+                    SettingsTheme = ElementTheme.Light;
+                }
+                if(ApplicationConfig.GetSettings("Theme") == "Dark")
+                {
+                    SettingsTheme = ElementTheme.Dark;
+                }
             }
             else
             {
                 ApplicationConfig.SaveSettings("Theme", "Default");
             }
+
+            m_window = new MainWindow();
+            themeManager = ThemeManager.Initialize(m_window, new ThemeOptions
+            {
+                BackdropType = BackdropType.DesktopAcrylic,
+                ElementTheme = SettingsTheme,
+                TitleBarCustomization = new TitleBarCustomization
+                {
+                    TitleBarType = TitleBarType.AppWindow
+                }
+            }); 
             if (ApplicationConfig.GetSettings("AutoLogin") == null)
             {
                 ApplicationConfig.SaveSettings("AutoLogin", "None");
             }
-            logger.Info("程序主题" + ApplicationConfig.GetSettings("Theme"));
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(m_window);
             Microsoft.UI.WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             Microsoft.UI.Windowing.AppWindow appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);

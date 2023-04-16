@@ -17,8 +17,11 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics;
-using WinUICommunity.Common.Helpers;
+using WinUICommunity;
 using NLog;
+using System.Diagnostics;
+using DLUTToolBoxV3.Helpers;
+using System.Runtime.InteropServices;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,15 +35,19 @@ namespace DLUTToolBoxV3
     {
         public NLog.Logger logger;
         private AppWindow m_AppWindow;
+
+        [DllImport("user32.dll")]
+        static extern int GetDpiForWindow(IntPtr hwnd);
+
         public MainWindow()
         {
             logger = NLog.LogManager.GetCurrentClassLogger();
             this.InitializeComponent();
-            m_AppWindow = WindowHelper.GetAppWindowForCurrentWindow(this);
+            int dpi = GetDpiForWindow(WindowHelper.GetWindowHandleForCurrentWindow(this));
+            m_AppWindow = this.AppWindow;
             m_AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
-            m_AppWindow.Resize(new SizeInt32(1570, 800));
+            m_AppWindow.Resize(new SizeInt32((int)(1570 * (double)((double)dpi / (double)120)), (int)(800 * (double)((double)dpi / (double)120))));
             m_AppWindow.SetIcon("ms-appx:///Assets/logo.ico");
-
             this.Title = "DLUTToolBoxV3";
             SetTitleBar(AppTitleBar);
             logger.Info("主窗口激活成功");
