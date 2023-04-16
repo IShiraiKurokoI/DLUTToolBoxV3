@@ -12,7 +12,9 @@
 ![image](https://user-images.githubusercontent.com/73374735/226941518-2dd388a3-7c95-4f6f-b3d3-4854ef7dfda0.png)
 ![image](https://user-images.githubusercontent.com/73374735/226941569-7b945ce4-ba0c-4449-b162-41feb8dd5d5c.png)
 安装方法:</br>
-首先安装证书</br>
+安装依赖</br>
+https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads
+安装证书</br>
 ![QQ截图20230216150301](https://user-images.githubusercontent.com/73374735/219293320-0ad2d28b-0f98-44a6-8eac-c8f08e6cdad6.png)
 ![QQ截图20230216150313](https://user-images.githubusercontent.com/73374735/219293330-073fd094-6292-4a46-a9e1-ca4bd8a87e7e.png)
 ![QQ截图20230216150321](https://user-images.githubusercontent.com/73374735/219293344-9c43fb18-aabb-47a7-9f62-54fc6d7d667e.png)
