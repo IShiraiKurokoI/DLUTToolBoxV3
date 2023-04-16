@@ -280,7 +280,6 @@ namespace DLUTToolBoxV3.Pages
                                     client.Timeout = new TimeSpan(0, 0, 10); // 10是秒数，用于设置超时时长
                                     Task<HttpResponseMessage> res = client.GetAsync(LoginURL);
                                     string Response = res.Result.Content.ReadAsStringAsync().Result;
-                                    logger.Info($"{Response}");
                                     string JSESSIONIDCAS = res.Result.Headers.ToString().Split("JSESSIONIDCAS=")[1].Split("; path=")[0];
                                     logger.Info(JSESSIONIDCAS);
                                     string LT = Response.Split("<input type=\"hidden\" id=\"lt\" name=\"lt\" value=\"", StringSplitOptions.None)[1].Split("\"")[0];
