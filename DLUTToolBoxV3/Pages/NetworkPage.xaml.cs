@@ -271,7 +271,7 @@ namespace DLUTToolBoxV3.Pages
                         {
                             string LoginURL = "https://sso.dlut.edu.cn/cas/login?service=http%3A%2F%2F172.20.30.2%3A8080%2FSelf%2Fsso_login%3Fwlan_user_ip%3D" + drcomStatus.v46ip + "%26authex_enable%3D%26type%3D1";
                             var cookieContainer = new CookieContainer();
-                            using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer,AllowAutoRedirect = true })
+                            using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer,AllowAutoRedirect = true, UseProxy = false })
                             using (HttpClient client = new HttpClient(handler))
                             {
                                 try
