@@ -44,17 +44,17 @@ namespace DLUTToolBoxV3.Pages
 
         private void MyTimeTable_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "我的课表", "ms-appx:///Assets/AppIcons/Study/MyTimeTable.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421faef4690693464456a468ca88d1b203b/student/ucas-sso/login?filter=app&from=rj", 9));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "我的课表", "ms-appx:///Assets/AppIcons/Study/MyTimeTable.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b6579402472000514b2079f5bbe02ff3c84f58629/student/ucas-sso/login?filter=app&from=rj", 9));
         }
 
         private void ClassTimeTable_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "班级课表", "ms-appx:///Assets/AppIcons/Study/ClassTimeTable.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421faef4690693464456a468ca88d1b203b/student/ucas-sso/login?filter=app&from=rj", 10));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "班级课表", "ms-appx:///Assets/AppIcons/Study/ClassTimeTable.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b6579402472000514b2079f5bbe02ff3c84f58629/student/ucas-sso/login?filter=app&from=rj", 10));
         }
 
         private void ProgramCompletion_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "培养方案", "ms-appx:///Assets/AppIcons/Study/ProgramCompletion.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421faef4690693464456a468ca88d1b203b/student/ucas-sso/login?filter=app&from=rj", 11));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "培养方案", "ms-appx:///Assets/AppIcons/Study/ProgramCompletion.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b6579402472000514b2079f5bbe02ff3c84f58629/student/ucas-sso/login?filter=app&from=rj", 11));
         }
 
         private void PublicNotice_Click(object sender, RoutedEventArgs e)
@@ -64,7 +64,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void CourseSearch_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "开课查询", "ms-appx:///Assets/AppIcons/Study/CourseSearch.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421faef4690693464456a468ca88d1b203b/student/ucas-sso/login?filter=app&from=rj", 12));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "开课查询", "ms-appx:///Assets/AppIcons/Study/CourseSearch.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b6579402472000514b2079f5bbe02ff3c84f58629/student/ucas-sso/login?filter=app&from=rj", 12));
         }
 
         private void SpareClassroom_Click(object sender, RoutedEventArgs e)

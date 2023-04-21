@@ -57,7 +57,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <localControls:AppButton
-                Title="图书馆资源列表"
+                Title="图书馆系统"
                 Subtitle="查看所有图书馆提供的功能和资源"
                 ImagePath="ms-appx:///Assets/AppIcons/Library/Resources.png"
                 HorizontalAlignment="Left"

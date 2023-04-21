@@ -39,7 +39,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void CloudDisk_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "大工网盘", "ms-appx:///Assets/AppIcons/Other/CloudDisk.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421e0f64fd2233c7d44300d8db9d6562d/cas?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "大工网盘", "ms-appx:///Assets/AppIcons/Other/CloudDisk.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b6579402468190c56f80f865ae449fe2ddfb88b/cas?filter=app&from=rj", 0));
         }
 
         private void Mail_Click(object sender, RoutedEventArgs e)
@@ -49,22 +49,22 @@ namespace DLUTToolBoxV3.Pages
 
         private void XGXT_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "学工系统", "ms-appx:///Assets/AppIcons/Other/XGXT.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421f4e2558f267e6c5c6b1cc7a99c406d36b7/cas?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "学工系统", "ms-appx:///Assets/AppIcons/Other/XGXT.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940247c0d160bfd4d9742bf58b43d95aecb2487/cas?filter=app&from=rj", 0));
         }
 
         private void YJS_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "研究生系统", "ms-appx:///Assets/AppIcons/Other/YJS.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421a2a713d27661301e285dc7fdca06/pyxx/LoginCAS.aspx?a=1&filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "研究生系统", "ms-appx:///Assets/AppIcons/Other/YJS.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940242a485056ad52cb00fc19b469c3e8/pyxx/LoginCAS.aspx?a=1&filter=app&from=rj", 0));
         }
 
         private void Pay_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "统一缴费平台", "ms-appx:///Assets/AppIcons/Other/Pay.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421f5f4408e23206949730d87b8d6512f209640763a21f75b0c/?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "统一缴费平台", "ms-appx:///Assets/AppIcons/Other/Pay.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940247d1b030af8139257a749f42cdfbf89322e5e910d7a339f3b/?filter=app&from=rj", 0));
         }
 
         private void NetHelper_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "网络自助系统", "ms-appx:///Assets/AppIcons/Other/NetHelper.png", "", "https://webvpn.dlut.edu.cn/https/77726476706e69737468656265737421e0f85388263c2654721d9de29d51367b3449/sso/sso_zzxt.jsp?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "网络自助系统", "ms-appx:///Assets/AppIcons/Other/NetHelper.png", "", "https://webvpn.dlut.edu.cn/https/57787a7876706e323032336b657940246817100cfd0fdd4aa659ee7694bf9069de28/sso/sso_zzxt.jsp?filter=app&from=rj", 0));
         }
 
         private void Market_Click(object sender, RoutedEventArgs e)
@@ -74,17 +74,17 @@ namespace DLUTToolBoxV3.Pages
 
         private void TeenHome_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "跳蚤市场", "ms-appx:///Assets/AppIcons/Other/TeenHome.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421f2f552cd693464456a468ca88d1b203b/?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "青年之家", "ms-appx:///Assets/AppIcons/Other/TeenHome.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940247a1a1149b2079f5bbe02ff3c84f58629/?filter=app&from=rj", 0));
         }
 
         private void DUTer_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "DUTer之家", "ms-appx:///Assets/AppIcons/Other/Duter.png", "", "https://ehall.dlut.edu.cn/fp/s/QZMKMV?from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "DUTer建言", "ms-appx:///Assets/AppIcons/Other/Duter.png", "", "https://ehall.dlut.edu.cn/fp/s/QZMKMV?from=rj", 0));
         }
 
         private void Mooc_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "大工慕课", "ms-appx:///Assets/AppIcons/Other/Mooc.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421f9fa4e93247e6c5c6b1cc7a99c406d3642/sso/dlut?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "大工慕课", "ms-appx:///Assets/AppIcons/Other/Mooc.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b6579402471150d17ff4d9742bf58b43d95aecb249a/sso/dlut?filter=app&from=rj", 0));
         }
 
         private void Advice_Click(object sender, RoutedEventArgs e)
@@ -94,7 +94,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "自助打印系统", "ms-appx:///Assets/AppIcons/Other/Print.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421f5e7539328362654721d9de29d51367bd857/sso/login.jsp?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "自助打印系统", "ms-appx:///Assets/AppIcons/Other/Print.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940247d081017f305dd4aa659ee7694bf90694722/sso/login.jsp?filter=app&from=rj", 0));
         }
     }
 }

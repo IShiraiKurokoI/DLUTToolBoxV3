@@ -43,27 +43,27 @@ namespace DLUTToolBoxV3.Pages
 
         private void WFCC_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "万方查重", "ms-appx:///Assets/AppIcons/Library/WFCC.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421a1af13d27e6226022e5dc7fecc01/dljc/?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "万方查重", "ms-appx:///Assets/AppIcons/Library/WFCC.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b6579402429405056a551dd1cfa19b46ac5ef/dljc/?filter=app&from=rj", 0));
         }
 
         private void WFSS_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "万方搜索", "ms-appx:///Assets/AppIcons/Library/WFSS.png", "", "https://webvpn.dlut.edu.cn/https/77726476706e69737468656265737421f7b9569d2936695e790c88b8991b203a18454272/index.html?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "万方搜索", "ms-appx:///Assets/AppIcons/Library/WFSS.png", "", "https://webvpn.dlut.edu.cn/https/57787a7876706e323032336b657940247f561519f2059240ad48fb2c90f5862810867b93/index.html?filter=app&from=rj", 0));
         }
 
         private void ZWSS_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "知网搜索", "ms-appx:///Assets/AppIcons/Library/ZWSS.png", "", "https://webvpn.dlut.edu.cn/https/77726476706e69737468656265737421f5e7549e6933665b774687a98c/kns/brief/result.aspx?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "知网搜索", "ms-appx:///Assets/AppIcons/Library/ZWSS.png", "", "https://webvpn.dlut.edu.cn/https/57787a7876706e323032336b657940246f0f1556ff0d9847e442ff2c/?filter=app&from=rj", 0));
         }
 
         private void Resources_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "图书馆资源列表", "ms-appx:///Assets/AppIcons/Library/Resources.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421e7e056d22b396a1e7a049cb8d65027204e7199/sjkdhejlbyAtoZ/ALL.htm?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "图书馆系统", "ms-appx:///Assets/AppIcons/Library/Resources.png", "", "https://webvpn.dlut.edu.cn/https/57787a7876706e323032336b657940247708031bb20f9a4ce448f62d85f580230796e3c6/meta-local/opac/cas/rosetta?filter=app&from=rj", 0));
         }
 
         private void LibraryPreEducation_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "图书馆入馆培训", "ms-appx:///Assets/AppIcons/Library/LibraryPreEducation.png", "", "https://webvpn.dlut.edu.cn/http/77726476706e69737468656265737421f7e24898693c6152300c85b98c1b2631a4d2be57/site/login.html?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "图书馆入馆培训", "ms-appx:///Assets/AppIcons/Library/LibraryPreEducation.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940247f0d0b1cb20f9a4ce448f62d85f5802345904e3a/site/login.html?filter=app&from=rj", 0));
         }
 
         private void BookLent_Click(object sender, RoutedEventArgs e)

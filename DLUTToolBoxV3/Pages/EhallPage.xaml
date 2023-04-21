@@ -80,6 +80,6 @@
                 </AppBarButton.Flyout>
             </AppBarButton>
         </Grid>
-        <WebView2 Source="https://webvpn.dlut.edu.cn/https/77726476706e69737468656265737421f5ff40902b7e6c5c6b1cc7a99c406d3607/fp/view?m=fp" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" x:Name="WebView" CoreWebView2Initialized="WebView_CoreWebView2Initialized" NavigationStarting="WebView_NavigationStarting"/>
+        <WebView2 Source="https://webvpn.dlut.edu.cn/https/57787a7876706e323032336b657940247d100314f04d9742bf58b43d95aecb24c1/fp/view?m=fp" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" x:Name="WebView" CoreWebView2Initialized="WebView_CoreWebView2Initialized" NavigationStarting="WebView_NavigationStarting"/>
     </Grid>
 </Page>
