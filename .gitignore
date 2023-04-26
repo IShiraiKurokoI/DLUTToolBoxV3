@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /DLUTToolBoxV3/Helpers/UpdateHelper.cs
+/DLUTToolBoxV3/Helpers/DrcomHelper.cs
