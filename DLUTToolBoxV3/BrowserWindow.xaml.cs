@@ -37,6 +37,7 @@ using static QRCoder.PayloadGenerator;
 using DLUTToolBoxV3.Dialogs;
 using System.Runtime.Intrinsics.Arm;
 using System.Runtime.InteropServices;
+using System.Drawing.Drawing2D;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -93,6 +94,7 @@ namespace DLUTToolBoxV3
             WebView.CoreWebView2.Settings.IsPasswordAutosaveEnabled = true;
             WebView.CoreWebView2.Settings.IsZoomControlEnabled = true;
             WebView.CoreWebView2.Settings.IsGeneralAutofillEnabled = true;
+            WebView.CoreWebView2.Settings.IsWebMessageEnabled = true;
             WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = true;
             WebView.CoreWebView2.NewWindowRequested += (sender, args) =>
             {
@@ -114,6 +116,39 @@ namespace DLUTToolBoxV3
             };
             WebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
             WebView.CoreWebView2.NavigationStarting += CoreWebView2_NavigationStarting;
+            WebView.CoreWebView2.WebMessageReceived += CoreWebView2_WebMessageReceived;
+        }
+
+        private void CoreWebView2_WebMessageReceived(CoreWebView2 sender, CoreWebView2WebMessageReceivedEventArgs args)
+        {
+            if(args.WebMessageAsJson.IndexOf("changegroup")!=-1)
+            {
+                Show();
+            }
+            else
+            {
+                var builder = new AppNotificationBuilder()
+                    .AddText(args.WebMessageAsJson);
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+            }
+        }
+
+        private async Task Show()
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.Content.XamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "确认执行结转吗？";
+            dialog.PrimaryButtonText = "确定";
+            dialog.CloseButtonText = "取消";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = "⚠请先注销所有在线设备！⚠\n否则后果自负！";
+            var result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                DrcomHelper.ChangeGroup();
+            }
         }
 
         private void CoreWebView2_NavigationStarting(CoreWebView2 sender, CoreWebView2NavigationStartingEventArgs e)
@@ -217,6 +252,10 @@ namespace DLUTToolBoxV3
             else
             {
                 LoginTried = false;
+            }
+            if (WebView.Source.AbsoluteUri.StartsWith("http://172.20.30.2:8080/Self"))
+            {
+                WebView.CoreWebView2.ExecuteScriptAsync(Properties.Resources.StrAdd);
             }
             if (WebView.Source.AbsoluteUri.StartsWith("https://api.m.dlut.edu.cn/login"))
             {

@@ -61,6 +61,15 @@ namespace DLUTToolBoxV3.Properties {
         }
         
         /// <summary>
+        ///   查找类似 document.getElementsByClassName(&apos;nav-bar-menu&apos;)[0].innerHTML += &quot;&lt;li&gt;&lt;a id=&apos;a4&apos; class=&apos;&apos; onclick=\&quot;window.chrome.webview.postMessage(&apos;changegroup&apos;)\&quot;&gt;&lt;i class=&apos;fa fa-fw fa-cog&apos;&gt;&lt;/i&gt;结转周期&lt;/a&gt;&lt;/li&gt;&quot; 的本地化字符串。
+        /// </summary>
+        internal static string StrAdd {
+            get {
+                return ResourceManager.GetString("StrAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 /** 
         ///* DES加密解密 
         ///* @Copyright Copyright (c) 2006 

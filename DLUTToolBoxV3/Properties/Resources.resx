@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="StrAdd" xml:space="preserve">
+    <value>document.getElementsByClassName('nav-bar-menu')[0].innerHTML += "&lt;li&gt;&lt;a id='a4' class='' onclick=\"window.chrome.webview.postMessage('changegroup')\"&gt;&lt;i class='fa fa-fw fa-cog'&gt;&lt;/i&gt;结转周期&lt;/a&gt;&lt;/li&gt;"</value>
+  </data>
   <data name="StrEnc" xml:space="preserve">
     <value>/** 
 * DES加密解密 
