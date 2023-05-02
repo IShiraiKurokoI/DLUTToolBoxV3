@@ -43,7 +43,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void WFCC_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "万方查重", "ms-appx:///Assets/AppIcons/Library/WFCC.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b6579402429405056a551dd1cfa19b46ac5ef/dljc/?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "万方查重", "ms-appx:///Assets/AppIcons/Library/WFCC.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940246e1d1011fa1add59ab42fc399fbc81268a6c4637b8b16a7834/?filter=app&from=rj", 0));
         }
 
         private void WFSS_Click(object sender, RoutedEventArgs e)
