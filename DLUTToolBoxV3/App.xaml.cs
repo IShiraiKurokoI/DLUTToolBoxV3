@@ -71,8 +71,9 @@ namespace DLUTToolBoxV3
             System.Threading.Tasks.TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
             //非UI线程未捕获异常处理事件(例如自己创建的一个子线程)
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-
-            App.Current.UnhandledException += CurrentDomain_UnhandledException;
+            //全局异常捕获
+            App.Current.UnhandledException += App_UnhandledException;
+            Application.Current.UnhandledException += App_UnhandledException;
 
             if (ApplicationConfig.GetSettings("AutoLogin") != "None")
             {
