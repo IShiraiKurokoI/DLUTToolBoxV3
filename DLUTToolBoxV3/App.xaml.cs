@@ -72,6 +72,8 @@ namespace DLUTToolBoxV3
             //非UI线程未捕获异常处理事件(例如自己创建的一个子线程)
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
+            App.Current.UnhandledException += CurrentDomain_UnhandledException;
+
             if (ApplicationConfig.GetSettings("AutoLogin") != "None")
             {
                 ActionHelper.CheckAccountData();
@@ -126,6 +128,15 @@ namespace DLUTToolBoxV3
         }
 
         private Window m_window;
+
+        private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            // 处理未处理的异常
+            HandleException(e.Exception);
+            // 将事件标记为已处理，以防止应用程序崩溃
+            e.Handled = true;
+        }
+
 
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
