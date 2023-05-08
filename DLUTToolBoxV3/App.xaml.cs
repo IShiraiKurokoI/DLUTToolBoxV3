@@ -165,6 +165,10 @@ namespace DLUTToolBoxV3
         //日志记录
         private void HandleException(Exception ex)
         {
+            var builder = new AppNotificationBuilder()
+                .AddText(ex.Message+ex.StackTrace);
+            var notificationManager = AppNotificationManager.Default;
+            notificationManager.Show(builder.BuildNotification());
             //记录日志
             logger.Error(ex.ToString());
         }
