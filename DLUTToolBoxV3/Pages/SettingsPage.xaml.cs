@@ -126,10 +126,6 @@ namespace DLUTToolBoxV3.Pages
             {
                 try
                 {
-                    dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
-                    {
-                        Checking.Visibility = Visibility.Visible;
-                    });
                     var ver = await Helpers.UpdateHelper.CheckUpdateAsync("IShiraiKurokoI", "DLUTToolBoxV3", new Version(string.Format("{0}.{1}.{2}.{3}",
                             Package.Current.Id.Version.Major,
                             Package.Current.Id.Version.Minor,
@@ -175,7 +171,6 @@ namespace DLUTToolBoxV3.Pages
 
                     dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
                     {
-                        Checking.Visibility = Visibility.Collapsed;
                         LastUpdateCheckDate.Text = DateTime.Now.ToString();
                         ApplicationConfig.SaveSettings("LastUpdateCheckDate", LastUpdateCheckDate.Text);
                     });
@@ -187,10 +182,6 @@ namespace DLUTToolBoxV3.Pages
                         .AddText($"检查更新失败：{e.Message}");
                     var notificationManager = AppNotificationManager.Default;
                     notificationManager.Show(builder.BuildNotification());
-                    dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
-                    {
-                        Checking.Visibility = Visibility.Collapsed;
-                    });
                 }
             });
         }

@@ -81,48 +81,26 @@
                         Width="100"
                         Click="Button_Click_2"/>
                 </controls:SettingsCard>
-                <controls:Setting 
-                        Header="{x:Bind Version}"
-                        Icon="&#xE117;">
-                    <controls:Setting.Description>
+                <controls:SettingsCard Header="{x:Bind Version}" HeaderIcon="{controls:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE895;}">
+                    <controls:SettingsCard.Description>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Style="{StaticResource SecondaryTextStyle}" >
-                               <Run Text="上次检查更新" />
-                               <Run x:Name="LastUpdateCheckDate"/>
+                            <TextBlock Style="{StaticResource SecondaryTextStyle}">
+                                    <Run Text="上次检查更新: " />
+                                    <Run x:Name="LastUpdateCheckDate" Text="" />
                             </TextBlock>
-                            <HyperlinkButton 
-                                Margin="0,2,0,0"
-                                Content="发行说明"
-                                NavigateUri="https://github.com/IShiraiKurokoI/DLUTToolBoxV3/releases" />
+                            <HyperlinkButton
+                                    Content="发行说明"
+                                    Margin="0,2,0,0"
+                                    FontWeight="SemiBold"
+                                NavigateUri="https://github.com/IShiraiKurokoI/DLUTToolBoxV3/releases"/>
                         </StackPanel>
-                    </controls:Setting.Description>
-                    <controls:Setting.ActionContent>
-                        <StackPanel 
-                             VerticalAlignment="Center"
-                             Orientation="Horizontal"
-                             Spacing="18">
-                            <StackPanel
-                                Orientation="Horizontal"
-                                Spacing="18"
-                                x:Name="Checking"
-                                Visibility="Collapsed">
-                                <ProgressRing 
-                                     Width="24"
-                                     Height="24" />
-                                <TextBlock 
-                                     VerticalAlignment="Center"
-                                     FontWeight="SemiBold"
-                                     Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                     Text="正在检查更新"/>
-                            </StackPanel>
-                            <Button 
+                    </controls:SettingsCard.Description>
+                    <Button
+                                Content="检查更新"
                                 HorizontalAlignment="Right"
-                                Content="检查更新" 
-                        Width="100"
+                                Width="100"
                                 Click="Button_Click_1"/>
-                        </StackPanel>
-                    </controls:Setting.ActionContent>
-                </controls:Setting>
+                </controls:SettingsCard>
             </controls:SettingsGroup>
         </StackPanel>
     </ScrollViewer>

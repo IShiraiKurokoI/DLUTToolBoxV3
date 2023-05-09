@@ -98,15 +98,19 @@ namespace DLUTToolBoxV3
             }
 
             m_window = new MainWindow();
-            themeManager = ThemeManager.Initialize(m_window, new ThemeOptions
+            if (OSVersionHelper.IsWindows11_22000_OrGreater)
             {
-                BackdropType = BackdropType.DesktopAcrylic,
-                ElementTheme = SettingsTheme,
-                TitleBarCustomization = new TitleBarCustomization
+                themeManager = ThemeManager.Initialize(m_window, new ThemeOptions
                 {
-                    TitleBarType = TitleBarType.AppWindow
-                }
-            }); 
+                    BackdropType = BackdropType.DesktopAcrylic,
+                    ElementTheme = SettingsTheme,
+                    TitleBarCustomization = new TitleBarCustomization
+                    {
+                        TitleBarType = TitleBarType.AppWindow
+                    }
+                });
+            }
+                
             if (ApplicationConfig.GetSettings("AutoLogin") == null)
             {
                 ApplicationConfig.SaveSettings("AutoLogin", "None");
@@ -184,6 +188,5 @@ namespace DLUTToolBoxV3
             //记录日志
             logger.Error(ex.ToString());
         }
-
     }
 }
