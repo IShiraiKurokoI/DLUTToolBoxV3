@@ -1,7 +1,7 @@
 # DLUTToolBoxV3
-##安装方法
+## 安装方法:
 <a href="https://github.com/IShiraiKurokoI/DLUTToolBoxV3/wiki/%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F#%E5%AE%89%E8%A3%85%E6%97%B6%E6%8F%90%E7%A4%BA%E8%AF%81%E4%B9%A6%E4%B8%8D%E5%8F%AF%E4%BF%A1%E5%9B%A0%E4%B8%BA%E8%AF%81%E4%B9%A6%E9%97%AE%E9%A2%98%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85">教程页面</a>
-功能预览:</br>
+## 功能预览:
 ![image](https://user-images.githubusercontent.com/73374735/226941031-3063bcaf-f838-401f-8c95-985f1a62f277.png)
 ![image](https://user-images.githubusercontent.com/73374735/226941060-dbce55e5-ae0d-44cc-87ad-4696a4b5fac8.png)
 ![image](https://user-images.githubusercontent.com/73374735/226941172-fa1721a7-0e95-41c8-828f-04055d5081be.png)
