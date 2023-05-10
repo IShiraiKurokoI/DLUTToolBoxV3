@@ -46,65 +46,106 @@ namespace DLUTToolBoxV3.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             RegistryKey hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-            RegistryKey hkrm = hklm.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\ReserveManager", false);
-            ReservedSpace.IsOn = (hkrm.GetValue("ShippedWithReserves").ToString() == "1");
-
-            RegistryKey hkmm = hklm.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management", false);
-            if (hkmm.GetValue("FeatureSettingsOverride") == null)
+            try
             {
-                MeltDownPatch.IsOn = true;
+                RegistryKey hkrm = hklm.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\ReserveManager", false);
+                ReservedSpace.IsOn = (hkrm.GetValue("ShippedWithReserves").ToString() == "1");
             }
-            else
-            {
-                MeltDownPatch.IsOn = (hkmm.GetValue("FeatureSettingsOverride").ToString() == "0");
+            catch(Exception ee) { 
+                logger.Error(ee);
             }
 
-            RegistryKey hkcd = hklm.OpenSubKey(@"System\CurrentControlSet\Control\DeviceGuard", false);
-            if (hkcd == null)
+            try
             {
-                VBS.IsOn = true;
+                RegistryKey hkmm = hklm.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management", false);
+                if (hkmm.GetValue("FeatureSettingsOverride") == null)
+                {
+                    MeltDownPatch.IsOn = true;
+                }
+                else
+                {
+                    MeltDownPatch.IsOn = (hkmm.GetValue("FeatureSettingsOverride").ToString() == "0");
+                }
             }
-            else
+            catch (Exception ee)
             {
-                if (hkcd.GetValue("EnableVirtualizationBasedSecurity") == null)
+                logger.Error(ee);
+            }
+
+            try
+            {
+                RegistryKey hkcd = hklm.OpenSubKey(@"System\CurrentControlSet\Control\DeviceGuard", false);
+                if (hkcd == null)
                 {
                     VBS.IsOn = true;
                 }
                 else
                 {
-                    VBS.IsOn = (hkcd.GetValue("EnableVirtualizationBasedSecurity").ToString() == "1");
+                    if (hkcd.GetValue("EnableVirtualizationBasedSecurity") == null)
+                    {
+                        VBS.IsOn = true;
+                    }
+                    else
+                    {
+                        VBS.IsOn = (hkcd.GetValue("EnableVirtualizationBasedSecurity").ToString() == "1");
+                    }
                 }
             }
-
-            RegistryKey hksk = hklm.OpenSubKey(@"System\CurrentControlSet\Control\Session Manager\kernel", false);
-            if (hksk.GetValue("DisableTsx") == null)
+            catch (Exception ee)
             {
-                TSX.IsOn = false;
-            }
-            else
-            {
-                TSX.IsOn = !(hksk.GetValue("DisableTsx").ToString() == "1");
+                logger.Error(ee);
             }
 
-            RegistryKey hkws = hklm.OpenSubKey(@"SOFTWARE\Policies\Microsoft\Windows\System", false);
-            if (hkws.GetValue("EnableActivityFeed") == null)
+            try
             {
-                TimeLine.IsOn = true;
+                RegistryKey hksk = hklm.OpenSubKey(@"System\CurrentControlSet\Control\Session Manager\kernel", false);
+                if (hksk.GetValue("DisableTsx") == null)
+                {
+                    TSX.IsOn = false;
+                }
+                else
+                {
+                    TSX.IsOn = !(hksk.GetValue("DisableTsx").ToString() == "1");
+                }
             }
-            else
+            catch (Exception ee)
             {
-                TimeLine.IsOn = (hkws.GetValue("EnableActivityFeed").ToString() == "1");
+                logger.Error(ee);
             }
 
-            RegistryKey hkcu = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64);
-            RegistryKey hkcd1 = hkcu.OpenSubKey(@"Control Panel\Desktop", false);
-            if (hkcd1.GetValue("JPEGImportQuality") == null)
+            try
             {
-                HighQualityWallpaper.IsOn = false;
+                RegistryKey hkws = hklm.OpenSubKey(@"SOFTWARE\Policies\Microsoft\Windows\System", false);
+                if (hkws.GetValue("EnableActivityFeed") == null)
+                {
+                    TimeLine.IsOn = true;
+                }
+                else
+                {
+                    TimeLine.IsOn = (hkws.GetValue("EnableActivityFeed").ToString() == "1");
+                }
             }
-            else
+            catch (Exception ee)
             {
-                HighQualityWallpaper.IsOn = (hkcd1.GetValue("JPEGImportQuality").ToString() == "100");
+                logger.Error(ee);
+            }
+
+            try
+            {
+                RegistryKey hkcu = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64);
+                RegistryKey hkcd1 = hkcu.OpenSubKey(@"Control Panel\Desktop", false);
+                if (hkcd1.GetValue("JPEGImportQuality") == null)
+                {
+                    HighQualityWallpaper.IsOn = false;
+                }
+                else
+                {
+                    HighQualityWallpaper.IsOn = (hkcd1.GetValue("JPEGImportQuality").ToString() == "100");
+                }
+            }
+            catch (Exception ee)
+            {
+                logger.Error(ee);
             }
             StatusInitialized = true;
             logger.Info("页面状态初始化完成");

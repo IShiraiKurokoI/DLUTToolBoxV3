@@ -37,24 +37,21 @@ namespace DLUTToolBoxV3.Helpers
             BrowserWindow browserWindow = new BrowserWindow(appDataItem);
             try
             {
-                if(OSVersionHelper.IsWindows11_22000_OrGreater)
-                {
-                    themeManager = ThemeManager.GetCurrent()
-                                                .UseWindow(browserWindow)
-                                                .UseThemeOptions(new ThemeOptions
+                themeManager = ThemeManager.GetCurrent()
+                                            .UseWindow(browserWindow)
+                                            .UseThemeOptions(new ThemeOptions
+                                            {
+                                                BackdropType = BackdropType.DesktopAcrylic,
+                                                ElementTheme = SettingsTheme,
+                                                ForceBackdrop = true,
+                                                ForceElementTheme = true,
+                                                UseBuiltInSettings = true,
+                                                TitleBarCustomization = new TitleBarCustomization
                                                 {
-                                                    BackdropType = BackdropType.DesktopAcrylic,
-                                                    ElementTheme = SettingsTheme,
-                                                    ForceBackdrop = true,
-                                                    ForceElementTheme = true,
-                                                    UseBuiltInSettings = true,
-                                                    TitleBarCustomization = new TitleBarCustomization
-                                                    {
-                                                        TitleBarType = TitleBarType.AppWindow
-                                                    }
-                                                })
-                                                .Build();
-                }
+                                                    TitleBarType = TitleBarType.AppWindow
+                                                }
+                                            })
+                                            .Build();
             }
             catch (Exception)
             {

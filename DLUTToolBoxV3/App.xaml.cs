@@ -98,19 +98,15 @@ namespace DLUTToolBoxV3
             }
 
             m_window = new MainWindow();
-            if (OSVersionHelper.IsWindows11_22000_OrGreater)
+            themeManager = ThemeManager.Initialize(m_window, new ThemeOptions
             {
-                themeManager = ThemeManager.Initialize(m_window, new ThemeOptions
+                BackdropType = BackdropType.DesktopAcrylic,
+                ElementTheme = SettingsTheme,
+                TitleBarCustomization = new TitleBarCustomization
                 {
-                    BackdropType = BackdropType.DesktopAcrylic,
-                    ElementTheme = SettingsTheme,
-                    TitleBarCustomization = new TitleBarCustomization
-                    {
-                        TitleBarType = TitleBarType.AppWindow
-                    }
-                });
-            }
-                
+                    TitleBarType = TitleBarType.AppWindow
+                }
+            });
             if (ApplicationConfig.GetSettings("AutoLogin") == null)
             {
                 ApplicationConfig.SaveSettings("AutoLogin", "None");
