@@ -61,6 +61,45 @@ namespace DLUTToolBoxV3.Properties {
         }
         
         /// <summary>
+        ///   查找类似 $(&quot;#factorycode&quot;).val(&apos;E001&apos;);
+        ///    $(&quot;#xqh&quot;).val(&apos;03&apos;);
+        ///    var url = &quot;/business/queryEleInfoByIdserial&quot;;
+        ///    var param = new Object();
+        ///    param.idserial = $(&quot;#idserial&quot;).val();
+        ///    param.xqh = $(&quot;#xqh&quot;).val();
+        ///    dkyw.request.post(url, param, function (data) {
+        ///      if (data &amp;&amp; data.success) {
+        ///        var resultData = data.resultData;
+        ///        if (dkywcommon.isEmpty(resultData.jzwbh)) {} else if (dkywcommon.isEmpty(resultData.fjlc)) {} else if (dkywcommon.isEmpty(resultData.fjmc)) {
+        ///
+        ///        }  [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string Eleget {
+            get {
+                return ResourceManager.GetString("Eleget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 function send(eleinfo) {
+        ///    var url = &quot;/business/queryResEleByIdserial&quot;;
+        ///    var param = new Object();
+        ///    param.idserial = $(&quot;#idserial&quot;).val();
+        ///    param.xqh = $(&quot;#xqh&quot;).val();
+        ///    dkyw.request.post(url, param, function(data){
+        ///        if(data&amp;&amp;data.success){
+        ///            var data1 = data.resultData;
+        ///            if (&quot;E001&quot; == $(&quot;#factorycode&quot;).val() || &quot;E002&quot; == $(&quot;#factorycode&quot;).val()) {
+        ///                $(&quot;#roombalance&quot;).val(dkywcommon.fenToYuan(dkywcommon.yuanToFen(data1.sydl)));
+        ///				window.chr [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 document.getElementsByClassName(&apos;nav-bar-menu&apos;)[0].innerHTML += &quot;&lt;li&gt;&lt;a id=&apos;a4&apos; class=&apos;&apos; onclick=\&quot;window.chrome.webview.postMessage(&apos;changegroup&apos;)\&quot;&gt;&lt;i class=&apos;fa fa-fw fa-cog&apos;&gt;&lt;/i&gt;结转周期&lt;/a&gt;&lt;/li&gt;&quot; 的本地化字符串。
         /// </summary>
         internal static string StrAdd {

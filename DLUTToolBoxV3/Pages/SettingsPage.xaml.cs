@@ -108,6 +108,8 @@ namespace DLUTToolBoxV3.Pages
                         .AddText("清除成功！");
                     var notificationManager = AppNotificationManager.Default;
                     notificationManager.Show(builder.BuildNotification());
+                    webView2.CoreWebView2.Stop();
+                    webView2.Close();
                 };
                 webView2.EnsureCoreWebView2Async();
             }
