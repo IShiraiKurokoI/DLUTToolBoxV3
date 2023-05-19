@@ -34,6 +34,7 @@ using DLUTToolBoxV3.Helpers;
 using WinUICommunity;
 using Windows.UI;
 using System.Drawing;
+using Path = System.IO.Path;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -62,9 +63,12 @@ namespace DLUTToolBoxV3
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs e)
         {
+
             logger = NLog.LogManager.GetCurrentClassLogger();
             logger.Info("--------程序启动--------");
             logger.Info("日志记录初始化成功");
+            DeleteLog();
+            DeleteLoginLog();
             Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--proxy-server=\"direct://\"");
             logger.Info("WebView参数初始化成功");
             //Task线程内未捕获异常处理事件
@@ -130,6 +134,68 @@ namespace DLUTToolBoxV3
 
         private Window m_window;
 
+        public void DeleteLog()
+        {
+            try
+            {
+                string logDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\DLUTToolBoxV3\\Log";
+                string logFilePrefix = "Log-DLUTToolBoxV3-";
+                int daysThreshold = 3;
+                DateTime deletionDate = DateTime.Now.AddDays(-daysThreshold);
+                string[] logFiles = Directory.GetFiles(logDirectory, logFilePrefix + "*.log");
+
+                foreach (string logFile in logFiles)
+                {
+                    string fileName = Path.GetFileName(logFile);
+                    string dateString = fileName.Substring(logFilePrefix.Length, 10);
+                    DateTime logDate;
+
+                    if (DateTime.TryParseExact(dateString, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out logDate))
+                    {
+                        if (logDate <= deletionDate)
+                        {
+                            File.Delete(logFile);
+                            logger.Info("删除过期日志: " + fileName);
+                        }
+                    }
+                }
+            }catch(Exception ex)
+            {
+                logger.Error(ex.ToString());
+            }
+        }
+
+        public void DeleteLoginLog()
+        {
+            try
+            {
+                string logDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\DLUTToolBoxV3\\EDALoginModuleLog";
+                string logFilePrefix = "Log-DLUTToolBoxV3-";
+                int daysThreshold = 3;
+                DateTime deletionDate = DateTime.Now.AddDays(-daysThreshold);
+                string[] logFiles = Directory.GetFiles(logDirectory, logFilePrefix + "*.log");
+
+                foreach (string logFile in logFiles)
+                {
+                    string fileName = Path.GetFileName(logFile);
+                    string dateString = fileName.Substring(logFilePrefix.Length, 10);
+                    DateTime logDate;
+
+                    if (DateTime.TryParseExact(dateString, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out logDate))
+                    {
+                        if (logDate <= deletionDate)
+                        {
+                            File.Delete(logFile);
+                            logger.Info("删除过期登陆日志: " + fileName);
+                        }
+                    }
+                }
+            }catch(Exception ex)
+            {
+                logger.Error(ex.ToString());
+            }
+        }
+
         private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             // 处理未处理的异常
@@ -137,7 +203,6 @@ namespace DLUTToolBoxV3
             // 将事件标记为已处理，以防止应用程序崩溃
             e.Handled = true;
         }
-
 
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {

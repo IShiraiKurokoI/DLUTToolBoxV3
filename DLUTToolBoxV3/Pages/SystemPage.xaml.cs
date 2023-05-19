@@ -22,6 +22,9 @@ using System.Diagnostics;
 using Microsoft.Win32;
 using System.Text.RegularExpressions;
 using NLog;
+using DLUTToolBoxV3.Configurations;
+using WinUICommunity;
+using DLUTToolBoxV3.Entities;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -475,14 +478,66 @@ namespace DLUTToolBoxV3.Pages
             logger.Info("打开CCleaner");
             ActionHelper.LaunchCCleaner();
         }
+        public static ThemeManager themeManager { get; private set; }
 
         private void FileExplorerCustomization_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("打开文件资源管理器背景自定义界面");
-            var builder = new AppNotificationBuilder()
-                .AddText("尚未实现！");
-            var notificationManager = AppNotificationManager.Default;
-            notificationManager.Show(builder.BuildNotification());
+            ElementTheme SettingsTheme = ElementTheme.Default;
+            if (ApplicationConfig.GetSettings("Theme") != null)
+            {
+                if (ApplicationConfig.GetSettings("Theme") == "Light")
+                {
+                    SettingsTheme = ElementTheme.Light;
+                }
+                if (ApplicationConfig.GetSettings("Theme") == "Dark")
+                {
+                    SettingsTheme = ElementTheme.Dark;
+                }
+            }
+            else
+            {
+                ApplicationConfig.SaveSettings("Theme", "Default");
+            }
+            ExplorerCustomizationWindow explorerCustomizationWindow = new ExplorerCustomizationWindow();
+            try
+            {
+                themeManager = ThemeManager.GetCurrent()
+                                            .UseWindow(explorerCustomizationWindow)
+                                            .UseThemeOptions(new ThemeOptions
+                                            {
+                                                BackdropType = BackdropType.DesktopAcrylic,
+                                                ElementTheme = SettingsTheme,
+                                                ForceBackdrop = true,
+                                                ForceElementTheme = true,
+                                                UseBuiltInSettings = true,
+                                                TitleBarCustomization = new TitleBarCustomization
+                                                {
+                                                    TitleBarType = TitleBarType.AppWindow
+                                                }
+                                            })
+                                            .Build();
+            }
+            catch (Exception)
+            {
+
+            }
+            //To Be Fixed
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(explorerCustomizationWindow);
+            Microsoft.UI.WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+            Microsoft.UI.Windowing.AppWindow appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
+            if (appWindow is not null)
+            {
+                Microsoft.UI.Windowing.DisplayArea displayArea = Microsoft.UI.Windowing.DisplayArea.GetFromWindowId(windowId, Microsoft.UI.Windowing.DisplayAreaFallback.Nearest);
+                if (displayArea is not null)
+                {
+                    var CenteredPosition = appWindow.Position;
+                    CenteredPosition.X = ((displayArea.WorkArea.Width - appWindow.Size.Width) / 2);
+                    CenteredPosition.Y = ((displayArea.WorkArea.Height - appWindow.Size.Height) / 2);
+                    appWindow.Move(CenteredPosition);
+                }
+            }
+            explorerCustomizationWindow.Activate();
         }
     }
 }

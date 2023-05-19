@@ -57,7 +57,6 @@ namespace DLUTToolBoxV3.Helpers
             {
 
             }
-            //To Be Fixed
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(browserWindow);
             Microsoft.UI.WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             Microsoft.UI.Windowing.AppWindow appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);

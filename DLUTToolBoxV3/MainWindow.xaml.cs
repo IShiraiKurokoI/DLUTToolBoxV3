@@ -50,6 +50,8 @@ namespace DLUTToolBoxV3
             m_AppWindow.SetIcon("ms-appx:///Assets/logo.ico");
             this.Title = "DLUTToolBoxV3";
             SetTitleBar(AppTitleBar);
+            OverlappedPresenter overlappedPresenter = AppWindow.Presenter as OverlappedPresenter ?? Microsoft.UI.Windowing.OverlappedPresenter.Create();
+            overlappedPresenter.IsResizable = false;
             logger.Info("主窗口激活成功");
         }
     }

@@ -93,6 +93,36 @@ namespace DLUTToolBoxV3.Helpers
                 }
             });
         }
+        public async static Task SendMessageToVisualCore(string msg, EventHandler ExitHandler)
+        {
+            await Task.Run(async () =>
+            {
+                try
+                {
+                    string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+                    DirectoryCopy(ApplicationHelper.GetFullPathToExe() + "\\Win64\\VisualCore", directory + "\\VisualCore", true);
+                    logger.Info("VisualCore：" + directory + "\\VisualCore\\ToolBox.Visual.Core.exe");
+                    logger.Info("VisualCore:" + msg);
+                    Process P = new Process();
+                    P.StartInfo.UseShellExecute = true;
+                    P.StartInfo.Verb = "runas";
+                    P.StartInfo.FileName = directory + "\\VisualCore\\ToolBox.Visual.Core.exe";
+                    //P.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    P.StartInfo.Arguments = msg;
+                    P.EnableRaisingEvents = true;
+                    P.Exited+= ExitHandler;
+                    P.Start();
+                }catch(Exception ex)
+                {
+                    logger.Error(ex);
+                    var builder = new AppNotificationBuilder()
+                        .AddText($"VisualCore：\n{ex.Message}");
+                    var notificationManager = AppNotificationManager.Default;
+                    notificationManager.Show(builder.BuildNotification());
+                    ExitHandler(null,null);
+                }
+            });
+        }
         
         public async static Task LaunchSpaceSniffer()
         {

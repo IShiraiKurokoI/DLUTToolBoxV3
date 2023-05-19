@@ -93,6 +93,7 @@
     <None Remove="Assets\Web\Monitor.html" />
     <None Remove="BrowserWindow.xaml" />
     <None Remove="Dialogs\QRCodeDialog.xaml" />
+    <None Remove="ExplorerCustomizationWindow.xaml" />
     <None Remove="ItemTemplates.xaml" />
     <None Remove="NLog.config" />
     <None Remove="Pages\AboutPage.xaml" />
@@ -111,6 +112,7 @@
     <None Remove="Templates.xaml" />
     <None Remove="UserControls\AppButton.xaml" />
     <None Remove="UserControls\AppGridView.xaml" />
+    <None Remove="UserControls\ImagePicker.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Page Remove="ItemTemplates.xaml" />
@@ -167,6 +169,12 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="UserControls\ImagePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="ExplorerCustomizationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Update="Win64\EDALoginModule\EDALoginModule.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
