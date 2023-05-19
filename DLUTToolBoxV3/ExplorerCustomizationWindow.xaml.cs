@@ -28,6 +28,8 @@ using System.Text.RegularExpressions;
 using DLUTToolBoxV3.Helpers;
 using Microsoft.Windows.AppNotifications.Builder;
 using Microsoft.Windows.AppNotifications;
+using System.Drawing;
+using Image = System.Drawing.Image;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -216,22 +218,48 @@ namespace DLUTToolBoxV3
             }
         }
 
+        void PNGTOBMP(string dirin, string dirout)
+        {
+            Image img = Image.FromFile(dirin);
+            using (var b = new Bitmap(img.Width, img.Height))
+            {
+                b.SetResolution(img.HorizontalResolution, img.VerticalResolution);
+                using (var g = Graphics.FromImage(b))
+                {
+                    g.Clear(Color.Transparent);
+                    g.DrawImageUnscaled(img, 0, 0);
+                }
+                logger.Info(dirout);
+                b.Save(dirout, System.Drawing.Imaging.ImageFormat.Bmp);
+            }
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-            Directory.CreateDirectory(directory + "\\VisualCore\\");
-            FileStream fs = new FileStream(directory + "\\VisualCore\\Background.config", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            StreamWriter sw = new StreamWriter(fs);
-            sw.WriteLine(ApplicationConfig.GetSettings("str1"));
-            sw.WriteLine(ApplicationConfig.GetSettings("str2"));
-            sw.WriteLine(ApplicationConfig.GetSettings("str3"));
-            sw.WriteLine(ApplicationConfig.GetSettings("str4"));
-            sw.WriteLine(ApplicationConfig.GetSettings("str5"));
-            sw.WriteLine(ApplicationConfig.GetSettings("str6"));
-            sw.Close();
-            ActionHelper.SendMessageToVisualCore(directory + "\\VisualCore\\Background.config", (o, e) =>
+            Directory.CreateDirectory(directory + "\\VisualCore\\RH\\Templates\\");
+            string Templates = directory + "\\VisualCore\\RH\\Templates\\";
+            try
             {
-
+                PNGTOBMP(ApplicationConfig.GetSettings("str1"), Templates + "Bitmap241.bmp");
+                PNGTOBMP(ApplicationConfig.GetSettings("str2"), Templates + "Bitmap242.bmp");
+                PNGTOBMP(ApplicationConfig.GetSettings("str3"), Templates + "Bitmap243.bmp");
+                PNGTOBMP(ApplicationConfig.GetSettings("str4"), Templates + "Bitmap244.bmp");
+                PNGTOBMP(ApplicationConfig.GetSettings("str5"), Templates + "Bitmap245.bmp");
+                PNGTOBMP(ApplicationConfig.GetSettings("str6"), Templates + "Bitmap246.bmp");
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                var builder = new AppNotificationBuilder()
+                    .AddText($"图片处理出错：\n{ex.Message}");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+                return;
+            }
+            ActionHelper.SendMessageToVisualCore("set", (o, e) =>
+            {
+                    
             });
         }
 

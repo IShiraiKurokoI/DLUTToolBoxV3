@@ -107,7 +107,8 @@ namespace DLUTToolBoxV3.Helpers
                     P.StartInfo.UseShellExecute = true;
                     P.StartInfo.Verb = "runas";
                     P.StartInfo.FileName = directory + "\\VisualCore\\ToolBox.Visual.Core.exe";
-                    //P.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    P.StartInfo.WorkingDirectory = directory + "\\VisualCore\\";
+                    P.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     P.StartInfo.Arguments = msg;
                     P.EnableRaisingEvents = true;
                     P.Exited+= ExitHandler;
