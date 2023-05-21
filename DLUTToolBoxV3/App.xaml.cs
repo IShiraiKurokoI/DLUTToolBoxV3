@@ -70,6 +70,7 @@ namespace DLUTToolBoxV3
             DeleteLog();
             DeleteLoginLog();
             Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--proxy-server=\"direct://\"");
+            Environment.SetEnvironmentVariable("WEBVIEW2_USE_VISUAL_HOSTING_FOR_OWNED_WINDOWS", "1");
             logger.Info("WebView参数初始化成功");
             //Task线程内未捕获异常处理事件
             System.Threading.Tasks.TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;

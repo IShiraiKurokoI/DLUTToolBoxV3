@@ -31,6 +31,8 @@
                     <ColumnDefinition Width="32"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="8"/>
                 </Grid.ColumnDefinitions>
                 <AppBarButton Height="48" Width="32" Grid.Column="0" Margin="4,0,0,0" x:Name="GoBack" Click="GoBack_Click" IsEnabled="{x:Bind WebView.CanGoBack,Mode=TwoWay}">
                     <AppBarButton.Icon>
@@ -48,7 +50,12 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <TextBox HorizontalAlignment="Stretch" Height="26" Grid.Column="3" Margin="8,0,0,0" x:Name="AddressBox" Text="{x:Bind WebView.Source.AbsoluteUri,Mode=OneWay}" KeyUp="AddressBox_KeyUp" InputScope="Url"/>
-                <AppBarButton  Height="48" Width="32" Grid.Column="4" Margin="4,0,0,0" x:Name="More">
+                <AppBarButton  Height="48" Width="32" Grid.Column="4" Margin="4,0,0,0" x:Name="Download" Click="DownloadButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xe896;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton  Height="48" Width="32" Grid.Column="5" Margin="4,0,0,0" x:Name="More">
                     <AppBarButton.Icon>
                         <FontIcon  Glyph="&#xe712;"/>
                     </AppBarButton.Icon>
@@ -57,7 +64,7 @@
                     </AppBarButton.Resources>
                     <AppBarButton.Flyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Text="下载" Click="MenuFlyoutItem_Click_1">
+                            <MenuFlyoutItem Text="下载" Click="Download_Click">
                                 <MenuFlyoutItem.Icon>
                                     <FontIcon Glyph="&#xe896;"/>
                                 </MenuFlyoutItem.Icon>
@@ -65,7 +72,7 @@
                                     <KeyboardAccelerator Key="J" Modifiers="Control"/>
                                 </MenuFlyoutItem.KeyboardAccelerators>
                             </MenuFlyoutItem>
-                            <MenuFlyoutItem Text="历史记录" Click="MenuFlyoutItem_Click_2">
+                            <MenuFlyoutItem Text="历史记录" Click="History_Click">
                                 <MenuFlyoutItem.Icon>
                                     <FontIcon Glyph="&#xe81c;"/>
                                 </MenuFlyoutItem.Icon>
@@ -74,12 +81,21 @@
                                 </MenuFlyoutItem.KeyboardAccelerators>
                             </MenuFlyoutItem>
                             <MenuFlyoutSeparator/>
-                            <MenuFlyoutItem Text="分享页面链接" Click="MenuFlyoutItem_Click_3">
+                            <MenuFlyoutItem Text="分享页面链接" Click="Share_Click">
                                 <MenuFlyoutItem.Icon>
                                     <FontIcon Glyph="&#xe72d;"/>
                                 </MenuFlyoutItem.Icon>
                                 <MenuFlyoutItem.KeyboardAccelerators>
                                     <KeyboardAccelerator Key="S" Modifiers="Control"/>
+                                </MenuFlyoutItem.KeyboardAccelerators>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutSeparator/>
+                            <MenuFlyoutItem Text="开发者工具" x:Name="DevTools" Click="DevTools_Click">
+                                <MenuFlyoutItem.Icon>
+                                    <FontIcon Glyph="&#xec7a;"/>
+                                </MenuFlyoutItem.Icon>
+                                <MenuFlyoutItem.KeyboardAccelerators>
+                                    <KeyboardAccelerator Key="I" Modifiers="Control"/>
                                 </MenuFlyoutItem.KeyboardAccelerators>
                             </MenuFlyoutItem>
                         </MenuFlyout>

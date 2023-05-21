@@ -65,6 +65,7 @@ namespace DLUTToolBoxV3
             this.InitializeComponent();
             this.Closed += (o, e) =>
             {
+                WebView.CoreWebView2.Stop();
                 WebView.Close();
             };
             int dpi = GetDpiForWindow(WindowHelper.GetWindowHandleForCurrentWindow(this));
@@ -90,12 +91,17 @@ namespace DLUTToolBoxV3
 
         private void WebView_CoreWebView2Initialized(WebView2 sender, CoreWebView2InitializedEventArgs args)
         {
-            WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = true;
             WebView.CoreWebView2.Settings.IsPasswordAutosaveEnabled = true;
             WebView.CoreWebView2.Settings.IsZoomControlEnabled = true;
             WebView.CoreWebView2.Settings.IsGeneralAutofillEnabled = true;
-            WebView.CoreWebView2.Settings.IsWebMessageEnabled = true;
             WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = true;
+            WebView.CoreWebView2.Settings.IsSwipeNavigationEnabled = true;
+            WebView.CoreWebView2.Settings.IsBuiltInErrorPageEnabled = true;
+            WebView.CoreWebView2.Settings.IsPasswordAutosaveEnabled = true;
+            WebView.CoreWebView2.Settings.IsScriptEnabled = true;
+            WebView.CoreWebView2.Settings.IsWebMessageEnabled = true;
+            WebView.CoreWebView2.Settings.IsStatusBarEnabled = true;
+            WebView.CoreWebView2.Settings.AreDefaultScriptDialogsEnabled = true;
             WebView.CoreWebView2.NewWindowRequested += (sender, args) =>
             {
                 if(app.HandleId!=3&&app.HandleId!=-2)
@@ -557,23 +563,34 @@ namespace DLUTToolBoxV3
             {
                 if (!AddressBox.Text.StartsWith("http"))
                 {
-                    AddressBox.Text = "http://" + AddressBox.Text;
+                    AddressBox.Text = "https://" + AddressBox.Text;
                 }
                 WebView.CoreWebView2.ExecuteScriptAsync("window.location.href='" + AddressBox.Text + "'");
             }
         }
+        private void DownloadButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WebView.CoreWebView2.IsDefaultDownloadDialogOpen)
+            {
+                WebView.CoreWebView2.CloseDefaultDownloadDialog();
+            }
+            else
+            {
+                WebView.CoreWebView2.OpenDefaultDownloadDialog();
+            }
+        }
 
-        private void MenuFlyoutItem_Click_1(object sender, RoutedEventArgs e)
+        private void Download_Click(object sender, RoutedEventArgs e)
         {
             WebHelper.AddOrCreateNewPage(new AppDataItem("0", "下载", "", "", "edge://downloads/all", 0));
         }
 
-        private void MenuFlyoutItem_Click_2(object sender, RoutedEventArgs e)
+        private void History_Click(object sender, RoutedEventArgs e)
         {
             WebHelper.AddOrCreateNewPage(new AppDataItem("0", "历史记录", "", "", "edge://history/all", 0));
         }
 
-        private void MenuFlyoutItem_Click_3(object sender, RoutedEventArgs e)
+        private void Share_Click(object sender, RoutedEventArgs e)
         {
             DataPackage dataPackage = new DataPackage();
             dataPackage.RequestedOperation = DataPackageOperation.Copy;
@@ -584,5 +601,10 @@ namespace DLUTToolBoxV3
             var notificationManager = AppNotificationManager.Default;
             notificationManager.Show(builder.BuildNotification());
         }
+        private void DevTools_Click(object sender, RoutedEventArgs e)
+        {
+            WebView.CoreWebView2.OpenDevToolsWindow();
+        }
+
     }
 }
