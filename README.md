@@ -11,6 +11,5 @@
 <img src="https://user-images.githubusercontent.com/73374735/226941344-7be27651-c085-48fd-b17f-056240d0bc87.png"/>
 <img src="https://user-images.githubusercontent.com/73374735/226941387-32fc3e02-5b2c-40e9-818b-8001b3732c1d.png"/>
 <img src="https://user-images.githubusercontent.com/73374735/226941432-aa678a04-234f-4673-918f-43b77348dccd.png"/>
-<img src="https://user-images.githubusercontent.com/73374735/226941432-aa678a04-234f-4673-918f-43b77348dccd.png"/>
-![image](https://github.com/IShiraiKurokoI/DLUTToolBoxV3/assets/73374735/a67a164b-0434-4570-b883-819ac48b659c)
+<img src="https://github.com/IShiraiKurokoI/DLUTToolBoxV3/assets/73374735/a67a164b-0434-4570-b883-819ac48b659c"/>
 <img src="https://user-images.githubusercontent.com/73374735/226941569-7b945ce4-ba0c-4449-b162-41feb8dd5d5c.png"/>
