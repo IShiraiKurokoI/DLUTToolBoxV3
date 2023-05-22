@@ -127,35 +127,35 @@ namespace DLUTToolBoxV3
 
         private void CoreWebView2_WebMessageReceived(CoreWebView2 sender, CoreWebView2WebMessageReceivedEventArgs args)
         {
-            if(args.WebMessageAsJson.IndexOf("changegroup")!=-1)
-            {
-                Show();
-            }
-            else
-            {
+            //if(args.WebMessageAsJson.IndexOf("changegroup")!=-1)
+            //{
+            //    Show();
+            //}
+            //else
+            //{
                 var builder = new AppNotificationBuilder()
                     .AddText(args.WebMessageAsJson);
                 var notificationManager = AppNotificationManager.Default;
                 notificationManager.Show(builder.BuildNotification());
-            }
+            //}
         }
 
-        private async Task Show()
-        {
-            ContentDialog dialog = new ContentDialog();
-            dialog.XamlRoot = this.Content.XamlRoot;
-            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "确认执行结转吗？";
-            dialog.PrimaryButtonText = "确定";
-            dialog.CloseButtonText = "取消";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = "⚠请先注销所有在线设备！⚠\n否则后果自负！";
-            var result = await dialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                DrcomHelper.ChangeGroup();
-            }
-        }
+        //private async Task Show()
+        //{
+        //    ContentDialog dialog = new ContentDialog();
+        //    dialog.XamlRoot = this.Content.XamlRoot;
+        //    dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+        //    dialog.Title = "确认执行结转吗？";
+        //    dialog.PrimaryButtonText = "确定";
+        //    dialog.CloseButtonText = "取消";
+        //    dialog.DefaultButton = ContentDialogButton.Primary;
+        //    dialog.Content = "⚠请先注销所有在线设备！⚠\n否则后果自负！";
+        //    var result = await dialog.ShowAsync();
+        //    if (result == ContentDialogResult.Primary)
+        //    {
+        //        DrcomHelper.ChangeGroup();
+        //    }
+        //}
 
         private void CoreWebView2_NavigationStarting(CoreWebView2 sender, CoreWebView2NavigationStartingEventArgs e)
         {
@@ -425,8 +425,23 @@ namespace DLUTToolBoxV3
                         logger.Info("大工邮箱特殊处理");
                         if(WebView.Source.AbsoluteUri.ToString()== "https://mail.dlut.edu.cn/")
                         {
-                            string rm = "domain.value='mail.dlut.edu.cn'";
-                            WebView.CoreWebView2.ExecuteScriptAsync(rm);
+                            if(String.IsNullOrEmpty(ApplicationConfig.GetSettings("MailAddress")) || String.IsNullOrEmpty(ApplicationConfig.GetSettings("MailPassword")))
+                            {
+                                string rm = "domain.value='mail.dlut.edu.cn';document.getElementsByClassName('domainTxt')[0].textContent = 'mail.dlut.edu.cn'";
+                                WebView.CoreWebView2.ExecuteScriptAsync(rm);
+                            }
+                            else
+                            {
+                                string jscode = "uid.value='" + ApplicationConfig.GetSettings("MailAddress") + "'";
+                                WebView.CoreWebView2.ExecuteScriptAsync(jscode);
+                                string jscode1 = "password.value='" + ApplicationConfig.GetSettings("MailPassword") + "'";
+                                WebView.CoreWebView2.ExecuteScriptAsync(jscode1);
+                                string rm = "domain.value='mail.dlut.edu.cn';document.getElementsByClassName('domainTxt')[0].textContent = 'mail.dlut.edu.cn'";
+                                WebView.CoreWebView2.ExecuteScriptAsync(rm);
+                                WebView.CoreWebView2.ExecuteScriptAsync(jscode);
+                                string jscode2 = "document.getElementsByClassName('u-btn u-btn-primary submit j-submit')[0].click()";
+                                WebView.CoreWebView2.ExecuteScriptAsync(jscode2);
+                            }
                         }
                         break;
                     }

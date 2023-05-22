@@ -50,12 +50,18 @@ namespace DLUTToolBoxV3.Pages
         }
 
         bool AutoLoginSwitchInitialized = false;
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LastUpdateCheckDate.Text = ApplicationConfig.GetSettings("LastUpdateCheckDate");
+        }
 
         private void SourceElement_Loaded(object sender, RoutedEventArgs e)
         {
             App.themeManager.SetThemeComboBoxDefaultItem(ThemePanel);
             Uid.Text = ApplicationConfig.GetSettings("Uid");
             Password.Password = ApplicationConfig.GetSettings("Password");
+            MailAddress.Text = ApplicationConfig.GetSettings("MailAddress");
+            MailPassword.Password = ApplicationConfig.GetSettings("MailPassword");
             if (ApplicationConfig.GetSettings("AutoLogin") != "None")
             {
                 AutoLoginSwitch.IsOn= true;
@@ -83,7 +89,79 @@ namespace DLUTToolBoxV3.Pages
             ApplicationConfig.SaveSettings("Password", Password.Password);
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void MailAddress_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplicationConfig.SaveSettings("MailAddress", MailAddress.Text);
+        }
+
+        private void MailPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ApplicationConfig.SaveSettings("MailPassword", MailPassword.Password);
+        }
+
+        private void AutoLoginSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
+            if (AutoLoginSwitchInitialized)
+            {
+                if (AutoLoginSwitch.IsOn)
+                {
+                    ApplicationConfig.SaveSettings("AutoLogin", "EDA");
+                    ActionHelper.SetupEDALoginModule("True", (o, e) =>
+                    {
+                        if (o == null)
+                        {
+                            dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+                            {
+                                AutoLoginSwitchInitialized = false;
+                                AutoLoginSwitch.IsOn = false;
+                                AutoLoginSwitchInitialized = true;
+                            });
+                            var builder = new AppNotificationBuilder()
+                                .AddText($"开启EDA自动登录失败！");
+                            var notificationManager = AppNotificationManager.Default;
+                            notificationManager.Show(builder.BuildNotification());
+                        }
+                        else
+                        {
+                            var builder = new AppNotificationBuilder()
+                                .AddText($"开启EDA自动登录成功！\n⚠如果修改了统一认证密码，请关闭后重新打开此功能⚠");
+                            var notificationManager = AppNotificationManager.Default;
+                            notificationManager.Show(builder.BuildNotification());
+                        }
+                    });
+                }
+                else
+                {
+                    ApplicationConfig.SaveSettings("AutoLogin", "None");
+                    ActionHelper.SetupEDALoginModule("False", (o, e) =>
+                    {
+                        if (o == null)
+                        {
+                            dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+                            {
+                                AutoLoginSwitchInitialized = false;
+                                AutoLoginSwitch.IsOn = true;
+                                AutoLoginSwitchInitialized = true;
+                            });
+                            var builder = new AppNotificationBuilder()
+                                .AddText($"关闭EDA自动登录失败！");
+                            var notificationManager = AppNotificationManager.Default;
+                            notificationManager.Show(builder.BuildNotification());
+                        }
+                        else
+                        {
+                            var builder = new AppNotificationBuilder()
+                                .AddText($"关闭EDA自动登录成功！");
+                            var notificationManager = AppNotificationManager.Default;
+                            notificationManager.Show(builder.BuildNotification());
+                        }
+                    });
+                }
+            }
+        }
+
+        private async void ClearCookie_Click(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
 
@@ -115,7 +193,13 @@ namespace DLUTToolBoxV3.Pages
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Log_Click(object sender, RoutedEventArgs e)
+        {
+            logger.Info("打开日志文件夹");
+            Windows.System.Launcher.LaunchUriAsync(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\DLUTToolBoxV3\\Log"));
+        }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("检查更新");
             CheckUpdate();
@@ -213,77 +297,7 @@ namespace DLUTToolBoxV3.Pages
             }
             return dic;
         }
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            LastUpdateCheckDate.Text = ApplicationConfig.GetSettings("LastUpdateCheckDate");
-        }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            logger.Info("打开日志文件夹");
-            Windows.System.Launcher.LaunchUriAsync(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\DLUTToolBoxV3\\Log"));
-        }
-
-        private void AutoLoginSwitch_Toggled(object sender, RoutedEventArgs e)
-        {
-            var dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
-            if (AutoLoginSwitchInitialized)
-            {
-                if (AutoLoginSwitch.IsOn)
-                {
-                    ApplicationConfig.SaveSettings("AutoLogin", "EDA");
-                    ActionHelper.SetupEDALoginModule("True", (o, e) =>
-                    {
-                        if (o == null)
-                        {
-                            dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
-                            {
-                                AutoLoginSwitchInitialized = false;
-                                AutoLoginSwitch.IsOn = false;
-                                AutoLoginSwitchInitialized = true;
-                            });
-                            var builder = new AppNotificationBuilder()
-                                .AddText($"开启EDA自动登录失败！");
-                            var notificationManager = AppNotificationManager.Default;
-                            notificationManager.Show(builder.BuildNotification());
-                        }
-                        else
-                        {
-                            var builder = new AppNotificationBuilder()
-                                .AddText($"开启EDA自动登录成功！\n⚠如果修改了统一认证密码，请关闭后重新打开此功能⚠");
-                            var notificationManager = AppNotificationManager.Default;
-                            notificationManager.Show(builder.BuildNotification());
-                        }
-                    });
-                }
-                else
-                {
-                    ApplicationConfig.SaveSettings("AutoLogin", "None");
-                    ActionHelper.SetupEDALoginModule("False", (o, e) =>
-                    {
-                        if(o==null)
-                        {
-                            dispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
-                            {
-                                AutoLoginSwitchInitialized = false;
-                                AutoLoginSwitch.IsOn = true;
-                                AutoLoginSwitchInitialized = true;
-                            });
-                            var builder = new AppNotificationBuilder()
-                                .AddText($"关闭EDA自动登录失败！");
-                            var notificationManager = AppNotificationManager.Default;
-                            notificationManager.Show(builder.BuildNotification());
-                        }
-                        else
-                        {
-                            var builder = new AppNotificationBuilder()
-                                .AddText($"关闭EDA自动登录成功！");
-                            var notificationManager = AppNotificationManager.Default;
-                            notificationManager.Show(builder.BuildNotification());
-                        }
-                    });
-                }
-            }
-        }
+        
     }
 }

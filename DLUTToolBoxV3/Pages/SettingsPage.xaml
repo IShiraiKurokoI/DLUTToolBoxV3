@@ -35,6 +35,22 @@
                     <PasswordBox x:Name="Password" Width="300" PasswordChanged="Password_PasswordChanged" IsPasswordRevealButtonEnabled="True" PasswordRevealMode="Peek"/>
                 </controls:SettingsCard>
             </controls:SettingsGroup>
+            <controls:SettingsGroup Header="校园邮箱信息（选填）" Margin="4,-24,4,4">
+                <controls:SettingsCard
+                    Header="邮箱名">
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xe716;" />
+                    </controls:SettingsCard.HeaderIcon>
+                    <TextBox x:Name="MailAddress" Width="300" InputScope="EmailNameOrAddress" PlaceholderText="XXXXXXX@mail.dlut.edu.cn" TextChanged="MailAddress_TextChanged"/>
+                </controls:SettingsCard>
+                <controls:SettingsCard
+                    Header="邮箱密码">
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xf7b5;" Width="14" Height="14"/>
+                    </controls:SettingsCard.HeaderIcon>
+                    <PasswordBox x:Name="MailPassword" Width="300" IsPasswordRevealButtonEnabled="True" PasswordRevealMode="Peek" PasswordChanged="MailPassword_PasswordChanged"/>
+                </controls:SettingsCard>
+            </controls:SettingsGroup>
             <controls:SettingsGroup Header="程序主题" Margin="4,-24,4,4">
                 <controls:SettingsCard
                 Header="全局主题模式">
@@ -68,7 +84,7 @@
                         HorizontalAlignment="Right"
                         Content="点击清除"
                         Width="100"
-                    Click="Button_Click"/>
+                    Click="ClearCookie_Click"/>
                 </controls:SettingsCard>
                 <controls:SettingsCard
                     Header="打开日志文件夹">
@@ -79,7 +95,7 @@
                         HorizontalAlignment="Right"
                         Content="打开文件夹"
                         Width="100"
-                        Click="Button_Click_2"/>
+                        Click="Log_Click"/>
                 </controls:SettingsCard>
                 <controls:SettingsCard Header="{x:Bind Version}" HeaderIcon="{controls:FontIcon FontFamily={StaticResource SymbolThemeFontFamily}, Glyph=&#xE895;}">
                     <controls:SettingsCard.Description>
@@ -99,7 +115,7 @@
                                 Content="检查更新"
                                 HorizontalAlignment="Right"
                                 Width="100"
-                                Click="Button_Click_1"/>
+                                Click="Update_Click"/>
                 </controls:SettingsCard>
             </controls:SettingsGroup>
         </StackPanel>
