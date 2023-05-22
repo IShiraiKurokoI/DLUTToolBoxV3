@@ -259,10 +259,10 @@ namespace DLUTToolBoxV3
             {
                 LoginTried = false;
             }
-            if (WebView.Source.AbsoluteUri.StartsWith("http://172.20.30.2:8080/Self"))
-            {
-                WebView.CoreWebView2.ExecuteScriptAsync(Properties.Resources.StrAdd);
-            }
+            //if (WebView.Source.AbsoluteUri.StartsWith("http://172.20.30.2:8080/Self"))
+            //{
+            //    WebView.CoreWebView2.ExecuteScriptAsync(Properties.Resources.StrAdd);
+            //}
             if (WebView.Source.AbsoluteUri.StartsWith("https://api.m.dlut.edu.cn/login"))
             {
                 if (APILoginTried)
