@@ -26,6 +26,7 @@ using Windows.Foundation.Metadata;
 using Castle.Core.Internal;
 using DLUTToolBoxV3.Helpers;
 using Windows.ApplicationModel.DataTransfer;
+using NLog;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -97,24 +98,53 @@ namespace DLUTToolBoxV3.Pages
             WebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
         }
 
-        private void CoreWebView2_NavigationCompleted(CoreWebView2 sender, CoreWebView2NavigationCompletedEventArgs args)
+        private async void CoreWebView2_NavigationCompleted(CoreWebView2 sender, CoreWebView2NavigationCompletedEventArgs args)
         {
             if (WebView.CoreWebView2.DocumentTitle.IndexOf("过期") != -1)
             {
-                WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
-                WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
-                WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
+                await WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
+                await WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
+                await WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
+                var builder = new AppNotificationBuilder()
+                    .AddText("⚠来自网页的安全提示⚠\n根据信息安全等级保护要求，用户密码需定期更换。请尽快到【校园门户】-【我的信息】-【安全设置】中修改！");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+                return;
             }
-            if (WebView.Source.AbsoluteUri == "https://webvpn.dlut.edu.cn/https/77726476706e69737468656265737421e3e44ed2233c7d44300d8db9d6562d/cas/login?service=https%3A%2F%2Fwebvpn.dlut.edu.cn%2Flogin%3Fcas_login%3Dtrue" || WebView.Source.AbsoluteUri == "https://sso.dlut.edu.cn/cas/login?service=https%3A%2F%2Fwebvpn.dlut.edu.cn%2Flogin%3Fcas_login%3Dtrue" || WebView.Source.AbsoluteUri.StartsWith("https://webvpn.dlut.edu.cn/https/77726476706e69737468656265737421e3e44ed2233c7d44300d8db9d6562d/cas/login;JSESSIONIDCAS="))
+            if (WebView.CoreWebView2.DocumentTitle.IndexOf("密码重置") != -1)
+            {
+                await WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
+                await WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
+                await WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
+                string jscode = "new_pwd.value='" + ApplicationConfig.GetSettings("Password") + "'";
+                await WebView.CoreWebView2.ExecuteScriptAsync(jscode);
+                jscode = "confirm_pwd.value='" + ApplicationConfig.GetSettings("Password") + "'";
+                await WebView.CoreWebView2.ExecuteScriptAsync(jscode);
+                jscode = "sub_btn.click()";
+                await WebView.CoreWebView2.ExecuteScriptAsync(jscode);
+                var builder = new AppNotificationBuilder()
+                    .AddText("⚠密码已经过期⚠\n工具箱将尝试自动续期密码");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+                return;
+            }
+            if (WebView.Source.AbsoluteUri.StartsWith("https://webvpn.dlut.edu.cn/https/57787a7876706e323032336b657940246b0b0d56f80f865ae449fe2ddfb88b/cas/login?service=") || WebView.Source.AbsoluteUri.StartsWith("https://sso.dlut.edu.cn/cas/login?service=") || WebView.Source.AbsoluteUri.StartsWith("http://sso.dlut.edu.cn/cas/login?service=") || WebView.Source.AbsoluteUri.StartsWith("https://webvpn.dlut.edu.cn/https/57787a7876706e323032336b657940246b0b0d56f80f865ae449fe2ddfb88b/cas/login;JSESSIONIDCAS="))
             {
                 if (LoginTried)
                 {
-                    Notify();
+                    if (WebView.CoreWebView2.DocumentTitle.IndexOf("密码重置") == -1)
+                    {
+                        await Notify();
+                    }
+                    else
+                    {
+                        LoginTried = false;
+                    }
                 }
                 else
                 {
                     LoginTried = true;
-                    login();
+                    await login();
                 }
             }
             else
