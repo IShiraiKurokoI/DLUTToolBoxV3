@@ -466,6 +466,15 @@ namespace DLUTToolBoxV3
                         }
                         break;
                     }
+                    case 500:
+                    {
+                        logger.Info("就业网特殊处理");
+                        if (WebView.Source.AbsoluteUri.ToString().IndexOf("/autoLogin") != -1)
+                        {
+                            WebView.CoreWebView2.ExecuteScriptAsync("window.location.href='https://job.dlut.edu.cn/login.html'");
+                        }
+                        break;
+                    }
             }
             count++;
         }

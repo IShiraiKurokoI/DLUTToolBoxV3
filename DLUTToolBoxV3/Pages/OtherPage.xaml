@@ -119,8 +119,8 @@
                 x:Name="Mooc"
                 Click="Mooc_Click"/>
             <localControls:AppButton
-                Title="网上意见箱"
-                Subtitle="向学校领导反映意见"
+                Title="大工就业网"
+                Subtitle="毕业生签约，三方协议处理等等"
                 ImagePath="ms-appx:///Assets/AppIcons/Other/Advice.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"

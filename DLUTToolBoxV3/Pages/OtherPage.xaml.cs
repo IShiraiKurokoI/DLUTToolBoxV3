@@ -54,7 +54,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void YJS_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "研究生系统", "ms-appx:///Assets/AppIcons/Other/YJS.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940242a485056ad52cb00fc19b469c3e8/pyxx/LoginCAS.aspx?a=1&filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "研究生系统", "ms-appx:///Assets/AppIcons/Other/YJS.png", "", "https://webvpn.dlut.edu.cn/https/57787a7876706e323032336b657940247c0d161fef4d9742bf58b43d95aecb24b7/pyxx/LoginCAS.aspx?a=1&filter=app&from=rj", 0));
         }
 
         private void Pay_Click(object sender, RoutedEventArgs e)
@@ -89,7 +89,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void Advice_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "网上意见箱", "ms-appx:///Assets/AppIcons/Other/Advice.png", "", "https://sso.dlut.edu.cn/cas/login?from=rj&service=https%3A%2F%2Fsso.dlut.edu.cn%2Fcas%2Flogin%3Fservice%3Dhttps%253A%252F%252Fehall.dlut.edu.cn%252Ffp%252Fview%253Fm%253Dfp%2523from%253Dhall%2526serveID%253D0d9c4d08-6828-4507-80b8-f989d3a1904c%2526act%253Dfp%252Fserveapply", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "大工就业网", "ms-appx:///Assets/AppIcons/Other/Advice.png", "", "https://sso.dlut.edu.cn/cas/login?service=http%3A%2F%2Fjob.dlut.edu.cn%2FautoLogin", 500));
         }
 
         private void Print_Click(object sender, RoutedEventArgs e)
