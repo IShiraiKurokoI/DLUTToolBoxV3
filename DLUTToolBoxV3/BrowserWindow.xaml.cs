@@ -255,6 +255,8 @@ namespace DLUTToolBoxV3
                 await WebView.CoreWebView2.ExecuteScriptAsync(jscode);
                 jscode = "sub_btn.click()";
                 await WebView.CoreWebView2.ExecuteScriptAsync(jscode);
+                jscode = "btn_sub.click()";
+                await WebView.CoreWebView2.ExecuteScriptAsync(jscode);
                 var builder = new AppNotificationBuilder()
                     .AddText("⚠密码已经过期⚠\n工具箱将尝试自动续期密码");
                 var notificationManager = AppNotificationManager.Default;

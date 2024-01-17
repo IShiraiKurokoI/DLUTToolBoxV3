@@ -80,6 +80,27 @@ namespace DLUTToolBoxV3.Pages
                 WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
                 WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
             }
+
+            if (WebView.CoreWebView2.DocumentTitle.IndexOf("密码重置") != -1)
+            {
+                WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
+                WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
+                WebView.ExecuteScriptAsync("document.getElementsByClassName('layui-layer-btn0')[0].click()");
+                logger.Info("密码已经过期");
+                string jscode = "new_pwd.value='" + ApplicationConfig.GetSettings("Password") + "'";
+                WebView.CoreWebView2.ExecuteScriptAsync(jscode);
+                jscode = "confirm_pwd.value='" + ApplicationConfig.GetSettings("Password") + "'";
+                WebView.CoreWebView2.ExecuteScriptAsync(jscode);
+                jscode = "sub_btn.click()";
+                WebView.CoreWebView2.ExecuteScriptAsync(jscode);
+                jscode = "btn_sub.click()";
+                WebView.CoreWebView2.ExecuteScriptAsync(jscode);
+                var builder = new AppNotificationBuilder()
+                    .AddText("⚠密码已经过期⚠\n工具箱将尝试自动续期密码");
+                var notificationManager = AppNotificationManager.Default;
+                notificationManager.Show(builder.BuildNotification());
+                return;
+            }
             if (WebView.Source.AbsoluteUri.Contains("/cas/login?service="))
             {
                 if (LoginTried)
