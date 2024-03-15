@@ -35,16 +35,20 @@ namespace DLUTToolBoxV3
     public sealed partial class ShellPage : Page
     {
         public static ShellPage Instance { get; private set; }
-        public NavigationManager navigationManager { get; set; }
+        public ShellPageService shellPageService { get; set; }
         public ShellPage()
         {
             this.InitializeComponent();
-            navigationManager = new NavigationManager(navigationView, new NavigationViewOptions
-            {
-                DefaultPage = typeof(GeneralPage)
-            }, shellFrame);
+            shellPageService = new ShellPageService();
+            shellPageService.SetDefaultPage(typeof(GeneralPage));
+            INavigationViewServiceEx navigationViewService;
+            INavigationServiceEx navigationService;
+            navigationService = new NavigationServiceEx(shellPageService);
+            navigationService.Frame = shellFrame;
+            navigationViewService = new NavigationViewServiceEx(navigationService, shellPageService);
+            navigationViewService.Initialize(navigationView);
 
-            if(String.IsNullOrEmpty(ApplicationConfig.GetSettings("Uid")) || String.IsNullOrEmpty(ApplicationConfig.GetSettings("Password")))
+            if (String.IsNullOrEmpty(ApplicationConfig.GetSettings("Uid")) || String.IsNullOrEmpty(ApplicationConfig.GetSettings("Password")))
             {
                 var builder = new AppNotificationBuilder()
                     .AddText("请先在参数配置界面设置学工号和统一认证密码!\n设置完成后⚠重启本程序⚠方可正常使用所有功能！");
@@ -94,7 +98,7 @@ namespace DLUTToolBoxV3
             }
             string item = args.ChosenSuggestion as string;
             navigationView.SelectedItem = navigationView.MenuItems.OfType<NavigationViewItem>().FirstOrDefault((NavigationViewItem menuItem) => (string)menuItem.Content == item);
-            Type pageType = ((NavigationViewItem)navigationView.SelectedItem).GetValue(NavHelper.NavigateToProperty) as Type;
+            Type pageType = ((NavigationViewItem)navigationView.SelectedItem).GetValue(NavigationHelperEx.NavigateToProperty) as Type;
             shellFrame.Navigate(pageType);
         }
     }

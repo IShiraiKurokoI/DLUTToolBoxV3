@@ -9,7 +9,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:WinUICommunity"
-    xmlns:views="using:DLUTToolBoxV3.Pages"
     mc:Ignorable="d"
     Background="Transparent">
     <Grid>
@@ -35,7 +34,7 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="信息总览"
-                    helpers:NavHelper.NavigateTo="views:GeneralPage">
+                    helpers:NavigationHelperEx.NavigateTo="GeneralPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/General.ico"/>
                     </NavigationViewItem.Icon>
@@ -43,7 +42,7 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="网络工具"
-                    helpers:NavHelper.NavigateTo="views:NetworkPage">
+                    helpers:NavigationHelperEx.NavigateTo="NetworkPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Network.png"/>
                     </NavigationViewItem.Icon>
@@ -51,7 +50,7 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="日常缴费"
-                    helpers:NavHelper.NavigateTo="views:ChargePage">
+                    helpers:NavigationHelperEx.NavigateTo="ChargePage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Charge.png"/>
                     </NavigationViewItem.Icon>
@@ -59,7 +58,7 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="考试教务"
-                    helpers:NavHelper.NavigateTo="views:ExamPage">
+                    helpers:NavigationHelperEx.NavigateTo="ExamPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Exam.png"/>
                     </NavigationViewItem.Icon>
@@ -67,7 +66,7 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="学习生活"
-                    helpers:NavHelper.NavigateTo="views:StudyPage">
+                    helpers:NavigationHelperEx.NavigateTo="StudyPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Study.png"/>
                     </NavigationViewItem.Icon>
@@ -75,7 +74,7 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="办事大厅"
-                    helpers:NavHelper.NavigateTo="views:EhallPage">
+                    helpers:NavigationHelperEx.NavigateTo="EhallPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Ehall.ico"/>
                     </NavigationViewItem.Icon>
@@ -83,7 +82,7 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="图书馆"
-                    helpers:NavHelper.NavigateTo="views:LibraryPage">
+                    helpers:NavigationHelperEx.NavigateTo="LibraryPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Library.png"/>
                     </NavigationViewItem.Icon>
@@ -91,7 +90,7 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="其它系统"
-                    helpers:NavHelper.NavigateTo="views:OtherPage">
+                    helpers:NavigationHelperEx.NavigateTo="OtherPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Other.png"/>
                     </NavigationViewItem.Icon>
@@ -99,7 +98,7 @@
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     Content="系统工具"
-                    helpers:NavHelper.NavigateTo="views:SystemPage">
+                    helpers:NavigationHelperEx.NavigateTo="SystemPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/OSSettings.ico"/>
                     </NavigationViewItem.Icon>
@@ -110,14 +109,14 @@
                 <NavigationViewItem 
                     x:Name="Settings"
                     Content="参数配置"
-                    helpers:NavHelper.NavigateTo="views:SettingsPage">
+                    helpers:NavigationHelperEx.NavigateTo="SettingsPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/Settings.ico"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem 
                     Content="关于软件"
-                    helpers:NavHelper.NavigateTo="views:AboutPage">
+                    helpers:NavigationHelperEx.NavigateTo="AboutPage">
                     <NavigationViewItem.Icon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/ShellPage/About.ico"/>
                     </NavigationViewItem.Icon>

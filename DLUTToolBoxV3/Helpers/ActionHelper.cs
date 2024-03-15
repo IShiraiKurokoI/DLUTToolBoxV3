@@ -33,7 +33,7 @@ namespace DLUTToolBoxV3.Helpers
                 try
                 {
                     string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-                    await File.WriteAllBytesAsync(directory + "\\ToolBox.User.Core.exe", File.ReadAllBytes(ApplicationHelper.GetFullPathToExe() + "\\Win64\\UserCore\\ToolBox.User.Core.exe"));
+                    await File.WriteAllBytesAsync(directory + "\\ToolBox.User.Core.exe", File.ReadAllBytes(PathHelper.GetFullPathToExe() + "\\Win64\\UserCore\\ToolBox.User.Core.exe"));
                     logger.Info("UserCore位置：" + directory + "\\ToolBox.User.Core.exe");
                     logger.Info("尝试向UserCore发送信息:" + msg);
                     Process P = new Process();
@@ -70,7 +70,7 @@ namespace DLUTToolBoxV3.Helpers
                 try
                 {
                     string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-                    await File.WriteAllBytesAsync(directory + "\\ToolBox.System.Core.exe", File.ReadAllBytes(ApplicationHelper.GetFullPathToExe() + "\\Win64\\SystemCore\\ToolBox.System.Core.exe"));
+                    await File.WriteAllBytesAsync(directory + "\\ToolBox.System.Core.exe", File.ReadAllBytes(PathHelper.GetFullPathToExe() + "\\Win64\\SystemCore\\ToolBox.System.Core.exe"));
                     logger.Info("SystemCore位置：" + directory + "\\ToolBox.System.Core.exe");
                     logger.Info("尝试向SystemCore发送信息:" + msg);
                     Process P = new Process();
@@ -100,7 +100,7 @@ namespace DLUTToolBoxV3.Helpers
                 try
                 {
                     string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-                    DirectoryCopy(ApplicationHelper.GetFullPathToExe() + "\\Win64\\VisualCore", directory + "\\VisualCore", true);
+                    DirectoryCopy(PathHelper.GetFullPathToExe() + "\\Win64\\VisualCore", directory + "\\VisualCore", true);
                     logger.Info("VisualCore：" + directory + "\\VisualCore\\ToolBox.Visual.Core.exe");
                     logger.Info("VisualCore:" + msg);
                     Process P = new Process();
@@ -132,7 +132,7 @@ namespace DLUTToolBoxV3.Helpers
                 try
                 {
                     string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-                    await File.WriteAllBytesAsync(directory + "\\SpaceSniffer.exe", File.ReadAllBytes(ApplicationHelper.GetFullPathToExe() + "\\Win64\\ThirdParty\\SpaceSniffer\\SpaceSniffer.exe"));
+                    await File.WriteAllBytesAsync(directory + "\\SpaceSniffer.exe", File.ReadAllBytes(PathHelper.GetFullPathToExe() + "\\Win64\\ThirdParty\\SpaceSniffer\\SpaceSniffer.exe"));
                     logger.Info("SpaceSniffer位置：" + directory + "\\SpaceSniffer.exe");
                     Process P = new Process();
                     P.StartInfo.UseShellExecute = true;
@@ -157,7 +157,7 @@ namespace DLUTToolBoxV3.Helpers
                 try
                 {
                     string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-                    await File.WriteAllBytesAsync(directory + "\\SysAutoFix.exe", File.ReadAllBytes(ApplicationHelper.GetFullPathToExe() + "\\Win64\\SysAutoFix.exe"));
+                    await File.WriteAllBytesAsync(directory + "\\SysAutoFix.exe", File.ReadAllBytes(PathHelper.GetFullPathToExe() + "\\Win64\\SysAutoFix.exe"));
                     logger.Info("SysAutoFix位置：" + directory + "\\SysAutoFix.exe");
                     Process P = new Process();
                     P.StartInfo.UseShellExecute = true;
@@ -180,7 +180,7 @@ namespace DLUTToolBoxV3.Helpers
             await Task.Run(async () =>
             {
                 string directory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-                DirectoryCopy(ApplicationHelper.GetFullPathToExe() + "\\Win64\\ThirdParty\\CCleaner", directory + "\\CCleaner", true);
+                DirectoryCopy(PathHelper.GetFullPathToExe() + "\\Win64\\ThirdParty\\CCleaner", directory + "\\CCleaner", true);
                 try
                 {
                     Process P = new Process();
@@ -208,15 +208,15 @@ namespace DLUTToolBoxV3.Helpers
                 {
                     if (!File.Exists(directory + "\\EDALoginModule\\EDALoginModule.exe"))
                     {
-                        DirectoryCopy(ApplicationHelper.GetFullPathToExe() + "\\Win64\\EDALoginModule", directory + "\\EDALoginModule", true);
+                        DirectoryCopy(PathHelper.GetFullPathToExe() + "\\Win64\\EDALoginModule", directory + "\\EDALoginModule", true);
                     }
                     else
                     {
                         var ExistingModule = File.ReadAllBytes(directory + "\\EDALoginModule\\EDALoginModule.exe");
-                        var PackageModule = File.ReadAllBytes(ApplicationHelper.GetFullPathToExe() + "\\Win64\\EDALoginModule\\EDALoginModule.exe");
+                        var PackageModule = File.ReadAllBytes(PathHelper.GetFullPathToExe() + "\\Win64\\EDALoginModule\\EDALoginModule.exe");
                         if (ExistingModule != PackageModule)
                         {
-                            DirectoryCopy(ApplicationHelper.GetFullPathToExe() + "\\Win64\\EDALoginModule", directory + "\\EDALoginModule", true);
+                            DirectoryCopy(PathHelper.GetFullPathToExe() + "\\Win64\\EDALoginModule", directory + "\\EDALoginModule", true);
                         }
                     }
                     FileStream fs = new FileStream(directory + "\\EDALoginModule\\Account.config", FileMode.OpenOrCreate, FileAccess.ReadWrite);
