@@ -35,6 +35,7 @@ using WinUICommunity;
 using Windows.UI;
 using System.Drawing;
 using Path = System.IO.Path;
+using Microsoft.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -56,7 +57,7 @@ namespace DLUTToolBoxV3
         }
 
         public NLog.Logger logger;
-        public static ThemeManager themeManager { get; private set; }
+        public static IThemeService themeService { get; private set; }
         /// <summary>
         /// Invoked when the application is launched.
         /// </summary>
@@ -103,15 +104,24 @@ namespace DLUTToolBoxV3
             }
 
             m_window = new MainWindow();
-            themeManager = ThemeManager.Initialize(m_window, new ThemeOptions
+
+            themeService = new ThemeService();
+            themeService.Initialize(m_window);
+            themeService.ConfigBackdrop(BackdropType.DesktopAcrylic);
+            themeService.ConfigElementTheme(SettingsTheme);
+            themeService.ConfigTitleBar(new TitleBarCustomization
             {
-                BackdropType = BackdropType.DesktopAcrylic,
-                ElementTheme = SettingsTheme,
-                TitleBarCustomization = new TitleBarCustomization
+                TitleBarWindowType = TitleBarWindowType.AppWindow,
+                LightTitleBarButtons = new TitleBarButtons
                 {
-                    TitleBarType = TitleBarType.AppWindow
+                    ButtonBackgroundColor = Colors.Transparent
+                },
+                DarkTitleBarButtons = new TitleBarButtons
+                {
+                    ButtonBackgroundColor = Colors.Transparent
                 }
             });
+
             if (ApplicationConfig.GetSettings("AutoLogin") == null)
             {
                 ApplicationConfig.SaveSettings("AutoLogin", "None");

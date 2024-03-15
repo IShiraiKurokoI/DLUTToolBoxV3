@@ -23,7 +23,6 @@ using Microsoft.Windows.AppNotifications.Builder;
 using Microsoft.Windows.AppNotifications;
 using WinUICommunity;
 using Microsoft.UI.Xaml.Media.Animation;
-using WinUICommunity;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.

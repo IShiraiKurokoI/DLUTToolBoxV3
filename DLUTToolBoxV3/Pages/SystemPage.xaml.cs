@@ -25,6 +25,7 @@ using NLog;
 using DLUTToolBoxV3.Configurations;
 using WinUICommunity;
 using DLUTToolBoxV3.Entities;
+using Microsoft.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -478,7 +479,7 @@ namespace DLUTToolBoxV3.Pages
             logger.Info("´ò¿ªCCleaner");
             ActionHelper.LaunchCCleaner();
         }
-        public static ThemeManager themeManager { get; private set; }
+        public static IThemeService themeService { get; private set; }
 
         private void FileExplorerCustomization_Click(object sender, RoutedEventArgs e)
         {
@@ -502,21 +503,23 @@ namespace DLUTToolBoxV3.Pages
             ExplorerCustomizationWindow explorerCustomizationWindow = new ExplorerCustomizationWindow();
             try
             {
-                themeManager = ThemeManager.GetCurrent()
-                                            .UseWindow(explorerCustomizationWindow)
-                                            .UseThemeOptions(new ThemeOptions
-                                            {
-                                                BackdropType = BackdropType.DesktopAcrylic,
-                                                ElementTheme = SettingsTheme,
-                                                ForceBackdrop = true,
-                                                ForceElementTheme = true,
-                                                UseBuiltInSettings = true,
-                                                TitleBarCustomization = new TitleBarCustomization
-                                                {
-                                                    TitleBarType = TitleBarType.AppWindow
-                                                }
-                                            })
-                                            .Build();
+
+                themeService = new ThemeService();
+                themeService.Initialize(explorerCustomizationWindow);
+                themeService.ConfigBackdrop(BackdropType.DesktopAcrylic);
+                themeService.ConfigElementTheme(SettingsTheme);
+                themeService.ConfigTitleBar(new TitleBarCustomization
+                {
+                    TitleBarWindowType = TitleBarWindowType.AppWindow,
+                    LightTitleBarButtons = new TitleBarButtons
+                    {
+                        ButtonBackgroundColor = Colors.Transparent
+                    },
+                    DarkTitleBarButtons = new TitleBarButtons
+                    {
+                        ButtonBackgroundColor = Colors.Transparent
+                    }
+                });
             }
             catch (Exception)
             {

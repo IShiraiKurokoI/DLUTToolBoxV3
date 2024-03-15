@@ -1,5 +1,6 @@
 ﻿using DLUTToolBoxV3.Configurations;
 using DLUTToolBoxV3.Entities;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using NLog;
 using System;
@@ -14,7 +15,7 @@ namespace DLUTToolBoxV3.Helpers
     public static class WebHelper
     {
         public static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        public static ThemeManager themeManager { get; private set; }
+        public static IThemeService themeService { get; private set; }
         public static void AddOrCreateNewPage(AppDataItem appDataItem)
         {
             ElementTheme SettingsTheme = ElementTheme.Default;
@@ -37,21 +38,22 @@ namespace DLUTToolBoxV3.Helpers
             BrowserWindow browserWindow = new BrowserWindow(appDataItem);
             try
             {
-                themeManager = ThemeManager.GetCurrent()
-                                            .UseWindow(browserWindow)
-                                            .UseThemeOptions(new ThemeOptions
-                                            {
-                                                BackdropType = BackdropType.DesktopAcrylic,
-                                                ElementTheme = SettingsTheme,
-                                                ForceBackdrop = true,
-                                                ForceElementTheme = true,
-                                                UseBuiltInSettings = true,
-                                                TitleBarCustomization = new TitleBarCustomization
-                                                {
-                                                    TitleBarType = TitleBarType.AppWindow
-                                                }
-                                            })
-                                            .Build();
+                themeService = new ThemeService();
+                themeService.Initialize(browserWindow);
+                themeService.ConfigBackdrop(BackdropType.DesktopAcrylic);
+                themeService.ConfigElementTheme(SettingsTheme);
+                themeService.ConfigTitleBar(new TitleBarCustomization
+                {
+                    TitleBarWindowType = TitleBarWindowType.AppWindow,
+                    LightTitleBarButtons = new TitleBarButtons
+                    {
+                        ButtonBackgroundColor = Colors.Transparent
+                    },
+                    DarkTitleBarButtons = new TitleBarButtons
+                    {
+                        ButtonBackgroundColor = Colors.Transparent
+                    }
+                });
             }
             catch (Exception)
             {
