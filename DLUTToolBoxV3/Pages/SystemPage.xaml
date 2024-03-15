@@ -14,7 +14,7 @@
     Loaded="Page_Loaded">
     <ScrollViewer>
         <StackPanel x:Name="SourceElement" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="24,16,24,24">
-            <controls:SettingsGroup Header="系统功能" Margin="4,-24,4,4">
+            <controls:SimpleSettingsGroup  Header="系统功能" Margin="4,-24,4,4">
                 <controls:SettingsCard
                     Header="系统预留空间">
                     <controls:SettingsCard.HeaderIcon>
@@ -120,8 +120,8 @@
                               Glyph="&#xE8A7;" />
                     </controls:SettingsCard.ActionIcon>
                 </controls:SettingsCard>
-            </controls:SettingsGroup>
-            <controls:SettingsGroup Header="磁盘管理" Margin="4,-24,4,4">
+            </controls:SimpleSettingsGroup >
+            <controls:SimpleSettingsGroup  Header="磁盘管理" Margin="4,-24,4,4">
                 <controls:SettingsCard
                     Header="清理C盘QQ文件">
                     <controls:SettingsCard.HeaderIcon>
@@ -189,8 +189,8 @@
                               Glyph="&#xE8A7;" />
                     </controls:SettingsCard.ActionIcon>
                 </controls:SettingsCard>
-            </controls:SettingsGroup>
-            <controls:SettingsGroup Header="系统个性化" Margin="4,-24,4,4">
+            </controls:SimpleSettingsGroup >
+            <controls:SimpleSettingsGroup  Header="系统个性化" Margin="4,-24,4,4">
                 <controls:SettingsCard ActionIconToolTip="打开文件夹背景自定义"
                                Description="文件夹资源管理器背景自定义"
                                Header="文件夹背景"
@@ -205,7 +205,7 @@
                               Glyph="&#xE8A7;" />
                     </controls:SettingsCard.ActionIcon>
                 </controls:SettingsCard>
-            </controls:SettingsGroup>
+            </controls:SimpleSettingsGroup >
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -19,7 +19,7 @@
 
     <ScrollViewer>
         <StackPanel x:Name="SourceElement" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="SourceElement_Loaded" Margin="24,16,24,24">
-            <controls:SettingsGroup Header="统一认证信息" Margin="4,-24,4,4">
+            <controls:SimpleSettingsGroup  Header="统一认证信息" Margin="4,-24,4,4">
                 <controls:SettingsCard
                     Header="学工号">
                     <controls:SettingsCard.HeaderIcon>
@@ -34,8 +34,8 @@
                     </controls:SettingsCard.HeaderIcon>
                     <PasswordBox x:Name="Password" Width="300" PasswordChanged="Password_PasswordChanged" IsPasswordRevealButtonEnabled="True" PasswordRevealMode="Peek"/>
                 </controls:SettingsCard>
-            </controls:SettingsGroup>
-            <controls:SettingsGroup Header="校园邮箱信息（选填）" Margin="4,-24,4,4">
+            </controls:SimpleSettingsGroup >
+            <controls:SimpleSettingsGroup  Header="校园邮箱信息（选填）" Margin="4,-24,4,4">
                 <controls:SettingsCard
                     Header="邮箱名">
                     <controls:SettingsCard.HeaderIcon>
@@ -50,8 +50,8 @@
                     </controls:SettingsCard.HeaderIcon>
                     <PasswordBox x:Name="MailPassword" Width="300" IsPasswordRevealButtonEnabled="True" PasswordRevealMode="Peek" PasswordChanged="MailPassword_PasswordChanged"/>
                 </controls:SettingsCard>
-            </controls:SettingsGroup>
-            <controls:SettingsGroup Header="程序主题" Margin="4,-24,4,4">
+            </controls:SimpleSettingsGroup >
+            <controls:SimpleSettingsGroup  Header="程序主题" Margin="4,-24,4,4">
                 <controls:SettingsCard
                 Header="全局主题模式">
                     <controls:SettingsCard.HeaderIcon>
@@ -66,8 +66,8 @@
                         <HyperlinkButton Content="点此打开系统主题设置" Click="HyperlinkButton_Click" Visibility="{x:Bind Default.IsSelected,Mode=OneWay, Converter={StaticResource VisibilityBoolenConverter}}"/>
                     </controls:SettingsCard.Description>
                 </controls:SettingsCard>
-            </controls:SettingsGroup>
-            <controls:SettingsGroup Header="杂项" Margin="4,-24,4,4">
+            </controls:SimpleSettingsGroup >
+            <controls:SimpleSettingsGroup  Header="杂项" Margin="4,-24,4,4">
                 <controls:SettingsCard
                     Header="开发区校区校园网自动登录">
                     <controls:SettingsCard.HeaderIcon>
@@ -117,7 +117,7 @@
                                 Width="100"
                                 Click="Update_Click"/>
                 </controls:SettingsCard>
-            </controls:SettingsGroup>
+            </controls:SimpleSettingsGroup >
         </StackPanel>
     </ScrollViewer>
 </Page>
