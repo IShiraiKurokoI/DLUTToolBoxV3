@@ -125,7 +125,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void NetworkMonitor_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "校园网状态", "ms-appx:///Assets/AppIcons/Network/NetworkMonitor.png", "", ApplicationHelper.GetFullPathToExe() + @"\Assets\Web\Monitor.html", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "校园网状态", "ms-appx:///Assets/AppIcons/Network/NetworkMonitor.png", "", PathHelper.GetFullPathToExe() + @"\Assets\Web\Monitor.html", 0));
         }
 
         private void SelfService_Click(object sender, RoutedEventArgs e)

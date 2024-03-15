@@ -37,7 +37,7 @@ namespace DLUTToolBoxV3.UserControls
         private async void SelectImageButton_Click(object sender, RoutedEventArgs e)
         {
             var picker = new FileOpenPicker();
-            var hwnd = WindowHelper.GetWindowHandleForCurrentWindow(this);
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
             picker.ViewMode = PickerViewMode.Thumbnail;
             picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;

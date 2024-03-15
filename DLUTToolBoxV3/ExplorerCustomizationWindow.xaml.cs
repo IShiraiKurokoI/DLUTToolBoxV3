@@ -50,7 +50,7 @@ namespace DLUTToolBoxV3
         {
             logger = NLog.LogManager.GetCurrentClassLogger();
             this.InitializeComponent();
-            int dpi = GetDpiForWindow(WindowHelper.GetWindowHandleForCurrentWindow(this));
+            int dpi = GetDpiForWindow(WinRT.Interop.WindowNative.GetWindowHandle(this));
             m_AppWindow = this.AppWindow;
             m_AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
             m_AppWindow.Resize(new SizeInt32((int)(1570 * (double)((double)dpi / (double)120)), (int)(900 * (double)((double)dpi / (double)120))));
@@ -65,7 +65,7 @@ namespace DLUTToolBoxV3
         private async void Grid_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             FileOpenPicker picker = new FileOpenPicker();
-            var hwnd = WindowHelper.GetWindowHandleForCurrentWindow(this);
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
             picker.FileTypeFilter.Clear();
             picker.FileTypeFilter.Add(".png");
@@ -85,7 +85,7 @@ namespace DLUTToolBoxV3
         private async void Grid_PointerPressed_1(object sender, PointerRoutedEventArgs e)
         {
             FileOpenPicker picker = new FileOpenPicker();
-            var hwnd = WindowHelper.GetWindowHandleForCurrentWindow(this);
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
             picker.FileTypeFilter.Clear();
             picker.FileTypeFilter.Add(".png");
@@ -104,7 +104,7 @@ namespace DLUTToolBoxV3
         private async void Grid_PointerPressed_2(object sender, PointerRoutedEventArgs e)
         {
             FileOpenPicker picker = new FileOpenPicker();
-            var hwnd = WindowHelper.GetWindowHandleForCurrentWindow(this);
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
             picker.FileTypeFilter.Clear();
             picker.FileTypeFilter.Add(".png");
@@ -124,7 +124,7 @@ namespace DLUTToolBoxV3
         {
 
             FileOpenPicker picker = new FileOpenPicker();
-            var hwnd = WindowHelper.GetWindowHandleForCurrentWindow(this);
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
             picker.FileTypeFilter.Clear();
             picker.FileTypeFilter.Add(".png");
@@ -143,7 +143,7 @@ namespace DLUTToolBoxV3
         private async void Grid_PointerPressed_4(object sender, PointerRoutedEventArgs e)
         {
             FileOpenPicker picker = new FileOpenPicker();
-            var hwnd = WindowHelper.GetWindowHandleForCurrentWindow(this);
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
             picker.FileTypeFilter.Clear();
             picker.FileTypeFilter.Add(".png");
@@ -162,7 +162,7 @@ namespace DLUTToolBoxV3
         private async void Grid_PointerPressed_5(object sender, PointerRoutedEventArgs e)
         {
             FileOpenPicker picker = new FileOpenPicker();
-            var hwnd = WindowHelper.GetWindowHandleForCurrentWindow(this);
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
             picker.FileTypeFilter.Clear();
             picker.FileTypeFilter.Add(".png");

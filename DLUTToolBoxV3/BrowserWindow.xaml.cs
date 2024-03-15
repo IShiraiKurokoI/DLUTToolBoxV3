@@ -68,7 +68,7 @@ namespace DLUTToolBoxV3
                 WebView.CoreWebView2.Stop();
                 WebView.Close();
             };
-            int dpi = GetDpiForWindow(WindowHelper.GetWindowHandleForCurrentWindow(this));
+            int dpi = GetDpiForWindow(WinRT.Interop.WindowNative.GetWindowHandle(this));
             m_AppWindow = this.AppWindow;
             m_AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
             m_AppWindow.SetIcon("Assets/logo.ico");
