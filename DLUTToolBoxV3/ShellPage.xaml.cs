@@ -47,6 +47,8 @@ namespace DLUTToolBoxV3
             navigationService.Frame = shellFrame;
             navigationViewService = new NavigationViewServiceEx(navigationService, shellPageService);
             navigationViewService.Initialize(navigationView);
+            navigationViewService.ConfigAutoSuggestBox(autoSuggestBox);
+
 
             if (String.IsNullOrEmpty(ApplicationConfig.GetSettings("Uid")) || String.IsNullOrEmpty(ApplicationConfig.GetSettings("Password")))
             {
@@ -56,50 +58,6 @@ namespace DLUTToolBoxV3
                 notificationManager.Show(builder.BuildNotification());
                 shellFrame.Navigate(typeof(SettingsPage));
             }
-        }
-
-        private void autoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
-        {
-            List<string> list3 = new List<string>();
-            List<NavigationViewItem> source = navigationView.MenuItems.OfType<NavigationViewItem>().ToList();
-            string[] querySplit = autoSuggestBox.Text.Split(' ');
-            foreach (NavigationViewItem item4 in source.Where(delegate (NavigationViewItem item)
-            {
-                bool result = true;
-                string[] array = querySplit;
-                foreach (string value in array)
-                {
-                    if (item.Content.ToString()!.IndexOf(value, StringComparison.CurrentCultureIgnoreCase) < 0)
-                    {
-                        result = false;
-                    }
-                }
-
-                return result;
-            }))
-            {
-                list3.Add(item4.Content.ToString());
-            }
-
-            if (list3.Count > 0)
-            {
-                autoSuggestBox.ItemsSource = list3;
-                return;
-            }
-
-            autoSuggestBox.ItemsSource = new string[1] { "没有匹配的结果" };
-        }
-
-        private void autoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
-        {
-            if (args.ChosenSuggestion == null)
-            {
-                return;
-            }
-            string item = args.ChosenSuggestion as string;
-            navigationView.SelectedItem = navigationView.MenuItems.OfType<NavigationViewItem>().FirstOrDefault((NavigationViewItem menuItem) => (string)menuItem.Content == item);
-            Type pageType = ((NavigationViewItem)navigationView.SelectedItem).GetValue(NavigationHelperEx.NavigateToProperty) as Type;
-            shellFrame.Navigate(pageType);
         }
     }
 }
