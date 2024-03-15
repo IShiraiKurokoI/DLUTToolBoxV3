@@ -47,7 +47,7 @@ namespace DLUTToolBoxV3
             navigationService.Frame = shellFrame;
             navigationViewService = new NavigationViewServiceEx(navigationService, shellPageService);
             navigationViewService.Initialize(navigationView);
-            navigationViewService.ConfigAutoSuggestBox(autoSuggestBox);
+            navigationViewService.ConfigAutoSuggestBox(autoSuggestBox,"找不到匹配的结果😥");
 
 
             if (String.IsNullOrEmpty(ApplicationConfig.GetSettings("Uid")) || String.IsNullOrEmpty(ApplicationConfig.GetSettings("Password")))
