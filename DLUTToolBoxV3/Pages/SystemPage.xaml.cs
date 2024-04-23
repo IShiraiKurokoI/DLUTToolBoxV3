@@ -506,7 +506,7 @@ namespace DLUTToolBoxV3.Pages
 
                 themeService = new ThemeService();
                 themeService.Initialize(explorerCustomizationWindow);
-                themeService.ConfigBackdrop(BackdropType.DesktopAcrylic);
+                themeService.ConfigBackdrop(BackdropType.AcrylicThin);
                 themeService.ConfigElementTheme(SettingsTheme);
                 themeService.ConfigTitleBar(new TitleBarCustomization
                 {

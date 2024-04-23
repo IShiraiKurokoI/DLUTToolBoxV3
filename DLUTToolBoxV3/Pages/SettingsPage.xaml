@@ -66,6 +66,26 @@
                         <HyperlinkButton Content="点此打开系统主题设置" Click="HyperlinkButton_Click" Visibility="{x:Bind Default.IsSelected,Mode=OneWay, Converter={StaticResource VisibilityBoolenConverter}}"/>
                     </controls:SettingsCard.Description>
                 </controls:SettingsCard>
+                <controls:SettingsCard 
+                                  Description="更改应用背景"
+                                  Header="材质"
+                                  HeaderIcon="{controls:FontIcon Glyph='&#xf15f;'}">
+                    <ComboBox x:Name="Backdrop"
+                          SelectionChanged="Backdrop_SelectionChanged">
+                        <ComboBoxItem Content="无"
+                                  Tag="None" />
+                        <ComboBoxItem Content="云母"
+                                  Tag="Mica" />
+                        <ComboBoxItem Content="云母Alt"
+                                  Tag="MicaAlt" />
+                        <ComboBoxItem Content="桌面亚克力"
+                                  Tag="DesktopAcrylic" />
+                        <ComboBoxItem Content="基础亚克力"
+                                  Tag="AcrylicBase" />
+                        <ComboBoxItem Content="薄亚克力"
+                                  Tag="AcrylicThin" />
+                    </ComboBox>
+                </controls:SettingsCard>
             </controls:SimpleSettingsGroup >
             <controls:SimpleSettingsGroup  Header="杂项" Margin="4,-24,4,4">
                 <controls:SettingsCard

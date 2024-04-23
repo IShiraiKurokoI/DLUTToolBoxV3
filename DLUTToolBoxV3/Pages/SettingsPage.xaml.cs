@@ -62,6 +62,7 @@ namespace DLUTToolBoxV3.Pages
             Password.Password = ApplicationConfig.GetSettings("Password");
             MailAddress.Text = ApplicationConfig.GetSettings("MailAddress");
             MailPassword.Password = ApplicationConfig.GetSettings("MailPassword");
+            App.themeService.SetBackdropComboBoxDefaultItem(Backdrop);
             if (ApplicationConfig.GetSettings("AutoLogin") != "None")
             {
                 AutoLoginSwitch.IsOn= true;
@@ -74,6 +75,20 @@ namespace DLUTToolBoxV3.Pages
             ApplicationConfig.SaveSettings("Theme", ((ComboBoxItem)ThemePanel.SelectedItem).Tag.ToString());
             App.themeService.OnThemeComboBoxSelectionChanged(sender);
         }
+
+        private void Backdrop_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.themeService.OnBackdropComboBoxSelectionChanged(sender);
+            if (WebHelper.themeService != null)
+            {
+                WebHelper.themeService.OnBackdropComboBoxSelectionChanged(sender);
+            }
+            if (SystemPage.themeService != null)
+            {
+                SystemPage.themeService.OnBackdropComboBoxSelectionChanged(sender);
+            }
+        }
+
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
             Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings:colors"));

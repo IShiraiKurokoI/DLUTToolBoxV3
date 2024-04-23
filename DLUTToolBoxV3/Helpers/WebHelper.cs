@@ -40,7 +40,7 @@ namespace DLUTToolBoxV3.Helpers
             {
                 themeService = new ThemeService();
                 themeService.Initialize(browserWindow);
-                themeService.ConfigBackdrop(BackdropType.DesktopAcrylic);
+                themeService.ConfigBackdrop(BackdropType.AcrylicThin);
                 themeService.ConfigElementTheme(SettingsTheme);
                 themeService.ConfigTitleBar(new TitleBarCustomization
                 {
