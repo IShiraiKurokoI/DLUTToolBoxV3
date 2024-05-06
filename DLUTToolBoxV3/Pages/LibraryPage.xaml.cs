@@ -63,12 +63,21 @@ namespace DLUTToolBoxV3.Pages
 
         private void LibraryPreEducation_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "图书馆入馆培训", "ms-appx:///Assets/AppIcons/Library/LibraryPreEducation.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940247f0d0b1cb20f9a4ce448f62d85f5802345904e3a/site/login.html?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "图书馆入馆培训", "ms-appx:///Assets/AppIcons/Library/LibraryPreEducation.png", "", "https://webvpn.dlut.edu.cn/https/57787a7876706e323032336b657940246c0a0311f24d9f47a802fe3484afcb22ec20bb291d/?filter=app&from=rj", 0));
         }
 
         private void BookLent_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "图书借阅", "ms-appx:///Assets/AppIcons/Library/BookLent.png", "", "https://api.m.dlut.edu.cn/login?client_id=9qXqHnRQuhhViycC&redirect_uri=https%3a%2f%2flightapp.m.dlut.edu.cn%2fcheck%2flibrary&response_type=code&scope=base_api&state=dlut", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "图书借阅", "ms-appx:///Assets/AppIcons/Library/BookLent.png", "", "https://sso.dlut.edu.cn/cas/login?service=https%3A%2F%2Fopac.lib.dlut.edu.cn%3A443%2Fmeta-local%2Fopac%2Fcas%2Frosetta&from=rj", 0));
+        }
+
+        private void resource_Click(object sender, RoutedEventArgs e)
+        {
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "资源预约", "ms-appx:///Assets/AppIcons/Library/Res.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940247f1f1801b2079f5bbe02ff3c84f58629/InteAuth/Account/IntegratedAuth", 0));
+        }
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "毕业生档案服务", "ms-appx:///Assets/AppIcons/Library/Profile.png", "", "https://webvpn.dlut.edu.cn/https/57787a7876706e323032336b657940247c190856f80f865ae449fe2ddfb88b/jsp/archivesweb/custom/dlut/sso/index.jsp?filter=app", 0));
         }
     }
 }

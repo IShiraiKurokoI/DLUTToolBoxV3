@@ -84,7 +84,7 @@ namespace DLUTToolBoxV3.Pages
 
         private void Mooc_Click(object sender, RoutedEventArgs e)
         {
-            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "大工慕课", "ms-appx:///Assets/AppIcons/Other/Mooc.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b6579402471150d17ff4d9742bf58b43d95aecb249a/sso/dlut?filter=app&from=rj", 0));
+            WebHelper.AddOrCreateNewPage(new AppDataItem("1", "后勤报修系统", "ms-appx:///Assets/AppIcons/Other/Repair.png", "", "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940247a001a0cb2079f5bbe02ff3c84f58629/repairphone/sso/login?from=rj&filter=app", -1));
         }
 
         private void Advice_Click(object sender, RoutedEventArgs e)

@@ -78,7 +78,7 @@
                 Click="LibraryPreEducation_Click"/>
             <localControls:AppButton
                 Title="图书借阅"
-                Subtitle="i大工的图书借阅功能（可用性存疑）"
+                Subtitle="图书馆在线图书借阅功能"
                 ImagePath="ms-appx:///Assets/AppIcons/Library/BookLent.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
@@ -86,6 +86,28 @@
                 ButtonWidth="240"
                 x:Name="BookLent"
                 Click="BookLent_Click"/>
+            <localControls:AppButton
+                Title="资源预约"
+                Subtitle="供师生预约使用会议室、多功能厅等各类公共资源"
+                ImagePath="ms-appx:///Assets/AppIcons/Library/Res.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="resource"
+                Click="resource_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <localControls:AppButton
+                Title="毕业生档案服务"
+                Subtitle="档案馆毕业生档案服务"
+                ImagePath="ms-appx:///Assets/AppIcons/Library/Profile.png"
+                HorizontalAlignment="Left"
+                Margin="16,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="Profile"
+                Click="Profile_Click"/>
         </StackPanel>
     </StackPanel>
 </Page>

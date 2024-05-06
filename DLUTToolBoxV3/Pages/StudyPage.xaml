@@ -97,5 +97,47 @@
                 x:Name="LeaveSchool"
                 Click="LeaveSchool_Click"/>
         </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <localControls:AppButton
+                Title="体育场馆预订"
+                Subtitle="提供在线购买体育馆票、卡、场地等功能，在线查看自己已购买的订单等信息。"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/tycg.png"
+                HorizontalAlignment="Left"
+                Margin="16,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="tycg"
+                Click="tycg_Click"/>
+            <localControls:AppButton
+                Title="开发区体育场馆预约"
+                Subtitle="提供开发区校区运动场馆场地的线上预约、次卡的购买等功能。"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/kfqtycg.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="kfqtycg"
+                Click="kfqtycg_Click"/>
+            <localControls:AppButton
+                Title="活动报名"
+                Subtitle="校内举办的各类活动将在此应用发布，校内师生可以通过此应用报名或者领票。"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/event.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="_event"
+                Click="event_Click"/>
+            <localControls:AppButton
+                Title="失物招领"
+                Subtitle="失物招领平台"
+                ImagePath="ms-appx:///Assets/AppIcons/Study/lost.png"
+                HorizontalAlignment="Left"
+                Margin="8,16,8,0"
+                Width="240"
+                ButtonWidth="240"
+                x:Name="lost"
+                Click="lost_Click"/>
+        </StackPanel>
     </StackPanel>
 </Page>

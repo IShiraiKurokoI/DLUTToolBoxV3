@@ -109,9 +109,9 @@
                 x:Name="DUTer"
                 Click="DUTer_Click"/>
             <localControls:AppButton
-                Title="大工慕课"
-                Subtitle="没见过用过"
-                ImagePath="ms-appx:///Assets/AppIcons/Other/Mooc.png"
+                Title="后勤报修系统"
+                Subtitle="为师生校内报修提供线上平台，提升校园维修效率。"
+                ImagePath="ms-appx:///Assets/AppIcons/Other/Repair.png"
                 HorizontalAlignment="Left"
                 Margin="8,16,8,0"
                 Width="240"
