@@ -101,7 +101,7 @@ namespace DLUTToolBoxV3.Pages
                 notificationManager.Show(builder.BuildNotification());
                 return;
             }
-            if (WebView.Source.AbsoluteUri.Contains("/cas/login?service="))
+            if (WebView.Source.AbsoluteUri.Contains("/cas/login?"))
             {
                 if (LoginTried)
                 {
