@@ -2,42 +2,21 @@
 // Licensed under the MIT License.
 
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using Windows.Graphics;
-using WinUICommunity;
 using Microsoft.UI.Windowing;
 using DLUTToolBoxV3.Entities;
-using System.Diagnostics;
 using DLUTToolBoxV3.Helpers;
 using DLUTToolBoxV3.Configurations;
-using DLUTToolBoxV3.Pages;
-using NLog;
 using Windows.ApplicationModel.DataTransfer;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Windows.AppNotifications.Builder;
 using Microsoft.Windows.AppNotifications;
 using System.Threading.Tasks;
-using Castle.Core.Internal;
-using System.Text.RegularExpressions;
-using System.Runtime.ConstrainedExecution;
 using QRCoder;
-using static QRCoder.PayloadGenerator;
 using DLUTToolBoxV3.Dialogs;
-using System.Runtime.Intrinsics.Arm;
 using System.Runtime.InteropServices;
-using System.Drawing.Drawing2D;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.

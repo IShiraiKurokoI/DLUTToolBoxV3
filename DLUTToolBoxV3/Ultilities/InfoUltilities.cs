@@ -2,20 +2,13 @@
 using Newtonsoft.Json;
 using System;
 using DLUTToolBoxV3.Helpers;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Controls;
 using System.IO;
 using DLUTToolBoxV3.Configurations;
-using Castle.Core.Internal;
 using Microsoft.Windows.AppNotifications.Builder;
 using Microsoft.Windows.AppNotifications;
-using System.Diagnostics;
 using System.Net;
-using Windows.UI.WebUI;
 
 namespace DLUTToolBoxV3.Ultilities
 {

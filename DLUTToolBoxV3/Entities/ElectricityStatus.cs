@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DLUTToolBoxV3.Entities
+﻿namespace DLUTToolBoxV3.Entities
 {
     public class ElectricityStatus
     {

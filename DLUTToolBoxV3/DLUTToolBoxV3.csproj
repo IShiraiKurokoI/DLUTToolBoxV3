@@ -2,6 +2,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <WindowsSdkPackageVersion>10.0.19041.38</WindowsSdkPackageVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>DLUTToolBoxV3</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -132,18 +133,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.60" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240404000" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.67" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="NLog" Version="5.2.8" />
-    <PackageReference Include="NLog.Schema" Version="5.2.8" />
-    <PackageReference Include="QRCoder" Version="1.4.3" />
-    <PackageReference Include="WinUICommunity.Components" Version="6.7.0" />
-    <PackageReference Include="WinUICommunity.ContextMenuExtensions" Version="6.7.0" />
-    <PackageReference Include="WinUICommunity.Core" Version="6.7.0" />
-    <PackageReference Include="WinUICommunity.LandingPages" Version="6.7.0" />
-    <PackageReference Include="WinUICommunity.Win2D" Version="6.7.0" />
+    <PackageReference Include="NLog" Version="5.3.4" />
+    <PackageReference Include="NLog.Schema" Version="5.3.4" />
+    <PackageReference Include="QRCoder" Version="1.6.0" />
+    <PackageReference Include="WinUICommunity.Components" Version="6.9.0" />
+    <PackageReference Include="WinUICommunity.ContextMenuExtensions" Version="6.9.0" />
+    <PackageReference Include="WinUICommunity.Core" Version="6.9.0" />
+    <PackageReference Include="WinUICommunity.LandingPages" Version="6.9.0" />
+    <PackageReference Include="WinUICommunity.Win2D" Version="6.9.0" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
