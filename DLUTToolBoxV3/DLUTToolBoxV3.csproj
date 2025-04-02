@@ -17,7 +17,7 @@
     <PackageIcon>logo.png</PackageIcon>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateThumbprint>6022128BB49EC12454E1C82369051D7B65A5AD07</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>9885DE526815BD8C75A95B9CB53F672A11B4EA5B</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxPackageDir>D:\app\DLUTToolBoxV3\Generation\</AppxPackageDir>
